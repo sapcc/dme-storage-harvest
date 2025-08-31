@@ -34,7 +34,7 @@ events:
 
   - name: cf.fm.takeoverFailed
     exports:
-      - parameters.reson                                         => reason
+      - parameters.reason                                        => reason
       - parameters.token                                         => token
       - parameters.partner_node_uuid                             => partner_node_uuid
 
