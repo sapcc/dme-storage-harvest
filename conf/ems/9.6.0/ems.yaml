@@ -735,3 +735,11 @@ events:
       - parameters.vvolname      => volume_name
       - parameters.uuid          => uuid
       - parameters.reason        => reason
+
+  - name: wafl.snap.create.skip.reason
+    exports:
+      - parameters.vol      => vol
+      - parameters.app          => app
+      - parameters.volident        => volident
+      - parameters.snapname        => snap_name
+      - parameters.reason        => reason
