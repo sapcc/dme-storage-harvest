@@ -490,6 +490,8 @@ events:
       - parameters.site                   => site
 
   - name: disk.init.err.unsupported
+    exports:
+      - parameters.diskName            => diskName
 
 # EMS data for CI
 
