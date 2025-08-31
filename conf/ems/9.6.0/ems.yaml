@@ -461,7 +461,7 @@ events:
 
   - name: mgmt.snapmir.init.fail
     exports:
-      - parameters.dstpath            => dstpath
+      - parameters.dstpaths           => dstpaths
       - parameters.srcpath            => srcpath
       - parameters.error              => error
 
