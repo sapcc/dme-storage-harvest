@@ -7,5 +7,4 @@ schedule:
   - data:      1m
 
 objects:
-  FlexCache:                flexcache.yaml
-  SystemNode:               system_node.yaml
+  Qtree:                qtree.yaml
