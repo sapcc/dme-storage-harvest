@@ -17,6 +17,7 @@ counters:
   - ^shelf.uid                  => shelf
   - ^state
   - bytes_per_sector            => bytes_per_sector
+  - capacity                    => capacity
   - sector_count                => sectors
   - stats.average_latency       => stats_average_latency
   - stats.power_on_hours        => power_on_hours
