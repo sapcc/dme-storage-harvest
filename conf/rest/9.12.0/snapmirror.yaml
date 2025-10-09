@@ -13,6 +13,7 @@ counters:
   - ^destination_vserver                     => destination_vserver
   - ^healthy                                 => healthy
   - ^last_transfer_type                      => last_transfer_type
+  - ^policy                                  => policy
   - ^policy_type                             => policy_type
   - ^relationship_group_type                 => group_type
   - ^relationship_type                       => relationship_type
@@ -69,6 +70,7 @@ export_options:
     - last_transfer_error
     - last_transfer_type
     - local
+    - policy
     - policy_type
     - protectedBy
     - protectionSourceType
