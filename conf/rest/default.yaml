@@ -14,7 +14,7 @@ objects:
 #  AuditLog:                    audit_log.yaml
 # The CIFSSession template may slow down data collection due to a high number of metrics.
 #  CIFSSession:                 cifs_session.yaml
-#  CIFSShare:                    cifs_share.yaml
+  CIFSShare:                    cifs_share.yaml
   CloudTarget:                 cloud_target.yaml
   ClusterPeer:                 clusterpeer.yaml
   ClusterSchedule:             clusterschedule.yaml
@@ -22,7 +22,7 @@ objects:
   Disk:                        disk.yaml
   EmsDestination:              ems_destination.yaml
   EthernetSwitchPort:          ethernet_switch_port.yaml
-#  ExportRule:                  exports.yaml
+  ExportRule:                  exports.yaml
   FlexCache:                   flexcache.yaml
   FCP:                         fcp.yaml
   FRU:                         fru.yaml
