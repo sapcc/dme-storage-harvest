@@ -16,6 +16,7 @@ counters:
   - ^is_space_reporting_logical                   => is_space_reporting_logical
   - ^junction_path                                => junction_path
   - ^nodes                                        => node
+  - ^policy                                       => export_policy
   - ^snaplock_type                                => snaplock_type
   - ^snapshot_policy                              => snapshot_policy
   - ^state                                        => state
@@ -135,6 +136,7 @@ export_options:
     - clone_parent_svm
     - clone_parent_volume
     - comment
+    - export_policy
     - isDestinationCloud
     - isDestinationOntap
     - isEncrypted
