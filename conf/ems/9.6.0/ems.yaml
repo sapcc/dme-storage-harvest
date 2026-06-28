@@ -19,8 +19,8 @@ events:
 
   - name: monitor.chassisPowerSupply.degraded
     exports:
-      - ^^node.name                 => node
-      - ^^parameters.ps_number        => ps_number
+      - node.name                 => node
+      - parameters.ps_number        => ps_number
       - parameters.reasonText       => reasonText
 
   - name: monitor.power.degraded
@@ -63,13 +63,19 @@ events:
       - parameters.diskName          => diskName
       - parameters.serialno          => serialno
       - parameters.reason            => reason
+      - parameters.powerOnHours      => poh
+      - parameters.glistEntries      => glist
+      - parameters.disk_information  => disk_info
 
   - name: gb.netra.ca.check.failed
     exports:
-      - parameters.aggr_uuid          => aggr_uuid
+      - parameters.vol              => aggr
+      - parameters.aggr_uuid         => aggr_uuid
       - parameters.reason            => reason
 
   - name: sk.panic
+    exports:
+      - parameters.reason => reason
 
   - name: mgmtgwd.rootvolrec.low.space
     exports:
@@ -169,14 +175,10 @@ events:
       - parameters.switch_name       => switch_name
       - parameters.time             => time
 
-  - name: monitor.raid.brokenDisk
-    exports:
-      - parameters.type       => type
-      - parameters.rgname     => rgname
-
   - name: shm.threshold.highIOLatency
     exports:
       - parameters.disk_name       => disk_name
+      - parameters.agrsv_IO_count  => count
 
   - name: ic.HAInterconnectLinkDown
     exports:
@@ -378,6 +380,11 @@ events:
       - parameters.aggregateName => link_aggregate_name
       - parameters.portName      => port
 
+  - name: net.ifgrp.lacp.link.active
+    exports:
+      - parameters.aggregateName => link_aggregate_name
+      - parameters.portName      => port
+
   - name: mgmtgwd.sign.cert.expired
     exports:
       - parameters.common_name           => common_name
@@ -480,440 +487,868 @@ events:
 
   - name: LUN.nvfail.vol.proc.complete
     exports:
-      - ^^node.name => node
-      - ^^parameters.volume_name => vol
-      - ^^parameters.volume_dsid => dsid
+      - node.name => node
+      - parameters.volume_name => vol
+      - parameters.volume_dsid => dsid
  
   - name: LUN.offline
     exports:
-      - ^^node.name => node
-      - ^^parameters.volume_name => vol
-      - ^^parameters.volume_dsid => dsid 
+      - node.name => node
+      - parameters.volume_name => vol
+      - parameters.volume_dsid => dsid
       - parameters.object_type => object_type
 
   - name: LUN.online
     exports:
-      - ^^node.name => node
-      - ^^parameters.volume_name => vol
-      - ^^parameters.volume_dsid => dsid
+      - node.name => node
+      - parameters.volume_name => vol
+      - parameters.volume_dsid => dsid
 
   - name: monitor.globalStatus.critical
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: monitor.globalStatus.ok
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: wafl.vol.setting.in.nvfailed.state
     exports:
-      - ^^node.name => node
-      - ^^parameters.vol => vol
+      - node.name => node
+      - parameters.vol => vol
 
   - name: wafl.vvol.online
     exports:
-      - ^^node.name => node
-      - ^^parameters.vol => vol
+      - node.name => node
+      - parameters.vol => vol
 
   - name: vifmgr.lifdown.noports
     exports:
-      - ^^node.name => node
-      - ^^parameters.vifname => vifname
+      - node.name => node
+      - parameters.vifname => vifname
 
   - name: vifmgr.lifbeinghosted
     exports:
-      - ^^node.name => node
-      - ^^parameters.vifname => vifname
+      - node.name => node
+      - parameters.vifname => vifname
 
   - name: ses.multipath.ReqError
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: shelf.config.tompha
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: token.vol.max.count.reached
     exports:
-      - ^^node.name => node
-      - ^^parameters.volume_name => volume_name
+      - node.name => node
+      - parameters.volume_name => volume_name
 
   - name: token.vol.cache.cleared
     exports:
-      - ^^node.name => node
-      - ^^parameters.volume_name => volume_name
+      - node.name => node
+      - parameters.volume_name => volume_name
 
   - name: monitor.raidtec.dblDegraded
     exports:
-      - ^^node.name => node
-      - ^^parameters.rgname => rgname
+      - node.name => node
+      - parameters.rgname => rgname
 
   - name: monitor.raid.reconstruct
     exports:
-      - ^^node.name => node
-      - ^^parameters.rgname => rgname
+      - node.name => node
+      - parameters.rgname => rgname
 
   - name: raid.vol.state.changed
     exports:
-      - ^^node.name => node
-      - ^^parameters.vol => aggregate
+      - node.name => node
+      - parameters.vol => aggregate
 
   - name: ha.giveback.aggrOnlineFailed
     exports:
-      - ^^node.name => node
-      - ^^parameters.aggrName => aggregate
+      - node.name => node
+      - parameters.aggrName => aggregate
 
   - name: raid.vol.state.online
     exports:
-      - ^^node.name => node
-      - ^^parameters.vol => aggregate
+      - node.name => node
+      - parameters.vol => aggregate
 
   - name: cf.fm.notkoverClusterDisable
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: callhome.wafl.inconsistent
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: callhome.wafl.iron.done
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: monitor.fan.failed
     exports:
-      - ^^node.name => node
-      - ^^parameters.report => fan
+      - node.name => node
+      - parameters.report => fan
 
   - name: monitor.fan.ok
     exports:
-      - ^^node.name => node
-      - ^^parameters.report => fan
+      - node.name => node
+      - parameters.report => fan
 
   - name: vifmgr.cluscheck.lifdown
     exports:
-      - ^^parameters.lif_name => lif_name
-      - ^^node.name => node
+      - parameters.lif_name => lif_name
+      - node.name => node
 
   - name: vifmgr.cluscheck.lifup
     exports:
-      - ^^parameters.lif_name => lif_name
-      - ^^node.name => node
+      - parameters.lif_name => lif_name
+      - node.name => node
 
   - name: mlm.array.lun.OnePath
     exports:
-      - ^^parameters.diskName => diskName
-      - ^^node.name => node
+      - parameters.diskName => diskName
+      - node.name => node
 
   - name: mlm.array.lun.PathAdded
     exports:
-      - ^^parameters.diskName => diskName
-      - ^^node.name => node
+      - parameters.diskName => diskName
+      - node.name => node
 
   - name: monitor.chassisPowerSupply.ok
     exports:
-      - ^^node.name => node
-      - ^^parameters.ps_number => ps_number
+      - node.name => node
+      - parameters.ps_number => ps_number
 
   - name: nvmem.battery.capacity.low
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: nvmem.battery.capacity.normal
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: nvram.battery.capacity.low.warn
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: snapmirror.migrate.srcErr
     exports:
-      - ^^node.name => node
-      - ^^parameters.srcfiler => srcfiler
-      - ^^parameters.srcpath => srcpath
-      - ^^parameters.dstfiler => dstfiler
-      - ^^parameters.dstpath => dstpath
+      - node.name => node
+      - parameters.srcfiler => srcfiler
+      - parameters.srcpath => srcpath
+      - parameters.dstfiler => dstfiler
+      - parameters.dstpath => dstpath
 
   - name: snapmirror.migrate.dstErr
     exports:
-      - ^^node.name => node
-      - ^^parameters.srcfiler => srcfiler
-      - ^^parameters.srcpath => srcpath
-      - ^^parameters.dstfiler => dstfiler
-      - ^^parameters.dstpath => dstpath
+      - node.name => node
+      - parameters.srcfiler => srcfiler
+      - parameters.srcpath => srcpath
+      - parameters.dstfiler => dstfiler
+      - parameters.dstpath => dstpath
 
   - name: snapmirror.migrate.complete
     exports:
-      - ^^node.name => node
-      - ^^parameters.srcfiler => srcfiler
-      - ^^parameters.srcpath => srcpath
-      - ^^parameters.dstfiler => dstfiler
-      - ^^parameters.dstpath => dstpath
+      - node.name => node
+      - parameters.srcfiler => srcfiler
+      - parameters.srcpath => srcpath
+      - parameters.dstfiler => dstfiler
+      - parameters.dstpath => dstpath
 
   - name: replication.dst.resync.failed
     exports:
-      - ^^node.name => node
-      - ^^parameters.srcfiler => srcfiler
-      - ^^parameters.srcpath => srcpath
-      - ^^parameters.dstpath => dstpath
-      - ^^parameters.rtype => rtype 
+      - node.name => node
+      - parameters.srcfiler => srcfiler
+      - parameters.srcpath => srcpath
+      - parameters.dstpath => dstpath
+      - parameters.rtype => rtype 
 
   - name: replication.dst.resync.success
     exports:
-      - ^^node.name => node
-      - ^^parameters.srcfiler => srcfiler
-      - ^^parameters.srcpath => srcpath
-      - ^^parameters.dstpath => dstpath
-      - ^^parameters.rtype => rtype 
+      - node.name => node
+      - parameters.srcfiler => srcfiler
+      - parameters.srcpath => srcpath
+      - parameters.dstpath => dstpath
+      - parameters.rtype => rtype 
 
   - name: upgrademgr.update.pausedErr
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: upgrademgr.update.resumed
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: ses.status.currentError
     exports:
-      - ^^node.name => node
-      - ^^parameters.prodChannel => prodChannel
-      - ^^parameters.psNumber => psNumber
+      - node.name => node
+      - parameters.prodChannel => prodChannel
+      - parameters.psNumber => psNumber
   
   - name: ses.status.currentWarning
     exports:
-      - ^^node.name => node
-      - ^^parameters.prodChannel => prodChannel
-      - ^^parameters.psNumber => psNumber
+      - node.name => node
+      - parameters.prodChannel => prodChannel
+      - parameters.psNumber => psNumber
 
   - name: ses.status.currentInfo
     exports:
-      - ^^node.name => node
-      - ^^parameters.prodChannel => prodChannel
-      - ^^parameters.psNumber => psNumber
+      - node.name => node
+      - parameters.prodChannel => prodChannel
+      - parameters.psNumber => psNumber
 
   - name: cf.fsm.takeoverOfPartnerDisabled
     exports:
-      - ^^node.name => node
-      - ^^parameters.partner => partner
+      - node.name => node
+      - parameters.partner => partner
 
   - name: cf.fsm.takeoverOfPartnerEnabled
     exports:
-      - ^^node.name => node
-      - ^^parameters.partner => partner
+      - node.name => node
+      - parameters.partner => partner
 
   - name: cf.fsm.takeoverByPartnerDisabled
     exports:
-      - ^^node.name => node
-      - ^^parameters.partner => partner
+      - node.name => node
+      - parameters.partner => partner
 
   - name: cf.fsm.takeoverByPartnerEnabled
     exports:
-      - ^^node.name => node
-      - ^^parameters.partner => partner
+      - node.name => node
+      - parameters.partner => partner
 
   - name: vifmgr.portdown
     exports:
-      - ^^parameters.nodename => nodename
-      - ^^parameters.portname => portname
+      - parameters.nodename => nodename
+      - parameters.portname => portname
 
   - name: vifmgr.portup
     exports:
-      - ^^parameters.nodename => nodename
-      - ^^parameters.portname => portname
+      - parameters.nodename => nodename
+      - parameters.portname => portname
 
   - name: wafl.snap.create.skip.reason
     exports:
-      - ^^node.name => node
-      - ^^parameters.vol => vol
-      - ^^parameters.volident => volident
-      - ^^parameters.snapname => snapname
+      - node.name => node
+      - parameters.vol => vol
+      - parameters.volident => volident
+      - parameters.snapname => snapname
 
   - name: wafl.snap.create
     exports:
-      - ^^node.name => node
-      - ^^parameters.vol => vol
-      - ^^parameters.volident => volident
-      - ^^parameters.snapname => snapname
+      - node.name => node
+      - parameters.vol => vol
+      - parameters.volident => volident
+      - parameters.snapname => snapname
 
   - name: mlm.array.lun.PathFO
     exports:
-      - ^^node.name => node
-      - ^^parameters.adapterName => adapterName
-      - ^^parameters.arrayName => arrayName
+      - node.name => node
+      - parameters.adapterName => adapterName
+      - parameters.arrayName => arrayName
 
   - name: mlm.array.path.resumed
     exports:
-      - ^^node.name => node
-      - ^^parameters.adapterName => adapterName
-      - ^^parameters.arrayName => arrayName
+      - node.name => node
+      - parameters.adapterName => adapterName
+      - parameters.arrayName => arrayName
 
   - name: vifmgr.lifdeleted.byadmin
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: raid.config.spare.disk.missing
     exports:
-      - ^^node.name => node
-      - ^^parameters.shelf => shelf
-      - ^^parameters.bay => bay
+      - node.name => node
+      - parameters.shelf => shelf
+      - parameters.bay => bay
 
   - name: raid.disk.inserted
     exports:
-      - ^^node.name => node
-      - ^^parameters.shelf => shelf
-      - ^^parameters.bay => bay
+      - node.name => node
+      - parameters.shelf => shelf
+      - parameters.bay => bay
 
   - name: monitor.shelf.fault
     exports:
-      - ^^node.name => node
-      - ^^parameters.channel => channel
+      - node.name => node
+      - parameters.channel => channel
 
   - name: monitor.shelf.fault.ok
     exports:
-      - ^^node.name => node
-      - ^^parameters.channel => channel
+      - node.name => node
+      - parameters.channel => channel
 
   - name: clam.partner.halting
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: cf.fm.takeoverComplete
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: clam.update.partner.state
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: mgmt.snapmir.init.fail
     exports:
-      - ^^parameters.srcpath => srcpath
-      - ^^parameters.dstpaths => dstpath
+      - parameters.srcpath => srcpath
+      - parameters.dstpath => dstpath
 
   - name: snapmirror.dst.chkDone
     exports:
-      - ^^parameters.srcpath => srcpath
-      - ^^parameters.dstpath => dstpath
+      - parameters.srcpath => srcpath
+      - parameters.dstpath => dstpath
 
   - name: wafl.vol.autoSize.done
     exports: 
-      - ^^parameters.vol => vol
+      - parameters.vol => vol
 
   - name: wafl.vol.inode.space.usage
     exports:
-      - ^^parameters.vol => vol
+      - parameters.vol => vol
 
   - name: vifmgr.cluscheck.hwerrors
     exports:
-      - ^^parameters.portname => portName
-      - ^^parameters.nodename => nodeName
+      - parameters.portname => portName
+      - parameters.nodename => nodeName
 
   - name: vifmgr.port.monitor.passed
     exports:
-      - ^^parameters.portName => portName
-      - ^^parameters.nodeName => nodeName
+      - parameters.portName => port_name
+      - parameters.nodeName => node_name
 
   - name: monitor.nvramLowBatteries
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: nvram.battery.capacity.normal
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: monitor.nvmembattery.warninglow
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: km.run.external.setup
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: km.keyserver.available 
     exports:
-      - ^^node.name => node
-      - ^^parameters.vserver => vserver
-      - ^^parameters.address => address
+      - node.name => node
+      - parameters.vserver => vserver
+      - parameters.address => address
 
   - name: km.keyserver.notavailable
     exports:
-      - ^^node.name => node
-      - ^^parameters.vserver => vserver
-      - ^^parameters.address => address
+      - node.name => node
+      - parameters.vserver => vserver
+      - parameters.address => address
 
   - name: km.keyretrieve.failed
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: callhome.reboot.takeover
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: clam.node.ooq
     exports:
-      - ^^node.name => node
-      - ^^parameters.hostname => hostname
+      - node.name => node
+      - parameters.hostname => hostname
 
   - name: clam.node.inq
     exports:
-      - ^^node.name => node
-      - ^^parameters.hostname => hostname
+      - node.name => node
+      - parameters.hostname => hostname
 
   - name: sfo.giveback.complete
     exports:
-      - ^^node.name => node
-      - ^^parameters.partnerName => hostname
+      - node.name => node
+      - parameters.partnerName => hostname
 
   - name: callhome.partner.down
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: callhome.sfo.takeover
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: sfo.PartialGiveback
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: cf.rsrc.takeoverOpFail
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: spm.httpd.process.exit
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: vserver.stop.failed
     exports:
-      - ^^parameters.vserver_name => svm
-      - ^^parameters.vserver_uuid => svm_uuid
+      - parameters.vserver_name => svm
+      - parameters.vserver_uuid => svm_uuid
 
   - name: vserver.stop.succeeded
     exports:
-      - ^^parameters.vserver_name => svm
-      - ^^parameters.vserver_uuid => svm_uuid
+      - parameters.vserver_name => svm
+      - parameters.vserver_uuid => svm_uuid
 
   - name: sp.notConfigured
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: callhome.sp.hbt.stopped
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: sp.heartbeat.resumed
     exports:
-      - ^^node.name => node
+      - node.name => node
 
   - name: monitor.volume.full
     exports:
-      - ^^parameters.name => volume
-      - ^^node.name => node
+      - parameters.name => volume
+      - node.name => node
 
   - name: monitor.volume.nearlyFull
     exports:
-      - ^^parameters.name => volume
-      - ^^node.name => node
+      - parameters.name => volume
+      - node.name => node
+
+  - name: aggr.full
+    exports:
+      - parameters.aggr_name => aggr
+
+  - name: app.log.err
+    exports:
+      - parameters.computerName => computerName
+      - parameters.eventSource => eventSource
+      - parameters.appVersion => appVersion
+      - parameters.eventID => eventID
+      - parameters.category => category
+      - parameters.subject => subject
+
+  - name: boot.varfs.backup.issue
+    exports:
+      - parameters.err_str => error
+  
+  - name: boot.varfs.backup.success
+
+  - name: fmmb.mediator.noLckdisk
+    exports:
+      - parameters.side => side
+
+  - name: fmmb.mediator.nullLckdiskSuggest
+    exports:
+      - parameters.side => side
+
+  - name: hm.alert.raised
+    exports:
+      - parameters.detailed_info => detailed_info
+      - parameters.monitor => monitor
+      - parameters.alert_id => alert_id
+      - parameters.alerting_resource => alerting_resource
+
+  - name: hm.alert.cleared
+    exports:
+      - parameters.detailed_info => detailed_info
+      - parameters.monitor => monitor
+      - parameters.alert_id => alert_id
+      - parameters.alerting_resource => alerting_resource
+
+  - name: kern.vm.mmap.return
+    exports:
+      - parameters.process_name => process_name
+      - parameters.process_id => process_id
+      - parameters.size => size
+      - parameters.message => message
+      - parameters.limit => limit
+      - parameters.errno => errno
+
+  - name: km.restore.invalid.key
+    exports:
+      - parameters.keyType => keyType
+      - parameters.vserverName => vserverName
+      - parameters.keyId => keyId
+      - parameters.keyServer => keyServer
+
+  - name: mgmtgwd.schedSnap.createFail
+    exports:
+      - parameters.snapshotName => snapshotName
+      - parameters.volumeName => volumeName
+      - parameters.vserverName => vserverName
+      - parameters.scheduleName => scheduleName
+      - parameters.prefixName => prefixName
+      - parameters.reason => reason
+
+  - name: monitor.chassisTemperature.cool
+    exports:
+      - parameters.describe_toocool => describe_toocool
+
+  - name: monitor.chassisTemperature.warm
+    exports:
+      - parameters.describe_toowarm => describe_toowarm
+
+  - name: monitor.chassisTemperature.ok
+
+  - name: monitor.raid.brokenDisk
+    exports:
+      - parameters.type => type
+      - parameters.rgname => rgname
+      - parameters.verb => verb
+
+  - name: monitor.temp.unreadable
+    exports:
+      - parameters.sensor_name => sensor_name
+
+  - name: moveagent.commitsrc.fail
+    exports:
+      - parameters.volume_dsid => volume_dsid
+
+  - name: nand.predict.fail
+    exports:
+      - parameters.device => device
+
+  - name: netif.autoNegFailed
+    exports:
+      - parameters.ifName => ifName
+      - parameters.speed => speed
+
+  - name: netif.badOversizePacket 
+    exports:
+      - parameters.ifName => ifName
+
+  - name: netif.cprMaxEventsReached
+    exports:
+      - parameters.ifName => ifName
+
+  - name: netif.eepromReadFailed
+    exports:
+      - parameters.ifName => ifName
+
+  - name: netif.hangDetected
+    exports:
+      - parameters.ifName => ifName
+      - parameters.hangType => hangType
+      - parameters.recoveryAction => recoveryAction
+      - parameters.driver => driver
+
+  - name: netif.init.failed
+    exports:
+      - parameters.ifName => ifName
+      - parameters.module => module
+      - parameters.error => error
+
+  - name: netif.nicNotSupported
+    exports:
+      - parameters.slot => slot
+      - parameters.reason => reason
+
+  - name: netif.overTempError
+    exports:
+      - parameters.ifName => ifName
+
+  - name: netif.phyNotRead
+    exports:
+      - parameters.ifName => ifName
+      - parameters.statusMask => statusMask
+
+  - name: netif.phyOperationFailed
+    exports:
+      - parameters.ifName => ifName
+      - parameters.driver => driver
+      - parameters.error => error
+      - parameters.regaddr => regaddr
+      - parameters.command => command
+      - parameters.status => status
+
+  - name: netif.speedNotSupported
+    exports:
+      - parameters.ifName => ifName
+      - parameters.speed => speed
+
+  - name: nodewatchdog.gfc.too.long
+    exports:
+      - parameters.enter_percentage => enter_percentage
+      - parameters.exit_percentage => exit_percentage
+      - parameters.duration => duration
+
+  - name: nodewatchdog.node.failure
+    exports:
+      - parameters.condition => condition
+      - parameters.diagnosis => diagnosis
+
+  - name: rdb.corruption.reported
+    exports:
+      - parameters.unit => unit
+      - parameters.message => message
+
+  - name: rdb.env.IOFailure
+    exports:
+      - parameters.message => message
+
+  - name: rdb.env.processDuplicate
+    exports:
+      - parameters.message => message
+
+  - name: rdb.env.replicaCorrupt
+    exports:
+      - parameters.message => message
+
+  - name: rdb.ha.mboxError
+
+  - name: rdb.internal.error
+    exports:
+      - parameters.message => message
+
+  - name: scsi.cmd.transportError
+    exports:
+      - parameters.deviceType => deviceType
+      - parameters.deviceName => deviceName
+      - parameters.ha_status => ha_status
+      - parameters.cdb => cdb
+      - parameters.disk_information => disk_information
+
+  - name: scsitarget.fcp.sfp.invalid
+    exports:
+      - parameters.adapter => adapter
+      - parameters.reason => reason
+      
+  - name: secd.cifsAuth.problem
+    exports:
+      - parameters.vserverName => vserverName
+      - parameters.failureDetail => failureDetail
+
+  - name: secd.dc.out.of.pipe.instances
+    exports:
+      - parameters.vserver => vserver
+      - parameters.dc => dc
+      - parameters.pipe => pipe
+      - parameters.retries => retries
+      - parameters.delay => delay
+
+  - name: secd.netlogon.noServers
+    exports:
+      - parameters.vserverName => vserverName
+
+  - name: ses.status.temperatureWarning
+    exports:
+      - parameters.prodChannel => prodChannel
+      - parameters.typeText => typeText
+      - parameters.thermNumber => thermNumber
+      - parameters.errorMsg => errorMsg
+      - parameters.errorText => errorText
+      - parameters.currentCTemp => currentCTemp
+      - parameters.currentFTemp => currentFTemp
+      - parameters.locationText => locationText
+
+  - name: ses.status.temperatureInfo
+    exports:
+      - parameters.prodChannel => prodChannel
+      - parameters.typeText => typeText
+      - parameters.thermNumber => thermNumber
+      - parameters.infoMsg => infoMsg
+
+  - name: sis.max.saving.near
+    exports:
+      - parameters.volume => volume
+      - parameters.volident => volident
+
+  - name: sis.max.saving.reached
+    exports:
+      - parameters.volume => volume
+      - parameters.volident => volident
+
+  - name: sm.mediator.cacert.expired
+    exports:
+      - parameters.ipAddress => ipAddress
+      - parameters.expiryDate => expiryDate
+
+  - name: sm.mediator.cacert.expiring
+    exports:
+      - parameters.ipAddress => ipAddress
+      - parameters.daysToExpire => daysToExpire
+      - parameters.expiryDate => expiryDate
+
+  - name: sm.mediator.in.quorum
+    exports:
+      - parameters.ipAddress => ipAddress
+      - parameters.peerCluster => peerCluster
+
+  - name: sm.mediator.misconfigured
+    exports:
+      - parameters.ipAddress => ipAddress
+      - parameters.cluster => cluster
+
+  - name: sm.mediator.removed
+    exports:
+      - parameters.version => version
+      - parameters.cluster => cluster
+      - parameters.ipAddress => ipAddress
+      - parameters.peerCluster => peerCluster
+
+  - name: sm.mediator.removed.force
+    exports:
+      - parameters.version => version
+      - parameters.cluster => cluster
+      - parameters.ipAddress => ipAddress
+      - parameters.peerCluster => peerCluster
+
+  - name: sm.mediator.resumed
+    exports:
+      - parameters.ipAddress => ipAddress
+      - parameters.cluster => cluster
+
+  - name: sm.mediator.serverc.expired
+    exports:
+      - parameters.ipAddress => ipAddress
+      - parameters.expiryDate => expiryDate
+
+  - name: sm.mediator.serverc.expiring
+    exports:
+      - parameters.ipAddress => ipAddress
+      - parameters.expiryDate => expiryDate
+      - parameters.daysToExpire => daysToExpire
+
+  - name: sm.mediator.suspended
+    exports:
+      - parameters.ipAddress => ipAddress
+      - parameters.cluster => cluster
+
+  - name: sm.mediator.unreachable
+    exports:
+      - parameters.ipAddress => ipAddress
+      - parameters.cluster => cluster
+
+  - name: sm.mediator.unusable
+    exports:
+      - parameters.ipAddress => ipAddress
+      - parameters.cluster => cluster
+
+  - name: spm.ntpd.process.exit
+    exports:
+      - parameters.id => id
+      - parameters.cause => cause
+
+  - name: spm.vifmgr.process.exit
+    exports:
+      - parameters.id => id
+      - parameters.cause => cause
+
+  - name: vifmgr.cluscheck.ctdpktloss
+    exports:
+      - parameters.src_vif => src_vif
+      - parameters.src_node => src_node
+      - parameters.dst_vif => dst_vif
+      - parameters.dst_node => dst_node
+
+  - name: vifmgr.cluscheck.droppedall
+    exports:
+      - parameters.src_vif => src_vif
+      - parameters.src_node => src_node
+      - parameters.dst_vif => dst_vif
+      - parameters.dst_node => dst_node
+
+  - name: vifmgr.cluscheck.droppedlarge
+    exports:
+      - parameters.src_vif => src_vif
+      - parameters.src_node => src_node
+      - parameters.dst_vif => dst_vif
+      - parameters.dst_node => dst_node
+
+  - name: vifmgr.cluscheck.hwerrors
+    exports:
+      - parameters.lif_name => lif_name
+      - parameters.node_name => node_name
+
+  - name: vifmgr.dbase.checkerror
+
+  - name: vifmgr.lif.invalidPort
+    exports:
+      - parameters.lif => lif
+
+  - name: vifmgr.lifIdOutOfSync
+    exports:
+      - parameters.vifname => vifname
+      - parameters.vifid => vifid
+      - parameters.vsrvid => vsrvid
+      - parameters.vifip => vifip
+
+  - name: vifmgr.lifOnDegPort.noPorts
+    exports:
+      - parameters.vifname => vifname
+      - parameters.vsrvId => vsrvId
+      - parameters.vifIp => vifIp
+      - parameters.node => host_node
+      - parameters.port => host_port
+
+  - name: vifmgr.portowner.err
+    exports:
+      - parameters.nodename => nodename
+      - parameters.portname => portname
+
+  - name: vifmgr.portspeed.err
+    exports:
+      - parameters.nodename => nodename
+      - parameters.portname => portname
+      - parameters.portspeed => portspeed
+
+  - name: vifmgr.unabletohostmovedlif
+    exports:
+      - parameters.vifname => vifname
+      - parameters.vsrvid => vsrvid
+      - parameters.vifip => vifip
+      - parameters.tonode => tonode
+      - parameters.toport => toport
+      - parameters.error => error
+
+  - name: vifmgr.lifbeinghosted
+    exports:
+      - parameters.vifname => vifname
+      - parameters.vsrvid => vsrvid
+      - parameters.vifip => vifip
+      - parameters.tonode => tonode
+      - parameters.toport => toport
+
+  - name: vsa.vsphere.connected
+    exports:
+      - parameters.user => user
+      - parameters.server => server
+
+  - name: vsa.vsphere.noauth
+    exports:
+      - parameters.detail => detail
+
+  - name: vsa.vsphere.unreachable
+    exports:
+      - parameters.detail => detail
+
+  - name: wafl.vv.vol.maxvols
+    exports:
+      - parameters.vol => vol
+      - parameters.uuid => uuid
+      - parameters.aggregate => aggregate
+      - parameters.count => count
+      - parameters.model => model
+      - parameters.limit => limit
+
+  - name: raid.sp.rdb.update.failed
+    exports:
+      - parameters.name => name
+      - parameters.uuid => uuid
+      - parameters.reason => reason
+      - parameters.jobid => jobid
+
+  - name: scsiblade.ics.trace.dumpfile
+    exports:
+      - parameters.trace_type_name => trace_type_name
