@@ -26,8 +26,10 @@ endpoints:
     counters:
       - ^^svm.name                          => svm
       - ^enabled                            => cifs_protocol_enabled
+      - ^security.session_security          => cifs_ad_ldap_session_security
       - ^security.smb_encryption            => smb_encryption_required
       - ^security.smb_signing               => smb_signing_required
+      - ^security.use_ldaps                 => cifs_ad_ldap_use_ldaps
   - query: api/protocols/nfs/services
     counters:
       - ^^svm.name                          => svm
@@ -69,6 +71,8 @@ export_options:
   instance_labels:
     - anti_ransomware_state
     - audit_protocol_enabled
+    - cifs_ad_ldap_session_security
+    - cifs_ad_ldap_use_ldaps
     - cifs_ntlm_enabled
     - cifs_protocol_enabled
     - ciphers
