@@ -329,6 +329,16 @@ events:
       - parameters.errorText => error_text
       - parameters.locationText => location_text
 
+  - name: ses.status.ModuleInfo
+    exports:
+      - parameters.prodChannel => product_channel
+      - parameters.moduleType => module_type
+      - parameters.typeText => type_text
+      - parameters.ModuleNumber => module_number
+      - parameters.errorMsg => error_message
+      - parameters.errorText => error_text
+      - parameters.locationText => location_text
+
   - name: rdb.recovery.failed
     exports:
       - parameters.message => error_message
