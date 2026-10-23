@@ -1,15 +1,14 @@
 
 name:             FirewallPolicy
-query:            api/network/firewall/policies
+query:            api/private/cli/system/services/firewall/policy
 object:           firewall_policy
 
 counters:
   - ^^policy                                  => policy_name
   - ^^service                                 => service
   - ^^vserver                                 => svm
-  - ^action                                   => firewall_policy
-  - ^fail_policy                              => firewall_fail_policy
-  - ^ip_list                                  => ip_list
+  - ^allow-list                               => allow_list
+  - ^ipspace                                  => ipspace
 
 export_options:
   instance_keys:
@@ -17,6 +16,5 @@ export_options:
     - service
     - svm
   instance_labels:
-    - firewall_fail_policy
-    - firewall_policy
-    - ip_list
+    - allow_list
+    - ipspace

@@ -5,14 +5,18 @@ object:           system_services_web
 
 counters:
   - ^^node                                    => node
-  - ^connections_limit                        => connections_limit
-  - ^enabled                                  => enabled
-  - ^listener_port                            => listener_port
+  - ^external                                 => external_web_services
+  - ^http-enabled                             => http_enabled
+  - ^http-port                                => http_port
+  - ^https-port                               => https_port
+  - ^status                                   => web_status
 
 export_options:
   instance_keys:
     - node
   instance_labels:
-    - connections_limit
-    - enabled
-    - listener_port
+    - external_web_services
+    - http_enabled
+    - http_port
+    - https_port
+    - web_status

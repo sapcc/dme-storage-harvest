@@ -9,3 +9,5 @@ counters:
 export_options:
   instance_keys:
     - ldap_tunnel
+  instance_labels:
+    - ldap_tunnel
