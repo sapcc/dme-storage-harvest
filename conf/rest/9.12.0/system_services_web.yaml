@@ -5,9 +5,9 @@ object:           system_services_web
 
 counters:
   - ^^node                                    => node
-  - ^connections_limit                        => connections_limit
-  - ^enabled                                  => enabled
-  - ^listener_port                            => listener_port
+  - ^connections-limit                        => connections_limit
+  - ^external                                 => enabled
+  - ^listener-port                            => listener_port
 
 export_options:
   instance_keys:
