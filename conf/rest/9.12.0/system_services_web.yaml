@@ -1,0 +1,18 @@
+
+name:             SystemServicesWeb
+query:            api/private/cli/system/services/web/node
+object:           system_services_web
+
+counters:
+  - ^^node                                    => node
+  - ^connections_limit                        => connections_limit
+  - ^enabled                                  => enabled
+  - ^listener_port                            => listener_port
+
+export_options:
+  instance_keys:
+    - node
+  instance_labels:
+    - connections_limit
+    - enabled
+    - listener_port

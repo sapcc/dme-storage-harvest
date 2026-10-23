@@ -22,6 +22,7 @@ import (
 	"github.com/netapp/harvest/v2/cmd/collectors/rest/plugins/qospolicyfixed"
 	"github.com/netapp/harvest/v2/cmd/collectors/rest/plugins/quota"
 	"github.com/netapp/harvest/v2/cmd/collectors/rest/plugins/securityaccount"
+	"github.com/netapp/harvest/v2/cmd/collectors/rest/plugins/securityrole"
 	"github.com/netapp/harvest/v2/cmd/collectors/rest/plugins/shelf"
 	"github.com/netapp/harvest/v2/cmd/collectors/rest/plugins/snapmirror"
 	"github.com/netapp/harvest/v2/cmd/collectors/rest/plugins/snapshot"
@@ -540,6 +541,8 @@ func (r *Rest) LoadPlugin(kind string, abc *plugin.AbstractPlugin) plugin.Plugin
 		return snapshotviolation.New(abc)
 	case "SecurityAccount":
 		return securityaccount.New(abc)
+	case "SecurityRole":
+		return securityrole.New(abc)
 	case "Tag":
 		return tag.New(abc)
 	case "TagMapper":
