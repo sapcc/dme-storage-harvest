@@ -7,8 +7,8 @@ counters:
   - ^^policy                                  => policy_name
   - ^^service                                 => service
   - ^^vserver                                 => svm
-  - ^action                                   => firewall_policy
-  - ^ip_list                                  => ip_list
+  - ^allow-list                               => allow_list
+  - ^ipspace                                  => ipspace
 
 export_options:
   instance_keys:
@@ -16,5 +16,5 @@ export_options:
     - service
     - svm
   instance_labels:
-    - firewall_policy
-    - ip_list
+    - allow_list
+    - ipspace
