@@ -5,7 +5,7 @@ object:           system_firewall
 
 counters:
   - ^^node                                    => node
-  - ^is-enabled                               => firewall_status
+  - ^enabled                                  => firewall_status
   - ^logging                                  => logging_enabled
 
 export_options:
