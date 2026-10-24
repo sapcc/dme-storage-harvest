@@ -15,7 +15,6 @@ objects:
 # The CIFSSession template may slow down data collection due to a high number of metrics.
 #  CIFSSession:                 cifs_session.yaml
   CIFSShare:                    cifs_share.yaml
-  CIFSSecurity:                cifs_security.yaml
   CloudTarget:                 cloud_target.yaml
   ClusterPeer:                 clusterpeer.yaml
   ClusterSchedule:             clusterschedule.yaml
@@ -24,7 +23,6 @@ objects:
   EmsDestination:              ems_destination.yaml
   EthernetSwitchPort:          ethernet_switch_port.yaml
   ExportRule:                  exports.yaml
-  FirewallPolicy:              firewall_policy.yaml
   FlexCache:                   flexcache.yaml
   FCP:                         fcp.yaml
   FRU:                         fru.yaml
@@ -44,10 +42,8 @@ objects:
 #  NFSClients:                  nfs_clients.yaml
   Node:                        node.yaml
   NtpServer:                   ntpserver.yaml
-  NveSelfheal:                 nve_selfheal.yaml
   OntapS3:                     ontap_s3.yaml
   OntapS3Policy:               ontap_s3_policy.yaml
-  OpenNFSRule:                 open_nfs_rule.yaml
   QosPolicyAdaptive:           qos_policy_adaptive.yaml
   QosPolicyFixed:              qos_policy_fixed.yaml
   QosWorkload:                 qos_workload.yaml
@@ -57,9 +53,7 @@ objects:
   SecurityAccount:             security_account.yaml
   SecurityAuditDestination:    security_audit_dest.yaml
   SecurityCert:                security_certificate.yaml
-  SecurityLdapTunnel:          security_ldap_tunnel.yaml
   SecurityLogin:               security_login.yaml
-  SecurityRole:                security_role.yaml
   SecuritySsh:                 security_ssh.yaml
   Sensor:                      sensor.yaml
   Shelf:                       shelf.yaml
@@ -72,8 +66,6 @@ objects:
   Support:                     support.yaml
   SupportAutoUpdate:           support_auto_update.yaml
   SVM:                         svm.yaml
-  SystemFirewall:              system_firewall.yaml
-  SystemServicesWeb:           system_services_web.yaml
   Volume:                      volume.yaml
   VolumeAnalytics:             volume_analytics.yaml
   VolumeEfficiency:            volume_efficiency.yaml

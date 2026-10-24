@@ -55,16 +55,11 @@ func (s *SecurityAccount) Init(remote conf.Remote) error {
 	return nil
 }
 
-type appDetails struct {
-	methods               []string
-	secondAuthMethod      string
-	remoteSwitchIPAddress string
-}
-
 func (s *SecurityAccount) Run(dataMap map[string]*matrix.Matrix) ([]*matrix.Matrix, *collector.Metadata, error) {
 	var (
-		result []gjson.Result
-		err    error
+		result                 []gjson.Result
+		err                    error
+		applicationToMethodMap map[string][]string
 	)
 
 	data := dataMap[s.Object]
@@ -87,20 +82,17 @@ func (s *SecurityAccount) Run(dataMap map[string]*matrix.Matrix) ([]*matrix.Matr
 			return nil, nil, errs.New(errs.ErrNoInstance, "security account is not an object. type="+securityAccount.Type.String())
 		}
 
-		applicationMap := make(map[string]*appDetails)
+		// reset applicationToMethodMap map
+		applicationToMethodMap = make(map[string][]string)
+		// Parse application object and cache the details
 		if applications := securityAccount.Get("applications"); applications.Exists() {
 			for _, applicationDetail := range applications.Array() {
 				application := applicationDetail.Get("application").ClonedString()
-				details := &appDetails{
-					secondAuthMethod:      applicationDetail.Get("second_authentication_method").ClonedString(),
-					remoteSwitchIPAddress: applicationDetail.Get("remote_switch_ipaddress").ClonedString(),
-				}
 				if methodList := applicationDetail.Get("authentication_methods"); methodList.Exists() {
-					for _, method := range methodList.Array() {
-						details.methods = append(details.methods, method.ClonedString())
+					for _, method := range applicationDetail.Get("authentication_methods").Array() {
+						applicationToMethodMap[application] = append(applicationToMethodMap[application], method.ClonedString())
 					}
 				}
-				applicationMap[application] = details
 			}
 		}
 
@@ -108,8 +100,8 @@ func (s *SecurityAccount) Run(dataMap map[string]*matrix.Matrix) ([]*matrix.Matr
 		if securityAccountInstance := data.GetInstance(securityAccountKey); securityAccountInstance != nil {
 			securityAccountInstance.SetExportable(false)
 
-			for application, details := range applicationMap {
-				for _, method := range details.methods {
+			for application, methods := range applicationToMethodMap {
+				for _, method := range methods {
 					var securityAccountNewInstance *matrix.Instance
 					securityAccountNewKey := securityAccountKey + application + method
 					if securityAccountNewInstance, err = data.NewInstance(securityAccountNewKey); err != nil {
@@ -121,12 +113,6 @@ func (s *SecurityAccount) Run(dataMap map[string]*matrix.Matrix) ([]*matrix.Matr
 					}
 					securityAccountNewInstance.SetLabel("applications", application)
 					securityAccountNewInstance.SetLabel("methods", method)
-					if details.secondAuthMethod != "" {
-						securityAccountNewInstance.SetLabel("second_authentication_method", details.secondAuthMethod)
-					}
-					if details.remoteSwitchIPAddress != "" {
-						securityAccountNewInstance.SetLabel("remote_switch_ipaddress", details.remoteSwitchIPAddress)
-					}
 				}
 			}
 		}

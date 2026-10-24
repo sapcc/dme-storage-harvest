@@ -6,7 +6,6 @@ object:           security_account
 counters:
   - ^^name                                      => user_name
   - ^^owner.name                                => svm
-  - ^is_ns_switch_group                         => is_ns_switch_group
   - ^locked                                     => locked
   - ^password_hash_algorithm                    => hash_algorithm
   - ^role.name                                  => role_name
@@ -30,8 +29,5 @@ export_options:
     - user_name
   instance_labels:
     - hash_algorithm
-    - is_ns_switch_group
     - locked
-    - remote_switch_ipaddress
     - role_name
-    - second_authentication_method
