@@ -6,6 +6,9 @@ package securityaccount
 
 import (
 	"fmt"
+	"log/slog"
+	"time"
+
 	"github.com/netapp/harvest/v2/cmd/collectors"
 	"github.com/netapp/harvest/v2/cmd/poller/plugin"
 	"github.com/netapp/harvest/v2/cmd/tools/rest"
@@ -14,8 +17,6 @@ import (
 	"github.com/netapp/harvest/v2/pkg/errs"
 	"github.com/netapp/harvest/v2/pkg/matrix"
 	"github.com/netapp/harvest/v2/third_party/tidwall/gjson"
-	"log/slog"
-	"time"
 )
 
 type SecurityAccount struct {
@@ -57,9 +58,10 @@ func (s *SecurityAccount) Init(remote conf.Remote) error {
 
 func (s *SecurityAccount) Run(dataMap map[string]*matrix.Matrix) ([]*matrix.Matrix, *collector.Metadata, error) {
 	var (
-		result                 []gjson.Result
-		err                    error
-		applicationToMethodMap map[string][]string
+		result                  []gjson.Result
+		err                     error
+		applicationToMethodMap  map[string][]string
+		applicationToDetailsMap map[string]gjson.Result
 	)
 
 	data := dataMap[s.Object]
@@ -84,12 +86,16 @@ func (s *SecurityAccount) Run(dataMap map[string]*matrix.Matrix) ([]*matrix.Matr
 
 		// reset applicationToMethodMap map
 		applicationToMethodMap = make(map[string][]string)
+		applicationToDetailsMap = make(map[string]gjson.Result)
+
 		// Parse application object and cache the details
 		if applications := securityAccount.Get("applications"); applications.Exists() {
 			for _, applicationDetail := range applications.Array() {
 				application := applicationDetail.Get("application").ClonedString()
+				applicationToDetailsMap[application] = applicationDetail
+
 				if methodList := applicationDetail.Get("authentication_methods"); methodList.Exists() {
-					for _, method := range applicationDetail.Get("authentication_methods").Array() {
+					for _, method := range methodList.Array() {
 						applicationToMethodMap[application] = append(applicationToMethodMap[application], method.ClonedString())
 					}
 				}
@@ -101,6 +107,8 @@ func (s *SecurityAccount) Run(dataMap map[string]*matrix.Matrix) ([]*matrix.Matr
 			securityAccountInstance.SetExportable(false)
 
 			for application, methods := range applicationToMethodMap {
+				applicationDetail := applicationToDetailsMap[application]
+
 				for _, method := range methods {
 					var securityAccountNewInstance *matrix.Instance
 					securityAccountNewKey := securityAccountKey + application + method
@@ -111,8 +119,17 @@ func (s *SecurityAccount) Run(dataMap map[string]*matrix.Matrix) ([]*matrix.Matr
 					for k, v := range securityAccountInstance.GetLabels() {
 						securityAccountNewInstance.SetLabel(k, v)
 					}
+
 					securityAccountNewInstance.SetLabel("applications", application)
 					securityAccountNewInstance.SetLabel("methods", method)
+
+					if isNsSwitchGroup := applicationDetail.Get("is_ns_switch_group"); isNsSwitchGroup.Exists() {
+						securityAccountNewInstance.SetLabel("is_ns_switch_group", isNsSwitchGroup.Raw)
+					}
+
+					if secondAuthenticationMethod := applicationDetail.Get("second_authentication_method"); secondAuthenticationMethod.Exists() {
+						securityAccountNewInstance.SetLabel("second_authentication_method", secondAuthenticationMethod.ClonedString())
+					}
 				}
 			}
 		}
