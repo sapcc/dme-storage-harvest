@@ -10,6 +10,7 @@ counters:
   - ^clone_parent_name                            => clone_parent_volume
   - ^clone_parent_vserver                         => clone_parent_svm
   - ^clone_volume                                 => is_flexclone
+  - ^comment                                      => comment
   - ^instance_uuid                                => uuid
   - ^is_encrypted                                 => isEncrypted
   - ^is_sis_volume                                => is_sis_volume
@@ -17,6 +18,7 @@ counters:
   - ^is_space_reporting_logical                   => is_space_reporting_logical
   - ^junction_path                                => junction_path
   - ^nodes                                        => node
+  - ^policy                                       => export_policy
   - ^snaplock_type                                => snaplock_type
   - ^snapshot_policy                              => snapshot_policy
   - ^space_mgmt_try_first                         => space_mgmt_try_first
@@ -146,6 +148,8 @@ export_options:
     - clone_parent_snapshot
     - clone_parent_svm
     - clone_parent_volume
+    - comment
+    - export_policy
     - isDestinationCloud
     - isDestinationOntap
     - isEncrypted

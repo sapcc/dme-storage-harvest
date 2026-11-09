@@ -26,9 +26,18 @@ endpoints:
   - query: api/protocols/cifs/services
     counters:
       - ^^svm.name                          => svm
+      - ^ad_domain.fqdn                     => domain
+      - ^ad_domain.organizational_unit      => organizational_unit
+      - ^auth_style                         => auth_style
+      - ^domain_workgroup                   => domain_workgroup
       - ^enabled                            => cifs_protocol_enabled
+      - ^name                               => cifs_server
+      - ^security.kdc_encryption            => is_aes_encryption_enabled
+      - ^security.session_security          => cifs_ad_ldap_session_security
       - ^security.smb_encryption            => smb_encryption_required
       - ^security.smb_signing               => smb_signing_required
+      - ^security.use_ldaps                 => cifs_ad_ldap_use_ldaps
+      - ^security.use_start_tls             => use_start_tls_for_ad_ldap
   - query: api/protocols/audit
     counters:
       - ^^svm.name                          => svm
@@ -69,12 +78,19 @@ export_options:
   instance_labels:
     - anti_ransomware_state
     - audit_protocol_enabled
+    - auth_style
+    - cifs_ad_ldap_session_security
+    - cifs_ad_ldap_use_ldaps
     - cifs_ntlm_enabled
     - cifs_protocol_enabled
+    - cifs_server
     - ciphers
+    - domain
+    - domain_workgroup
     - fpolicy_enabled
     - fpolicy_name
     - insecured
+    - is_aes_encryption_enabled
     - is_space_enforcement_logical
     - is_space_reporting_logical
     - iscsi_authentication_type
@@ -86,9 +102,11 @@ export_options:
     - nis_domain
     - ns_db
     - ns_source
+    - organizational_unit
     - root_svm
     - smb_encryption_required
     - smb_signing_required
     - state
     - type
+    - use_start_tls_for_ad_ldap
 
