@@ -1,0 +1,24 @@
+
+name:                     WebNode
+query:                    api/private/cli/system/services/web/node
+object:                   web_node
+
+counters:
+  - ^^node                                  => node
+  - ^external                               => external
+  - ^http_enabled                           => http_enabled
+  - ^http_port                              => http_port
+  - ^https_port                             => https_port
+  - ^lif_service_policy_enforced            => lif_service_policy_enforced
+  - ^status                                 => status
+
+export_options:
+  instance_keys:
+    - node
+  instance_labels:
+    - external
+    - http_enabled
+    - http_port
+    - https_port
+    - lif_service_policy_enforced
+    - status

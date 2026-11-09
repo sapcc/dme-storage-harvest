@@ -1,4 +1,5 @@
 
+
 name:             SecurityAccount
 query:            api/security/accounts
 object:           security_account
@@ -9,7 +10,6 @@ counters:
   - ^locked                                     => locked
   - ^password_hash_algorithm                    => hash_algorithm
   - ^role.name                                  => role_name
-
 
 plugins:
   - SecurityAccount
@@ -29,5 +29,7 @@ export_options:
     - user_name
   instance_labels:
     - hash_algorithm
+    - is_ns_switch_group
     - locked
     - role_name
+    - second_authentication_method
