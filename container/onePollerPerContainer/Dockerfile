@@ -1,6 +1,6 @@
 # GO_VERSION should be overridden by the build script via --build-arg GO_VERSION=$value
 ARG GO_VERSION
-ARG BUILDPLATFORM
+ARG BUILDPLATFORM=linux/amd64
 FROM --platform=$BUILDPLATFORM golang:${GO_VERSION} AS builder
 
 SHELL ["/bin/bash", "-c"]
@@ -9,7 +9,7 @@ ARG INSTALL_DIR=/opt/harvest
 ARG BUILD_DIR=/opt/home
 ARG VERSION=2.0
 ARG RELEASE=prod
-ARG TARGETARCH
+ARG TARGETARCH=amd64
 
 # Set the Current Working Directory inside the container
 WORKDIR $BUILD_DIR
