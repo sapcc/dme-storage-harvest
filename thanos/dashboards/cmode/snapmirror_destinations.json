@@ -1,4 +1,5 @@
 {
+  "__elements": {},
   "__inputs": [
     {
       "description": "",
@@ -61,7 +62,7 @@
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations \u0026 Alerts",
+        "name": "Annotations & Alerts",
         "target": {
           "limit": 100,
           "matchAny": false,
@@ -74,6 +75,7 @@
   },
   "description": "",
   "editable": true,
+  "fiscalYearStartMonth": 0,
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
@@ -244,8 +246,9 @@
           "values": false
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.2",
@@ -538,7 +541,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                    "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                   }
                 ]
               }
@@ -560,7 +563,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                    "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                   }
                 ]
               }
@@ -928,8 +931,9 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -942,7 +946,7 @@
           "expr": "snapmirror_last_transfer_duration{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",destination_location=~\".*$ConsistencyGroup\",destination_volume=~\".*$Volume.*\",destination_vserver=~\"$SVM\",netapp_cluster=~\"$NetappCluster\"}\nand\n  topk(\n    $TopResources,\n    avg_over_time(\n      snapmirror_last_transfer_duration{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",destination_location=~\".*$ConsistencyGroup\",destination_volume=~\".*$Volume.*\",destination_vserver=~\"$SVM\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n    )\n  )",
           "hide": false,
           "interval": "",
-          "legendFormat": "{{source_location}} -\u003e {{destination_location}}",
+          "legendFormat": "{{source_location}} -> {{destination_location}}",
           "range": true,
           "refCount": 0,
           "refId": "B",
@@ -1030,8 +1034,9 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -1044,7 +1049,7 @@
           "expr": "snapmirror_lag_time{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",destination_location=~\".*$ConsistencyGroup\",destination_volume=~\".*$Volume.*\",destination_vserver=~\"$SVM\",netapp_cluster=~\"$NetappCluster\"}\nand\n  topk(\n    $TopResources,\n    avg_over_time(\n      snapmirror_lag_time{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",destination_location=~\".*$ConsistencyGroup\",destination_volume=~\".*$Volume.*\",destination_vserver=~\"$SVM\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n    )\n  )",
           "hide": false,
           "interval": "",
-          "legendFormat": "{{source_location}} -\u003e {{destination_location}}",
+          "legendFormat": "{{source_location}} -> {{destination_location}}",
           "range": true,
           "refCount": 0,
           "refId": "B",
@@ -1131,8 +1136,9 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -1145,7 +1151,7 @@
           "expr": "snapmirror_last_transfer_size{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",destination_location=~\".*$ConsistencyGroup\",destination_volume=~\".*$Volume.*\",destination_vserver=~\"$SVM\",netapp_cluster=~\"$NetappCluster\"}\nand\n  topk(\n    $TopResources,\n    avg_over_time(\n      snapmirror_last_transfer_size{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",destination_location=~\".*$ConsistencyGroup\",destination_volume=~\".*$Volume.*\",destination_vserver=~\"$SVM\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n    )\n  )",
           "hide": false,
           "interval": "",
-          "legendFormat": "{{source_location}} -\u003e {{destination_location}}",
+          "legendFormat": "{{source_location}} -> {{destination_location}}",
           "range": true,
           "refCount": 0,
           "refId": "B",
@@ -1182,7 +1188,7 @@
               "log": 10,
               "type": "log"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -1228,7 +1234,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -1371,8 +1379,9 @@
               "values": false
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.2",
@@ -1626,7 +1635,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-volume/ontap-volume?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${SVM:queryparam}\u0026${__url_time_range}\u0026var-Volume=${__value.raw}"
+                        "url": "/d/cdot-volume/ontap-volume?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${SVM:queryparam}&${__url_time_range}&var-Volume=${__value.raw}"
                       }
                     ]
                   }
@@ -1708,7 +1717,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                       }
                     ]
                   }
@@ -1730,7 +1739,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                       }
                     ]
                   }
@@ -1838,6 +1847,7 @@
       "type": "row"
     }
   ],
+  "preload": false,
   "refresh": "",
   "schemaVersion": 30,
   "style": "dark",
@@ -1888,7 +1898,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -1915,7 +1925,7 @@
         "refresh": 2,
         "regex": ".*?cluster=\\\"(.*?)\\\".*",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -1967,7 +1977,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -1993,7 +2003,7 @@
         "refresh": 2,
         "regex": "^[a-zA-Z0-9~@#$^*()_+=[\\]{}|\\\\.?: -]*$",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -2019,7 +2029,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -2154,5 +2164,6 @@
   "timezone": "",
   "title": "ONTAP: SnapMirror Destinations",
   "uid": "cdot-snapmirror-destinations",
-  "version": 3
+  "version": 3,
+  "weekStart": ""
 }

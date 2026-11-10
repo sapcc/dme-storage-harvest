@@ -55,7 +55,7 @@
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations \u0026 Alerts",
+        "name": "Annotations & Alerts",
         "target": {
           "limit": 100,
           "matchAny": false,
@@ -183,7 +183,9 @@
           "values": false
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.2",
@@ -321,7 +323,9 @@
           "values": false
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.2",
@@ -459,7 +463,9 @@
           "values": false
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.2",
@@ -560,7 +566,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                    "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                   }
                 ]
               }
@@ -582,7 +588,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                    "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                   }
                 ]
               }
@@ -604,7 +610,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-svm/ontap-svm?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-SVM=${__value.raw}"
+                    "url": "/d/cdot-svm/ontap-svm?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-SVM=${__value.raw}"
                   }
                 ]
               }
@@ -630,7 +636,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-volume/ontap-volume?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${SVM:queryparam}\u0026${__url_time_range}\u0026var-Volume=${__value.raw}"
+                    "url": "/d/cdot-volume/ontap-volume?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${SVM:queryparam}&${__url_time_range}&var-Volume=${__value.raw}"
                   }
                 ]
               }
@@ -1113,7 +1119,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                       }
                     ]
                   }
@@ -1135,7 +1141,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                       }
                     ]
                   }
@@ -1157,7 +1163,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-svm/ontap-svm?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-SVM=${__value.raw}"
+                        "url": "/d/cdot-svm/ontap-svm?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-SVM=${__value.raw}"
                       }
                     ]
                   }
@@ -1665,7 +1671,7 @@
           "targets": [
             {
               "exemplar": false,
-              "expr": "count(\n        volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",snapshot_policy!=\"\",snapshot_policy!~\"none.*\",netapp_cluster=~\"$NetappCluster\"}\n      * on (snapshot_policy) group_left ()\n        group by (snapshot_policy) (snapshot_policy_labels)\n    * on (volume, svm, cluster) group_right ()\n      (\n            volume_snapshot_reserve_size{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} \u003e= 0\n          and\n            volume_snapshots_size_used{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} \u003e= 0\n        and\n            volume_snapshots_size_used{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n          \u003e\n            volume_snapshot_reserve_size{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      )\n  )\nor on ()\n  vector(0)",
+              "expr": "count(\n        volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",snapshot_policy!=\"\",snapshot_policy!~\"none.*\",netapp_cluster=~\"$NetappCluster\"}\n      * on (snapshot_policy) group_left ()\n        group by (snapshot_policy) (snapshot_policy_labels)\n    * on (volume, svm, cluster) group_right ()\n      (\n            volume_snapshot_reserve_size{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} >= 0\n          and\n            volume_snapshots_size_used{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} >= 0\n        and\n            volume_snapshots_size_used{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n          >\n            volume_snapshot_reserve_size{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      )\n  )\nor on ()\n  vector(0)",
               "format": "time_series",
               "hide": false,
               "instant": true,
@@ -1739,7 +1745,7 @@
           "targets": [
             {
               "exemplar": false,
-              "expr": "(\n      count(\n          (\n              volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",snapshot_policy!=\"\",snapshot_policy!~\"none.*\",netapp_cluster=~\"$NetappCluster\"}\n            * on (snapshot_policy) group_left ()\n              group by (snapshot_policy) (snapshot_policy_labels)\n          )\n        * on (volume, svm, cluster) group_right ()\n          (\n                volume_snapshot_reserve_size{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} \u003e 0\n              and\n                volume_snapshots_size_used{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} \u003e 0\n            and\n                volume_snapshots_size_used{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n              \u003c=\n                volume_snapshot_reserve_size{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n          )\n      )\n    or on ()\n      vector(0)\n  )\n+\n  (\n      count(\n            volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",snapshot_policy!=\"\",snapshot_policy!~\"none.*\",netapp_cluster=~\"$NetappCluster\"}\n          * on (snapshot_policy) group_left ()\n            group by (snapshot_policy) (snapshot_policy_labels)\n        * on (volume, svm, cluster) group_right ()\n          (\n              volume_snapshot_reserve_size{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} \u003e= 0\n            and\n              volume_snapshots_size_used{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} == 0\n          )\n      )\n    or on ()\n      vector(0)\n  )",
+              "expr": "(\n      count(\n          (\n              volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",snapshot_policy!=\"\",snapshot_policy!~\"none.*\",netapp_cluster=~\"$NetappCluster\"}\n            * on (snapshot_policy) group_left ()\n              group by (snapshot_policy) (snapshot_policy_labels)\n          )\n        * on (volume, svm, cluster) group_right ()\n          (\n                volume_snapshot_reserve_size{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} > 0\n              and\n                volume_snapshots_size_used{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} > 0\n            and\n                volume_snapshots_size_used{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n              <=\n                volume_snapshot_reserve_size{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n          )\n      )\n    or on ()\n      vector(0)\n  )\n+\n  (\n      count(\n            volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",snapshot_policy!=\"\",snapshot_policy!~\"none.*\",netapp_cluster=~\"$NetappCluster\"}\n          * on (snapshot_policy) group_left ()\n            group by (snapshot_policy) (snapshot_policy_labels)\n        * on (volume, svm, cluster) group_right ()\n          (\n              volume_snapshot_reserve_size{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} >= 0\n            and\n              volume_snapshots_size_used{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} == 0\n          )\n      )\n    or on ()\n      vector(0)\n  )",
               "format": "time_series",
               "hide": false,
               "instant": true,
@@ -1806,7 +1812,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-volume/ontap-volume?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Volume=${__value.raw}"
+                        "url": "/d/cdot-volume/ontap-volume?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Volume=${__value.raw}"
                       }
                     ]
                   }
@@ -1828,7 +1834,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-svm/ontap-svm?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-SVM=${__value.raw}"
+                        "url": "/d/cdot-svm/ontap-svm?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-SVM=${__value.raw}"
                       }
                     ]
                   }
@@ -1937,7 +1943,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-volume/ontap-volume?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Volume=${__value.raw}"
+                        "url": "/d/cdot-volume/ontap-volume?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Volume=${__value.raw}"
                       }
                     ]
                   }
@@ -2030,7 +2036,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-svm/ontap-svm?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-SVM=${__value.raw}"
+                        "url": "/d/cdot-svm/ontap-svm?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-SVM=${__value.raw}"
                       }
                     ]
                   }
@@ -2062,7 +2068,7 @@
           "targets": [
             {
               "exemplar": false,
-              "expr": "volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",snapshot_policy!=\"\",snapshot_policy!~\"none.*\",netapp_cluster=~\"$NetappCluster\"}\n  * on (snapshot_policy) group_left ()\n    group by (snapshot_policy) (snapshot_policy_labels)\n* on (volume, svm, cluster) group_right ()\n  (\n      volume_snapshot_reserve_size{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} \u003e= 0\n    and\n      volume_snapshots_size_used{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} \u003e= 0\n  )",
+              "expr": "volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",snapshot_policy!=\"\",snapshot_policy!~\"none.*\",netapp_cluster=~\"$NetappCluster\"}\n  * on (snapshot_policy) group_left ()\n    group by (snapshot_policy) (snapshot_policy_labels)\n* on (volume, svm, cluster) group_right ()\n  (\n      volume_snapshot_reserve_size{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} >= 0\n    and\n      volume_snapshots_size_used{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} >= 0\n  )",
               "format": "table",
               "hide": false,
               "instant": true,
@@ -2158,7 +2164,7 @@
         },
         {
           "datasource": "${DS_PROMETHEUS}",
-          "description": "Total number of volumes whose snapshot count is \u003c 10.",
+          "description": "Total number of volumes whose snapshot count is < 10.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -2206,7 +2212,7 @@
           "targets": [
             {
               "exemplar": false,
-              "expr": "count(\n      (\n          volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",snapshot_policy!=\"\",snapshot_policy!~\"none.*\",volume!~\"MDV.*\",netapp_cluster=~\"$NetappCluster\"}\n        * on (snapshot_policy) group_left ()\n          group by (snapshot_policy) (snapshot_policy_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"})\n      )\n    * on (volume, svm, cluster)\n      (\n          volume_snapshot_count{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} \u003e 0\n        and\n          volume_snapshot_count{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} \u003c 10\n      )\n  )\nor on ()\n  vector(0)",
+              "expr": "count(\n      (\n          volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",snapshot_policy!=\"\",snapshot_policy!~\"none.*\",volume!~\"MDV.*\",netapp_cluster=~\"$NetappCluster\"}\n        * on (snapshot_policy) group_left ()\n          group by (snapshot_policy) (snapshot_policy_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"})\n      )\n    * on (volume, svm, cluster)\n      (\n          volume_snapshot_count{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} > 0\n        and\n          volume_snapshot_count{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} < 10\n      )\n  )\nor on ()\n  vector(0)",
               "format": "time_series",
               "hide": false,
               "instant": true,
@@ -2216,7 +2222,7 @@
               "refId": "A"
             }
           ],
-          "title": "\u003c10 Copies ",
+          "title": "<10 Copies ",
           "type": "stat"
         },
         {
@@ -2269,7 +2275,7 @@
           "targets": [
             {
               "exemplar": false,
-              "expr": "count(\n      (\n          volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",snapshot_policy!=\"\",snapshot_policy!~\"none.*\",volume!~\"MDV.*\",netapp_cluster=~\"$NetappCluster\"}\n        * on (snapshot_policy) group_left ()\n          group by (snapshot_policy) (snapshot_policy_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"})\n      )\n    * on (volume, svm, cluster)\n      (\n          volume_snapshot_count{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} \u003e= 10\n        and\n          volume_snapshot_count{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} \u003c= 100\n      )\n  )\nor on ()\n  vector(0)",
+              "expr": "count(\n      (\n          volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",snapshot_policy!=\"\",snapshot_policy!~\"none.*\",volume!~\"MDV.*\",netapp_cluster=~\"$NetappCluster\"}\n        * on (snapshot_policy) group_left ()\n          group by (snapshot_policy) (snapshot_policy_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"})\n      )\n    * on (volume, svm, cluster)\n      (\n          volume_snapshot_count{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} >= 10\n        and\n          volume_snapshot_count{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} <= 100\n      )\n  )\nor on ()\n  vector(0)",
               "format": "time_series",
               "hide": false,
               "instant": true,
@@ -2332,7 +2338,7 @@
           "targets": [
             {
               "exemplar": false,
-              "expr": "count(\n      (\n          volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",snapshot_policy!=\"\",snapshot_policy!~\"none.*\",volume!~\"MDV.*\",netapp_cluster=~\"$NetappCluster\"}\n        * on (snapshot_policy) group_left ()\n          group by (snapshot_policy) (snapshot_policy_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"})\n      )\n    * on (volume, svm, cluster)\n      (\n          volume_snapshot_count{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} \u003e 100\n        and\n          volume_snapshot_count{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} \u003c= 500\n      )\n  )\nor on ()\n  vector(0)",
+              "expr": "count(\n      (\n          volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",snapshot_policy!=\"\",snapshot_policy!~\"none.*\",volume!~\"MDV.*\",netapp_cluster=~\"$NetappCluster\"}\n        * on (snapshot_policy) group_left ()\n          group by (snapshot_policy) (snapshot_policy_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"})\n      )\n    * on (volume, svm, cluster)\n      (\n          volume_snapshot_count{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} > 100\n        and\n          volume_snapshot_count{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} <= 500\n      )\n  )\nor on ()\n  vector(0)",
               "format": "time_series",
               "hide": false,
               "instant": true,
@@ -2347,7 +2353,7 @@
         },
         {
           "datasource": "${DS_PROMETHEUS}",
-          "description": "Total number of volumes whose snapshot count is \u003e 500.",
+          "description": "Total number of volumes whose snapshot count is > 500.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -2395,7 +2401,7 @@
           "targets": [
             {
               "exemplar": false,
-              "expr": "count(\n      (\n          volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",snapshot_policy!=\"\",snapshot_policy!~\"none.*\",volume!~\"MDV.*\",netapp_cluster=~\"$NetappCluster\"}\n        * on (snapshot_policy) group_left ()\n          group by (snapshot_policy) (snapshot_policy_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"})\n      )\n    * on (volume, svm, cluster)\n      (volume_snapshot_count{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} \u003e 500)\n  )\nor on ()\n  vector(0)",
+              "expr": "count(\n      (\n          volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",snapshot_policy!=\"\",snapshot_policy!~\"none.*\",volume!~\"MDV.*\",netapp_cluster=~\"$NetappCluster\"}\n        * on (snapshot_policy) group_left ()\n          group by (snapshot_policy) (snapshot_policy_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"})\n      )\n    * on (volume, svm, cluster)\n      (volume_snapshot_count{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} > 500)\n  )\nor on ()\n  vector(0)",
               "format": "time_series",
               "hide": false,
               "instant": true,
@@ -2405,7 +2411,7 @@
               "refId": "A"
             }
           ],
-          "title": "\u003e500 Copies",
+          "title": ">500 Copies",
           "type": "stat"
         },
         {
@@ -2452,7 +2458,7 @@
                           "from": 0,
                           "result": {
                             "index": 0,
-                            "text": "\u003c 10 Copies"
+                            "text": "< 10 Copies"
                           },
                           "to": 9
                         },
@@ -2485,7 +2491,7 @@
                           "from": 501,
                           "result": {
                             "index": 3,
-                            "text": "\u003e 500 Copies"
+                            "text": "> 500 Copies"
                           },
                           "to": 1e+24
                         },
@@ -2515,7 +2521,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-volume/ontap-volume?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Volume=${__value.raw}"
+                        "url": "/d/cdot-volume/ontap-volume?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Volume=${__value.raw}"
                       }
                     ]
                   }
@@ -2537,7 +2543,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-svm/ontap-svm?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-SVM=${__value.raw}"
+                        "url": "/d/cdot-svm/ontap-svm?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-SVM=${__value.raw}"
                       }
                     ]
                   }
@@ -2559,7 +2565,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                       }
                     ]
                   }
@@ -2589,7 +2595,7 @@
           "targets": [
             {
               "exemplar": false,
-              "expr": "(\n      volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",snapshot_policy!=\"\",snapshot_policy!~\"none.*\",volume!~\"MDV.*\",netapp_cluster=~\"$NetappCluster\"}\n    * on (snapshot_policy) group_left ()\n      group by (snapshot_policy) (snapshot_policy_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"})\n  )\n* on (volume, svm, cluster)\n  (volume_snapshot_count{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} \u003e 0)",
+              "expr": "(\n      volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",snapshot_policy!=\"\",snapshot_policy!~\"none.*\",volume!~\"MDV.*\",netapp_cluster=~\"$NetappCluster\"}\n    * on (snapshot_policy) group_left ()\n      group by (snapshot_policy) (snapshot_policy_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"})\n  )\n* on (volume, svm, cluster)\n  (volume_snapshot_count{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"} > 0)",
               "format": "table",
               "instant": true,
               "interval": "",
@@ -2701,7 +2707,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                       }
                     ]
                   }
@@ -2723,7 +2729,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                       }
                     ]
                   }
@@ -2908,7 +2914,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                       }
                     ]
                   }
@@ -2930,7 +2936,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                       }
                     ]
                   }
@@ -3122,7 +3128,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                       }
                     ]
                   }
@@ -3144,7 +3150,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                       }
                     ]
                   }
@@ -3168,6 +3174,32 @@
                           "interval": {
                             "index": 1,
                             "text": "Interval-based"
+                          }
+                        },
+                        "type": "value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Site"
+                },
+                "properties": [
+                  {
+                    "id": "mappings",
+                    "value": [
+                      {
+                        "options": {
+                          "local": {
+                            "index": 1,
+                            "text": "Local"
+                          },
+                          "remote": {
+                            "index": 0,
+                            "text": "Remote"
                           }
                         },
                         "type": "value"
@@ -3220,7 +3252,8 @@
                     "datacenter",
                     "name",
                     "type",
-                    "scope"
+                    "scope",
+                    "site"
                   ]
                 }
               }
@@ -3246,6 +3279,7 @@
                   "schedule": "Schedule",
                   "schedule_name": "Transfer Schedule",
                   "scope": "Scope",
+                  "site": "Site",
                   "type": "Type",
                   "volume": ""
                 }
@@ -3279,7 +3313,7 @@
           },
           "id": 173,
           "options": {
-            "content": "\u003cbr\u003e\n\nTo use these panels dashboard, enable the SnapshotViolation plugin in SnapshotPolicy templates. For more details, visit the [SnapshotViolation documentation](https://github.com/NetApp/harvest/discussions/3854).\n",
+            "content": "<br>\n\nTo use these panels dashboard, enable the SnapshotViolation plugin in SnapshotPolicy templates. For more details, visit the [SnapshotViolation documentation](https://github.com/NetApp/harvest/discussions/3854).\n",
             "mode": "markdown"
           },
           "pluginVersion": "8.1.8",
@@ -3466,7 +3500,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                       }
                     ]
                   },
@@ -3488,7 +3522,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                       }
                     ]
                   },
@@ -3514,7 +3548,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-volume/ontap-volume?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Volume=${__value.raw}"
+                        "url": "/d/cdot-volume/ontap-volume?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Volume=${__value.raw}"
                       }
                     ]
                   }
@@ -3536,7 +3570,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-svm/ontap-svm?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-SVM=${__value.raw}"
+                        "url": "/d/cdot-svm/ontap-svm?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-SVM=${__value.raw}"
                       }
                     ]
                   }
@@ -3736,7 +3770,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -3762,7 +3796,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",

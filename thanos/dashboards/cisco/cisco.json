@@ -55,7 +55,7 @@
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations \u0026 Alerts",
+        "name": "Annotations & Alerts",
         "target": {
           "limit": 100,
           "matchAny": false,
@@ -71,7 +71,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1732181856878,
+  "iteration": 1771439614355,
   "links": [
     {
       "asDropdown": true,
@@ -147,7 +147,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                    "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                   }
                 ]
               }
@@ -546,7 +546,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -554,28 +556,28 @@
             {
               "exemplar": false,
               "expr": "cisco_environment_power_in{datacenter=~\"$Datacenter\",switch=~\"$Switch\"}\nand\n  topk(\n    $TopResources,\n    avg_over_time(cisco_environment_power_in{datacenter=~\"$Datacenter\",switch=~\"$Switch\"}[3h] @ end())\n  )",
-              "interval": "",
+              "interval": "3m",
               "legendFormat": "{{switch}} PSU {{ps}} Input",
               "refId": "A"
             },
             {
               "exemplar": false,
               "expr": "sum by (switch) (cisco_environment_power_in{datacenter=~\"$Datacenter\",switch=~\"$Switch\"})",
-              "interval": "",
+              "interval": "3m",
               "legendFormat": "{{switch}} Total Input",
               "refId": "B"
             },
             {
               "exemplar": false,
               "expr": "cisco_environment_power_out{datacenter=~\"$Datacenter\",switch=~\"$Switch\"}\nand\n  topk(\n    $TopResources,\n    avg_over_time(cisco_environment_power_out{datacenter=~\"$Datacenter\",switch=~\"$Switch\"}[3h] @ end())\n  )",
-              "interval": "",
+              "interval": "3m",
               "legendFormat": "{{switch}} PSU {{ps}} Output",
               "refId": "C"
             },
             {
               "exemplar": false,
               "expr": "sum by (switch) (cisco_environment_power_out{datacenter=~\"$Datacenter\",switch=~\"$Switch\"})",
-              "interval": "",
+              "interval": "3m",
               "legendFormat": "{{switch}} Total Output",
               "refId": "D"
             }
@@ -629,7 +631,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                       }
                     ]
                   }
@@ -896,7 +898,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -904,7 +908,7 @@
             {
               "exemplar": false,
               "expr": "cisco_environment_sensor_temp{datacenter=~\"$Datacenter\",switch=~\"$Switch\"}\nand\n  topk(\n    $TopResources,\n    avg_over_time(\n      cisco_environment_sensor_temp{datacenter=~\"$Datacenter\",switch=~\"$Switch\"}[3h] @ end()\n    )\n  )",
-              "interval": "",
+              "interval": "3m",
               "legendFormat": "{{switch}} - {{sensor}}",
               "refId": "A"
             }
@@ -958,7 +962,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                       }
                     ]
                   }
@@ -1196,7 +1200,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1204,7 +1210,7 @@
             {
               "exemplar": false,
               "expr": "cisco_optic_rx{datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\"}\nand\n  topk(\n    $TopResources,\n    avg_over_time(\n      cisco_optic_rx{datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\"}[3h] @ end()\n    )\n  )",
-              "interval": "",
+              "interval": "3m",
               "legendFormat": "{{switch}} - {{interface}}",
               "refId": "A"
             }
@@ -1287,7 +1293,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1295,7 +1303,7 @@
             {
               "exemplar": false,
               "expr": "cisco_optic_tx{datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\"}\nand\n  topk(\n    $TopResources,\n    avg_over_time(\n      cisco_optic_tx{datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\"}[3h] @ end()\n    )\n  )",
-              "interval": "",
+              "interval": "3m",
               "legendFormat": "{{switch}} - {{interface}}",
               "refId": "A"
             }
@@ -1395,7 +1403,7 @@
             "h": 12,
             "w": 24,
             "x": 0,
-            "y": 5
+            "y": 12
           },
           "id": 48,
           "options": {
@@ -1405,7 +1413,7 @@
           "targets": [
             {
               "exemplar": false,
-              "expr": "rate(\n  cisco_interface_transmit_bytes{datacenter=~\"$Datacenter\",description!=\"\",switch=~\"$Switch\"}[4m]\n)",
+              "expr": "rate(\n  cisco_interface_transmit_bytes{datacenter=~\"$Datacenter\",description!=\"\",interface=~\"$Interface\",switch=~\"$Switch\"}[4m]\n)",
               "format": "table",
               "instant": true,
               "interval": "",
@@ -1414,7 +1422,7 @@
             },
             {
               "exemplar": false,
-              "expr": "rate(cisco_interface_receive_bytes{datacenter=~\"$Datacenter\",description!=\"\",switch=~\"$Switch\"}[4m])",
+              "expr": "rate(\n  cisco_interface_receive_bytes{datacenter=~\"$Datacenter\",description!=\"\",interface=~\"$Interface\",switch=~\"$Switch\"}[4m]\n)",
               "format": "table",
               "hide": false,
               "instant": true,
@@ -1544,7 +1552,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 17
+            "y": 24
           },
           "id": 28,
           "options": {
@@ -1559,7 +1567,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1567,7 +1577,7 @@
             {
               "exemplar": false,
               "expr": "sum by (switch, interface, mac) (\n    rate(\n      cisco_interface_transmit_bytes{datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\"}[4m]\n    )\n  )\nand on (switch, interface, mac)\n  topk(\n    $TopResources,\n    sum by (switch, interface, mac) (\n      avg_over_time(\n        cisco_interface_transmit_bytes{datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\"}[3h]\n      )\n    )\n  )",
-              "interval": "",
+              "interval": "3m",
               "legendFormat": "{{switch}} - {{interface}}",
               "refId": "A"
             }
@@ -1636,7 +1646,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 17
+            "y": 24
           },
           "id": 29,
           "options": {
@@ -1651,7 +1661,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1659,7 +1671,7 @@
             {
               "exemplar": false,
               "expr": "sum by (switch, interface, mac) (\n    rate(\n      cisco_interface_receive_bytes{datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\"}[4m]\n    )\n  )\nand on (switch, interface, mac)\n  topk(\n    $TopResources,\n    sum by (switch, interface, mac) (\n      avg_over_time(\n        cisco_interface_receive_bytes{datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\"}[3h]\n      )\n    )\n  )",
-              "interval": "",
+              "interval": "3m",
               "legendFormat": "{{switch}} - {{interface}}",
               "refId": "A"
             }
@@ -1728,7 +1740,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 25
+            "y": 32
           },
           "id": 31,
           "options": {
@@ -1743,7 +1755,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1751,14 +1765,14 @@
             {
               "exemplar": false,
               "expr": "sum by (switch, interface, mac) (\n    rate(\n      cisco_interface_receive_drops{datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\"}[4m]\n    )\n  )\nand on (switch, interface, mac)\n  topk(\n    $TopResources,\n    sum by (switch, interface, mac) (\n      avg_over_time(\n        cisco_interface_receive_drops{datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\"}[3h]\n      )\n    )\n  )",
-              "interval": "",
+              "interval": "3m",
               "legendFormat": "Transmit - {{switch}} - {{interface}}",
               "refId": "A"
             },
             {
               "exemplar": false,
               "expr": "sum by (switch, interface, mac) (\n    rate(\n      cisco_interface_transmit_drops{datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\"}[4m]\n    )\n  )\nand on (switch, interface, mac)\n  topk(\n    $TopResources,\n    sum by (switch, interface, mac) (\n      avg_over_time(\n        cisco_interface_transmit_drops{datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\"}[3h]\n      )\n    )\n  )",
-              "interval": "",
+              "interval": "3m",
               "legendFormat": "Receive - {{switch}} - {{interface}}",
               "refId": "B"
             }
@@ -1827,7 +1841,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 25
+            "y": 32
           },
           "id": 32,
           "options": {
@@ -1842,7 +1856,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1850,14 +1866,14 @@
             {
               "exemplar": false,
               "expr": "sum by (switch, interface, mac) (\n    rate(\n      cisco_interface_transmit_errors{datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\"}[4m]\n    )\n  )\nand on (switch, interface, mac)\n  topk(\n    $TopResources,\n    sum by (switch, interface, mac) (\n      avg_over_time(\n        cisco_interface_transmit_errors{datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\"}[3h]\n      )\n    )\n  )",
-              "interval": "",
+              "interval": "3m",
               "legendFormat": "Transmit - {{switch}} - {{interface}}",
               "refId": "A"
             },
             {
               "exemplar": false,
               "expr": "sum by (switch, interface, mac) (\n    rate(\n      cisco_interface_receive_errors{datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\"}[4m]\n    )\n  )\nand on (switch, interface, mac)\n  topk(\n    $TopResources,\n    sum by (switch, interface, mac) (\n      avg_over_time(\n        cisco_interface_receive_errors{datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\"}[3h]\n      )\n    )\n  )",
-              "interval": "",
+              "interval": "3m",
               "legendFormat": "Receive - {{switch}} - {{interface}}",
               "refId": "B"
             }
@@ -1926,7 +1942,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 33
+            "y": 40
           },
           "id": 34,
           "options": {
@@ -1941,7 +1957,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1949,7 +1967,7 @@
             {
               "exemplar": false,
               "expr": "sum by (switch, interface, mac) (\n    rate(\n      cisco_interface_crc_errors{datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\"}[4m]\n    )\n  )\nand on (switch, interface, mac)\n  topk(\n    $TopResources,\n    sum by (switch, interface, mac) (\n      avg_over_time(\n        cisco_interface_crc_errors{datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\"}[3h]\n      )\n    )\n  )",
-              "interval": "",
+              "interval": "3m",
               "legendFormat": "{{switch}} - {{interface}}",
               "refId": "A"
             }
@@ -1957,6 +1975,100 @@
           "timeFrom": null,
           "timeShift": null,
           "title": "Top $TopResources Interface CRC error",
+          "type": "timeseries"
+        },
+        {
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "Displays Ethernet output discarded packets",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 0,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "transparent",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "pps"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 40
+          },
+          "id": 49,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max",
+                "diff"
+              ],
+              "displayMode": "table",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "8.1.8",
+          "targets": [
+            {
+              "exemplar": false,
+              "expr": "sum by (switch, interface, mac) (\n    rate(\n      cisco_interface_eth_out_discards{datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\"}[4m]\n    )\n  )\nand on (switch, interface, mac)\n  topk(\n    $TopResources,\n    sum by (switch, interface, mac) (\n      avg_over_time(\n        cisco_interface_eth_out_discards{datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\"}[3h]\n      )\n    )\n  )",
+              "interval": "3m",
+              "legendFormat": "{{switch}} - {{interface}}",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Top $TopResources Ethernet Out Discards",
           "type": "timeseries"
         }
       ],
@@ -2021,7 +2133,7 @@
               "expr": "cisco_lldp_neighbor_labels{datacenter=~\"$Datacenter\",switch=~\"$Switch\"}",
               "format": "table",
               "instant": true,
-              "interval": "",
+              "interval": "3m",
               "legendFormat": "",
               "refId": "A"
             }
@@ -2124,7 +2236,7 @@
               "expr": "cisco_cdp_neighbor_labels{datacenter=~\"$Datacenter\",switch=~\"$Switch\"}",
               "format": "table",
               "instant": true,
-              "interval": "",
+              "interval": "3m",
               "legendFormat": "",
               "refId": "A"
             }
@@ -2265,7 +2377,7 @@
               "exemplar": false,
               "expr": "count(\n      min_over_time(\n        cisco_interface_admin_up{datacenter=~\"$Datacenter\",interface=~\"$Interface\",speed!=\"\",speed!=\"auto-speed\",switch=~\"$Switch\"}[1d]\n      )\n    ==\n      0\n  )\nor\n  vector(0)",
               "instant": true,
-              "interval": "",
+              "interval": "3m",
               "legendFormat": "",
               "refId": "A"
             }
@@ -2322,9 +2434,73 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                       }
                     ]
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Admin Status"
+                },
+                "properties": [
+                  {
+                    "id": "mappings",
+                    "value": [
+                      {
+                        "options": {
+                          "0": {
+                            "color": "semi-dark-red",
+                            "index": 0,
+                            "text": "Down"
+                          },
+                          "1": {
+                            "color": "semi-dark-green",
+                            "index": 1,
+                            "text": "Up"
+                          }
+                        },
+                        "type": "value"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "custom.displayMode",
+                    "value": "color-background-solid"
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Op Status"
+                },
+                "properties": [
+                  {
+                    "id": "mappings",
+                    "value": [
+                      {
+                        "options": {
+                          "0": {
+                            "color": "semi-dark-red",
+                            "index": 0,
+                            "text": "Down"
+                          },
+                          "1": {
+                            "color": "semi-dark-green",
+                            "index": 1,
+                            "text": "Up"
+                          }
+                        },
+                        "type": "value"
+                      }
+                    ]
+                  },
+                  {
+                    "id": "custom.displayMode",
+                    "value": "color-background-solid"
                   }
                 ]
               }
@@ -2345,27 +2521,60 @@
           "targets": [
             {
               "exemplar": false,
-              "expr": "min_over_time(\n    cisco_interface_admin_up{datacenter=~\"$Datacenter\",interface=~\"$Interface\",speed!=\"\",speed!=\"auto-speed\",switch=~\"$Switch\"}[1d]\n  )\n==\n  0",
+              "expr": "label_join(\n    min_over_time(\n      cisco_interface_admin_up{datacenter=~\"$Datacenter\",interface=~\"$Interface\",speed!=\"\",speed!=\"auto-speed\",switch=~\"$Switch\"}[1d]\n    )\n  ==\n    0,\n  \"index\",\n  \"-\",\n  \"datacenter\",\n  \"switch\",\n  \"interface\"\n)",
               "format": "table",
               "instant": true,
               "interval": "",
               "legendFormat": "",
               "refId": "A"
+            },
+            {
+              "exemplar": false,
+              "expr": "label_join(\n  cisco_interface_up{datacenter=~\"$Datacenter\",interface=~\"$Interface\",speed!=\"\",speed!=\"auto-speed\",switch=~\"$Switch\"},\n  \"index\",\n  \"-\",\n  \"datacenter\",\n  \"switch\",\n  \"interface\"\n)",
+              "format": "table",
+              "instant": true,
+              "interval": "",
+              "legendFormat": "",
+              "refId": "B"
             }
           ],
           "title": "Down (Last 24h)",
           "transformations": [
             {
+              "id": "joinByField",
+              "options": {
+                "byField": "index",
+                "mode": "inner"
+              }
+            },
+            {
+              "id": "renameByRegex",
+              "options": {
+                "regex": "(.*) 1$",
+                "renamePattern": "$1"
+              }
+            },
+            {
               "id": "organize",
               "options": {
                 "excludeByName": {
                   "Time": true,
+                  "Time 2": true,
                   "Value": true,
+                  "__name__": true,
+                  "datacenter 2": true,
                   "description": true,
+                  "index": true,
                   "instance": true,
+                  "instance 2": true,
                   "interface": false,
+                  "interface 2": true,
                   "job": true,
-                  "mac": true
+                  "job 2": true,
+                  "mac": true,
+                  "mac 2": true,
+                  "speed 2": true,
+                  "switch 2": true
                 },
                 "indexByName": {
                   "Time": 0,
@@ -2381,6 +2590,8 @@
                 },
                 "renameByName": {
                   "Value": "Count",
+                  "Value #A": "Admin Status",
+                  "Value #B": "Op Status",
                   "interface": "Interface",
                   "mac": "",
                   "message": "EMS",
@@ -2418,7 +2629,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -2466,7 +2677,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -2476,7 +2689,7 @@
               "expr": "min_over_time(\n    cisco_interface_admin_up{datacenter=~\"$Datacenter\",interface=~\"$Interface\",speed!=\"\",speed!=\"auto-speed\",switch=~\"$Switch\"}[1d]\n  )\n==\n  0",
               "format": "time_series",
               "instant": false,
-              "interval": "",
+              "interval": "3m",
               "legendFormat": "{{switch}} - {{interface}} - {{speed}}",
               "refId": "A"
             }
@@ -2575,7 +2788,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -2601,7 +2814,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -2627,7 +2840,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -2734,5 +2947,5 @@
   "timezone": "",
   "title": "Cisco: Switch",
   "uid": "cisco-switch",
-  "version": 2
+  "version": 3
 }
