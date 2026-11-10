@@ -37,7 +37,7 @@ objects:
   Lun:                         lun.yaml
 #  MAVRequest:                  mav_request.yaml
   MetroclusterCheck:           metrocluster_check.yaml
-#  Mediator:                    mediator.yaml
+  Mediator:                    mediator.yaml
   Namespace:                   namespace.yaml
 #  NDMPSession:                ndmp_session.yaml
 #  NetConnections:              netconnections.yaml
