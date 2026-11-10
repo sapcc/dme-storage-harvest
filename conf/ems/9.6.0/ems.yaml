@@ -964,10 +964,13 @@ events:
 
   - name: hm.alert.raised
     exports:
+      - ^^parameters.alert_id => alert_id
       - parameters.detailed_info => detailed_info
       - parameters.monitor => monitor
-      - parameters.alert_id => alert_id
       - parameters.alerting_resource => alerting_resource
+    resolve_when_ems:
+      - name: hm.alert.cleared
+        resolve_after: 672h
 
   - name: hm.alert.cleared
     exports:

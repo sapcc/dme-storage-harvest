@@ -19,8 +19,9 @@ import (
 // Bookend EMS testing: Simulated bookend issuing ems "wafl.vvol.offline" and ems "hm.alert.raised" with alert_id value as "RaidLeftBehindAggrAlert"
 var issuingEmsNames = []string{"wafl.vvol.offline", "hm.alert.raised"}
 
-// Default labels per ems is 5, "hm.alert.raised" ems has 11 labels and "wafl.vvol.offline" has 4 labels, total instance labels would be 24
-const expectedInstanceLabelCount = 25
+// Default labels per ems is 5, "hm.alert.raised" ems has 4 SAP-defined exports: total = 5 + 4 = 9
+// wafl.vvol.offline is not in SAP ems.yaml so contributes 0
+const expectedInstanceLabelCount = 9
 
 // Auto resolve EMS testing: Simulated bookend issuing ems "LUN.offline" and ems "monitor.fan.critical"
 var autoresolveEmsNames = []string{"LUN.offline", "monitor.fan.critical"}
