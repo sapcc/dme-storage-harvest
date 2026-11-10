@@ -92,7 +92,7 @@
       "type": "row"
     },
     {
-      "datasource": "prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 3,
         "w": 24,
@@ -108,7 +108,7 @@
       "type": "text"
     },
     {
-      "datasource": "prometheus",
+      "datasource": "${DS_PROMETHEUS}",
       "description": "`Compliance State:` Compliance state of the license per owner. Green for `compliant`, red for `noncompliant`, `unlicensed`, or `unknown`.\n\n`Description:` License package description.\n\n`Entitlement Action:` Recommended action for the entitlement.\n\n`Entitlement Risk:` Risk level for the entitlement (high, medium, low).\n\n`Active:` Whether the license is active (Yes/No).\n\n`Evaluation:` Whether this is an evaluation license (Yes/No).\n\n`Licensed Capacity:` Maximum licensed capacity for capacity-based licenses (N/A for feature licenses).\n\n`Expiration Date:` License expiry date (N/A for perpetual licenses).\n\n`Host ID:` Host identifier for the license owner (N/A if not applicable).",
       "fieldConfig": {
         "defaults": {
@@ -757,7 +757,7 @@
         },
         "description": null,
         "error": null,
-        "hide": 2,
+        "hide": 0,
         "includeAll": false,
         "label": "Data Source",
         "multi": false,
@@ -772,7 +772,7 @@
       {
         "allValue": ".*",
         "current": {},
-        "datasource": "prometheus",
+        "datasource": "${DS_PROMETHEUS}",
         "definition": "label_values(cluster_new_status{system_type!=\"7mode\"},datacenter)",
         "description": null,
         "error": null,
@@ -798,7 +798,7 @@
       {
         "allValue": ".*",
         "current": {},
-        "datasource": "prometheus",
+        "datasource": "${DS_PROMETHEUS}",
         "definition": "label_values(cluster_new_status{system_type!=\"7mode\",datacenter=~\"$Datacenter\"},cluster)",
         "description": null,
         "error": null,

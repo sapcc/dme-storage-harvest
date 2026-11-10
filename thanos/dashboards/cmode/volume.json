@@ -1,4 +1,5 @@
 {
+  "__elements": {},
   "__inputs": [
     {
       "description": "",
@@ -55,7 +56,7 @@
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations \u0026 Alerts",
+        "name": "Annotations & Alerts",
         "target": {
           "limit": 100,
           "matchAny": false,
@@ -68,10 +69,11 @@
   },
   "description": "",
   "editable": true,
+  "fiscalYearStartMonth": 0,
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1757501688710,
+  "iteration": 1775639972287,
   "links": [
     {
       "asDropdown": true,
@@ -99,7 +101,7 @@
       },
       "id": 91,
       "options": {
-        "content": "Volume performance metrics in this dashboard use the KeyPerf collector to collect metrics for ONTAP version 9.10+. \u003cbr\u003e**More details**: [GitHub Discussion](https://github.com/NetApp/harvest/discussions/3900) ",
+        "content": "Volume performance metrics in this dashboard use the KeyPerf collector to collect metrics for ONTAP version 9.10+. <br>**More details**: [GitHub Discussion](https://github.com/NetApp/harvest/discussions/3900) ",
         "mode": "markdown"
       },
       "pluginVersion": "8.1.8",
@@ -326,7 +328,7 @@
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -372,7 +374,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -417,7 +421,7 @@
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -463,7 +467,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -508,7 +514,7 @@
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -555,7 +561,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -788,7 +796,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-node/ontap-node?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Node=${__value.raw}"
+                        "url": "/d/cdot-node/ontap-node?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Node=${__value.raw}"
                       }
                     ]
                   }
@@ -810,7 +818,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-aggregate/ontap-aggregate?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Aggregate=${__value.raw}"
+                        "url": "/d/cdot-aggregate/ontap-aggregate?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Aggregate=${__value.raw}"
                       }
                     ]
                   }
@@ -832,7 +840,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-svm/ontap-svm?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-SVM=${__value.raw}"
+                        "url": "/d/cdot-svm/ontap-svm?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-SVM=${__value.raw}"
                       }
                     ]
                   }
@@ -854,7 +862,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-volume/ontap-volume?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${SVM:queryparam}\u0026${__url_time_range}\u0026var-Volume=${__value.raw}"
+                        "url": "/d/cdot-volume/ontap-volume?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${SVM:queryparam}&${__url_time_range}&var-Volume=${__value.raw}"
                       }
                     ]
                   }
@@ -876,7 +884,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                       }
                     ]
                   }
@@ -898,7 +906,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                       }
                     ]
                   }
@@ -927,7 +935,7 @@
           "pluginVersion": "8.1.8",
           "targets": [
             {
-              "expr": "volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}",
+              "expr": "label_join(\n  volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"},\n  \"unique_id\",\n  \"-\",\n  \"datacenter\",\n  \"cluster\",\n  \"svm\",\n  \"volume\"\n)",
               "format": "table",
               "instant": true,
               "interval": "",
@@ -936,7 +944,7 @@
               "refId": "B"
             },
             {
-              "expr": "volume_new_status{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n* on (datacenter, cluster, svm, volume) group_left (node)\n  volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}",
+              "expr": "label_join(\n    volume_new_status{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n  * on (datacenter, cluster, svm, volume) group_left (node)\n    volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"},\n  \"unique_id\",\n  \"-\",\n  \"datacenter\",\n  \"cluster\",\n  \"svm\",\n  \"volume\"\n)",
               "format": "table",
               "hide": false,
               "instant": true,
@@ -946,7 +954,7 @@
               "refId": "A"
             },
             {
-              "expr": "volume_size_total{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n* on (datacenter, cluster, svm, volume) group_left (node)\n  volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}",
+              "expr": "label_join(\n    volume_size_total{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n  * on (datacenter, cluster, svm, volume) group_left (node)\n    volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"},\n  \"unique_id\",\n  \"-\",\n  \"datacenter\",\n  \"cluster\",\n  \"svm\",\n  \"volume\"\n)",
               "format": "table",
               "hide": false,
               "instant": true,
@@ -956,7 +964,7 @@
               "refId": "C"
             },
             {
-              "expr": "volume_size_used_percent{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n* on (datacenter, cluster, svm, volume) group_left (node)\n  volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}",
+              "expr": "label_join(\n    volume_size_used_percent{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n  * on (datacenter, cluster, svm, volume) group_left (node)\n    volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"},\n  \"unique_id\",\n  \"-\",\n  \"datacenter\",\n  \"cluster\",\n  \"svm\",\n  \"volume\"\n)",
               "format": "table",
               "hide": false,
               "instant": true,
@@ -967,7 +975,7 @@
             },
             {
               "exemplar": false,
-              "expr": "volume_sis_dedup_saved{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n* on (datacenter, cluster, svm, volume) group_left (node)\n  volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}",
+              "expr": "label_join(\n    volume_sis_dedup_saved{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n  * on (datacenter, cluster, svm, volume) group_left (node)\n    volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"},\n  \"unique_id\",\n  \"-\",\n  \"datacenter\",\n  \"cluster\",\n  \"svm\",\n  \"volume\"\n)",
               "format": "table",
               "hide": false,
               "instant": true,
@@ -978,7 +986,7 @@
             },
             {
               "exemplar": false,
-              "expr": "volume_sis_compress_saved{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n* on (datacenter, cluster, svm, volume) group_left (node)\n  volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}",
+              "expr": "label_join(\n    volume_sis_compress_saved{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n  * on (datacenter, cluster, svm, volume) group_left (node)\n    volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"},\n  \"unique_id\",\n  \"-\",\n  \"datacenter\",\n  \"cluster\",\n  \"svm\",\n  \"volume\"\n)",
               "format": "table",
               "hide": false,
               "instant": true,
@@ -989,7 +997,7 @@
             },
             {
               "exemplar": false,
-              "expr": "volume_sis_dedup_saved\n+\n    volume_sis_compress_saved{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n  * on (datacenter, cluster, svm, volume) group_left (node)\n    volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}",
+              "expr": "label_join(\n    volume_sis_dedup_saved{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n  +\n      volume_sis_compress_saved{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n    * on (datacenter, cluster, svm, volume) group_left (node)\n      volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"},\n  \"unique_id\",\n  \"-\",\n  \"datacenter\",\n  \"cluster\",\n  \"svm\",\n  \"volume\"\n)",
               "format": "table",
               "hide": false,
               "instant": true,
@@ -1000,7 +1008,7 @@
             },
             {
               "exemplar": false,
-              "expr": "volume_space_logical_used{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n* on (datacenter, cluster, svm, volume) group_left (node)\n  volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}",
+              "expr": "label_join(\n    volume_space_logical_used{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n  * on (datacenter, cluster, svm, volume) group_left (node)\n    volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"},\n  \"unique_id\",\n  \"-\",\n  \"datacenter\",\n  \"cluster\",\n  \"svm\",\n  \"volume\"\n)",
               "format": "table",
               "hide": false,
               "instant": true,
@@ -1011,7 +1019,7 @@
             },
             {
               "exemplar": false,
-              "expr": "volume_space_physical_used{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n* on (datacenter, cluster, svm, volume) group_left (node)\n  volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}",
+              "expr": "label_join(\n    volume_space_physical_used{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n  * on (datacenter, cluster, svm, volume) group_left (node)\n    volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"},\n  \"unique_id\",\n  \"-\",\n  \"datacenter\",\n  \"cluster\",\n  \"svm\",\n  \"volume\"\n)",
               "format": "table",
               "hide": false,
               "instant": true,
@@ -1022,7 +1030,7 @@
             },
             {
               "exemplar": false,
-              "expr": "volume_clone_split_estimate{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n* on (datacenter, cluster, svm, volume) group_left (node)\n  volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}",
+              "expr": "label_join(\n    volume_clone_split_estimate{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n  * on (datacenter, cluster, svm, volume) group_left (node)\n    volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"},\n  \"unique_id\",\n  \"-\",\n  \"datacenter\",\n  \"cluster\",\n  \"svm\",\n  \"volume\"\n)",
               "format": "table",
               "hide": false,
               "instant": true,
@@ -1035,6 +1043,19 @@
           "timeShift": null,
           "title": "Volumes in Cluster",
           "transformations": [
+            {
+              "id": "seriesToColumns",
+              "options": {
+                "byField": "unique_id"
+              }
+            },
+            {
+              "id": "renameByRegex",
+              "options": {
+                "regex": "(.*) 1$",
+                "renamePattern": "$1"
+              }
+            },
             {
               "id": "filterFieldsByName",
               "options": {
@@ -1065,10 +1086,6 @@
               }
             },
             {
-              "id": "merge",
-              "options": {}
-            },
-            {
               "id": "organize",
               "options": {
                 "excludeByName": {
@@ -1076,12 +1093,74 @@
                   "Value": true,
                   "Value #C": false,
                   "__name__": true,
+                  "aggr 10": true,
+                  "aggr 2": true,
+                  "aggr 3": true,
+                  "aggr 4": true,
+                  "aggr 5": true,
+                  "aggr 6": true,
+                  "aggr 7": true,
+                  "aggr 8": true,
+                  "aggr 9": true,
                   "cluster": false,
+                  "cluster 10": true,
+                  "cluster 2": true,
+                  "cluster 3": true,
+                  "cluster 4": true,
+                  "cluster 5": true,
+                  "cluster 6": true,
+                  "cluster 7": true,
+                  "cluster 8": true,
+                  "cluster 9": true,
                   "datacenter": false,
+                  "datacenter 10": true,
+                  "datacenter 2": true,
+                  "datacenter 3": true,
+                  "datacenter 4": true,
+                  "datacenter 5": true,
+                  "datacenter 6": true,
+                  "datacenter 7": true,
+                  "datacenter 8": true,
+                  "datacenter 9": true,
                   "instance": true,
                   "job": true,
                   "netapp_cluster": false,
-                  "state": true
+                  "netapp_cluster 2": true,
+                  "netapp_cluster 3": true,
+                  "netapp_cluster 4": true,
+                  "netapp_cluster 5": true,
+                  "netapp_cluster 6": true,
+                  "netapp_cluster 7": true,
+                  "netapp_cluster 8": true,
+                  "netapp_cluster 9": true,
+                  "node 10": true,
+                  "node 2": true,
+                  "node 3": true,
+                  "node 4": true,
+                  "node 5": true,
+                  "node 6": true,
+                  "node 7": true,
+                  "node 8": true,
+                  "node 9": true,
+                  "state": true,
+                  "svm 10": true,
+                  "svm 2": true,
+                  "svm 3": true,
+                  "svm 4": true,
+                  "svm 5": true,
+                  "svm 6": true,
+                  "svm 7": true,
+                  "svm 8": true,
+                  "svm 9": true,
+                  "volume 10": true,
+                  "volume 2": true,
+                  "volume 3": true,
+                  "volume 4": true,
+                  "volume 5": true,
+                  "volume 6": true,
+                  "volume 7": true,
+                  "volume 8": true,
+                  "volume 9": true
                 },
                 "indexByName": {
                   "Value #A": 6,
@@ -1211,7 +1290,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-svm/ontap-svm?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-SVM=${__value.raw}"
+                        "url": "/d/cdot-svm/ontap-svm?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-SVM=${__value.raw}"
                       }
                     ]
                   }
@@ -1233,7 +1312,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-volume/ontap-volume?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${SVM:queryparam}\u0026${__url_time_range}\u0026var-Volume=${__value.raw}"
+                        "url": "/d/cdot-volume/ontap-volume?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${SVM:queryparam}&${__url_time_range}&var-Volume=${__value.raw}"
                       }
                     ]
                   }
@@ -1367,7 +1446,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-svm/ontap-svm?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-SVM=${__value.raw}"
+                        "url": "/d/cdot-svm/ontap-svm?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-SVM=${__value.raw}"
                       }
                     ]
                   }
@@ -1389,7 +1468,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-volume/ontap-volume?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${SVM:queryparam}\u0026${__url_time_range}\u0026var-Volume=${__value.raw}"
+                        "url": "/d/cdot-volume/ontap-volume?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${SVM:queryparam}&${__url_time_range}&var-Volume=${__value.raw}"
                       }
                     ]
                   }
@@ -1524,7 +1603,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-svm/ontap-svm?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-SVM=${__value.raw}"
+                        "url": "/d/cdot-svm/ontap-svm?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-SVM=${__value.raw}"
                       }
                     ]
                   }
@@ -1546,7 +1625,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-volume/ontap-volume?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${SVM:queryparam}\u0026${__url_time_range}\u0026var-Volume=${__value.raw}"
+                        "url": "/d/cdot-volume/ontap-volume?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${SVM:queryparam}&${__url_time_range}&var-Volume=${__value.raw}"
                       }
                     ]
                   }
@@ -1711,7 +1790,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-svm/ontap-svm?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-SVM=${__value.raw}"
+                        "url": "/d/cdot-svm/ontap-svm?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-SVM=${__value.raw}"
                       }
                     ]
                   }
@@ -1733,7 +1812,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-volume/ontap-volume?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${SVM:queryparam}\u0026${__url_time_range}\u0026var-Volume=${__value.raw}"
+                        "url": "/d/cdot-volume/ontap-volume?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${SVM:queryparam}&${__url_time_range}&var-Volume=${__value.raw}"
                       }
                     ]
                   }
@@ -1867,7 +1946,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-svm/ontap-svm?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-SVM=${__value.raw}"
+                        "url": "/d/cdot-svm/ontap-svm?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-SVM=${__value.raw}"
                       }
                     ]
                   }
@@ -1889,7 +1968,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-volume/ontap-volume?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${SVM:queryparam}\u0026${__url_time_range}\u0026var-Volume=${__value.raw}"
+                        "url": "/d/cdot-volume/ontap-volume?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${SVM:queryparam}&${__url_time_range}&var-Volume=${__value.raw}"
                       }
                     ]
                   }
@@ -2024,7 +2103,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-svm/ontap-svm?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-SVM=${__value.raw}"
+                        "url": "/d/cdot-svm/ontap-svm?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-SVM=${__value.raw}"
                       }
                     ]
                   }
@@ -2046,7 +2125,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-volume/ontap-volume?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${SVM:queryparam}\u0026${__url_time_range}\u0026var-Volume=${__value.raw}"
+                        "url": "/d/cdot-volume/ontap-volume?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${SVM:queryparam}&${__url_time_range}&var-Volume=${__value.raw}"
                       }
                     ]
                   }
@@ -2151,7 +2230,7 @@
           },
           "id": 192,
           "options": {
-            "content": "This panel is available via REST collector. Enable the REST collector in your harvest config.\u003cbr\u003e",
+            "content": "This panel is available via REST collector. Enable the REST collector in your harvest config.<br>",
             "mode": "markdown"
           },
           "pluginVersion": "8.1.8",
@@ -2196,7 +2275,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-node/ontap-node?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Node=${__value.raw}"
+                        "url": "/d/cdot-node/ontap-node?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Node=${__value.raw}"
                       }
                     ]
                   }
@@ -2218,7 +2297,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-aggregate/ontap-aggregate?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Aggregate=${__value.raw}"
+                        "url": "/d/cdot-aggregate/ontap-aggregate?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Aggregate=${__value.raw}"
                       }
                     ]
                   }
@@ -2240,7 +2319,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-svm/ontap-svm?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-SVM=${__value.raw}"
+                        "url": "/d/cdot-svm/ontap-svm?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-SVM=${__value.raw}"
                       }
                     ]
                   }
@@ -2262,7 +2341,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-volume/ontap-volume?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${SVM:queryparam}\u0026${__url_time_range}\u0026var-Volume=${__value.raw}"
+                        "url": "/d/cdot-volume/ontap-volume?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${SVM:queryparam}&${__url_time_range}&var-Volume=${__value.raw}"
                       }
                     ]
                   }
@@ -2284,7 +2363,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                       }
                     ]
                   }
@@ -2306,7 +2385,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                       }
                     ]
                   }
@@ -2429,7 +2508,7 @@
               "showLineNumbers": false,
               "showMiniMap": false
             },
-            "content": "This row displays the details of hot and cold data for volumes that have a tiering policy other than 'none'. Volumes with a 'none' tiering policy will not be shown. \u003cbr\u003e [Cold data detection logic](https://github.com/NetApp/harvest/wiki/FAQ#cold-data-detection-detail)",
+            "content": "This row displays the details of hot and cold data for volumes that have a tiering policy other than 'none'. Volumes with a 'none' tiering policy will not be shown. <br> [Cold data detection logic](https://github.com/NetApp/harvest/wiki/FAQ#cold-data-detection-detail)",
             "mode": "markdown"
           },
           "pluginVersion": "8.1.8",
@@ -2478,7 +2557,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-svm/ontap-svm?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-SVM=${__value.raw}"
+                        "url": "/d/cdot-svm/ontap-svm?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-SVM=${__value.raw}"
                       }
                     ]
                   }
@@ -2500,7 +2579,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-volume/ontap-volume?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${SVM:queryparam}\u0026${__url_time_range}\u0026var-Volume=${__value.raw}"
+                        "url": "/d/cdot-volume/ontap-volume?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${SVM:queryparam}&${__url_time_range}&var-Volume=${__value.raw}"
                       }
                     ]
                   }
@@ -2522,7 +2601,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-aggregate/ontap-aggregate?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Aggregate=${__value.raw}"
+                        "url": "/d/cdot-aggregate/ontap-aggregate?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Aggregate=${__value.raw}"
                       }
                     ]
                   }
@@ -2544,7 +2623,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                       }
                     ]
                   }
@@ -2566,7 +2645,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                       }
                     ]
                   }
@@ -2770,7 +2849,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -2813,7 +2892,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -2859,7 +2940,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -2902,7 +2983,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -2948,7 +3031,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -2993,7 +3076,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -3039,7 +3124,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -3084,7 +3169,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -3251,7 +3338,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-svm/ontap-svm?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-SVM=${__value.raw}"
+                        "url": "/d/cdot-svm/ontap-svm?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-SVM=${__value.raw}"
                       }
                     ]
                   }
@@ -3273,7 +3360,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-volume/ontap-volume?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${SVM:queryparam}\u0026${__url_time_range}\u0026var-Volume=${__value.raw}"
+                        "url": "/d/cdot-volume/ontap-volume?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${SVM:queryparam}&${__url_time_range}&var-Volume=${__value.raw}"
                       }
                     ]
                   }
@@ -3295,7 +3382,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                       }
                     ]
                   }
@@ -3317,7 +3404,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                       }
                     ]
                   }
@@ -3339,7 +3426,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-node/ontap-node?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Node=${__value.raw}"
+                        "url": "/d/cdot-node/ontap-node?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Node=${__value.raw}"
                       }
                     ]
                   }
@@ -3361,7 +3448,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-aggregate/ontap-aggregate?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Aggregate=${__value.raw}"
+                        "url": "/d/cdot-aggregate/ontap-aggregate?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Aggregate=${__value.raw}"
                       }
                     ]
                   }
@@ -3620,7 +3707,7 @@
           },
           "id": 131,
           "options": {
-            "content": "Volume latencies are missing some latencies from NAS protocols. Use the workload volume metrics in the QoS row for a more detailed breakdown. \u003cbr\u003e[Details in ONTAP Performance KB article](https://kb.netapp.com/on-prem/ontap/Perf/Perf-KBs/What_is_the_difference_in_latency_of_the_same_volume_between_statistics_volume_show_and_qos_statistics_volume_latency_show_commands)",
+            "content": "Volume latencies are missing some latencies from NAS protocols. Use the workload volume metrics in the QoS row for a more detailed breakdown. <br>[Details in ONTAP Performance KB article](https://kb.netapp.com/on-prem/ontap/Perf/Perf-KBs/What_is_the_difference_in_latency_of_the_same_volume_between_statistics_volume_show_and_qos_statistics_volume_latency_show_commands)",
             "mode": "markdown"
           },
           "pluginVersion": "8.1.8",
@@ -3652,7 +3739,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -3698,7 +3785,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -3743,7 +3832,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -3789,7 +3878,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -3834,7 +3925,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -3880,7 +3971,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -3925,7 +4018,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -3972,7 +4065,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -4017,7 +4112,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -4064,7 +4159,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -4109,7 +4206,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -4156,7 +4253,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -4201,7 +4300,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -4247,7 +4346,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -4293,7 +4394,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -4339,7 +4440,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -4385,7 +4488,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -4427,7 +4530,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.0.6",
@@ -4481,7 +4586,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -4524,7 +4629,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.0.6",
@@ -4771,7 +4878,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -4817,7 +4924,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -4862,7 +4971,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -4908,7 +5017,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -4953,7 +5064,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5000,7 +5111,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -5045,7 +5158,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5092,7 +5205,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -5136,7 +5251,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5183,7 +5298,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -5203,7 +5320,7 @@
         },
         {
           "datasource": "${DS_PROMETHEUS}",
-          "description": "This is the rate of this workload\u0026apos;s read operations that completed during the measurement interval.",
+          "description": "This is the rate of this workload&apos;s read operations that completed during the measurement interval.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -5227,7 +5344,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5275,7 +5392,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -5295,7 +5414,7 @@
         },
         {
           "datasource": "${DS_PROMETHEUS}",
-          "description": "This is the workload\u0026apos;s write operations that completed during the measurement interval; measured per second.",
+          "description": "This is the workload&apos;s write operations that completed during the measurement interval; measured per second.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -5319,7 +5438,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5367,7 +5486,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -5387,7 +5508,7 @@
         },
         {
           "datasource": "${DS_PROMETHEUS}",
-          "description": "This is the rate of this workload\u0026apos;s other operations that completed during the measurement interval.",
+          "description": "This is the rate of this workload&apos;s other operations that completed during the measurement interval.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -5411,7 +5532,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5459,7 +5580,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -5503,7 +5626,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5550,7 +5673,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -5594,7 +5719,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5641,7 +5766,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -5685,7 +5812,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5734,7 +5861,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -5778,7 +5907,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5827,7 +5956,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -5886,7 +6017,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5933,7 +6064,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -5978,7 +6111,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -6025,14 +6158,16 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
           "targets": [
             {
               "exemplar": false,
-              "expr": "(\n      volume_total_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n    / on (datacenter, cluster, svm, volume)\n      clamp_min(\n          volume_space_logical_used{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n        /\n          1099511627776,\n        1\n      )\n  )\nand on (datacenter, cluster, svm, volume)\n  bottomk(\n    $TopResources,\n      min by (datacenter, cluster, svm, volume) (\n          (\n              avg_over_time(\n                volume_total_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n              )\n            * on (datacenter, cluster, svm, volume) group_left ()\n              (\n                max by (datacenter, cluster, svm, volume) (\n                  volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n                )\n              )\n          )\n        /\n          clamp_min(\n              (\n                  avg_over_time(\n                    volume_space_logical_used{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n                  )\n                * on (datacenter, cluster, svm, volume) group_left ()\n                  (\n                    max by (datacenter, cluster, svm, volume) (\n                      volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n                    )\n                  )\n              )\n            /\n              1099511627776,\n            1\n          )\n      )\n    and on (datacenter, cluster, svm, volume)\n      (\n              volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",root_volume!=\"Yes\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n            * on (datacenter, cluster, svm, volume)\n              min by (datacenter, cluster, svm, volume) (\n                avg_over_time(\n                  volume_total_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n                )\n              )\n          * on (datacenter, cluster, svm, volume) group_left ()\n            (\n              max by (datacenter, cluster, svm, volume) (\n                volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n              )\n            )\n        \u003e\n          50\n      )\n  )",
+              "expr": "(\n      volume_total_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n    / on (datacenter, cluster, svm, volume)\n      clamp_min(\n          volume_space_logical_used{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n        /\n          1099511627776,\n        1\n      )\n  )\nand on (datacenter, cluster, svm, volume)\n  bottomk(\n    $TopResources,\n      min by (datacenter, cluster, svm, volume) (\n          (\n              avg_over_time(\n                volume_total_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n              )\n            * on (datacenter, cluster, svm, volume) group_left ()\n              (\n                max by (datacenter, cluster, svm, volume) (\n                  volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n                )\n              )\n          )\n        /\n          clamp_min(\n              (\n                  avg_over_time(\n                    volume_space_logical_used{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n                  )\n                * on (datacenter, cluster, svm, volume) group_left ()\n                  (\n                    max by (datacenter, cluster, svm, volume) (\n                      volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n                    )\n                  )\n              )\n            /\n              1099511627776,\n            1\n          )\n      )\n    and on (datacenter, cluster, svm, volume)\n      (\n              volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",root_volume!=\"Yes\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n            * on (datacenter, cluster, svm, volume)\n              min by (datacenter, cluster, svm, volume) (\n                avg_over_time(\n                  volume_total_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",style!=\"flexgroup_constituent\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n                )\n              )\n          * on (datacenter, cluster, svm, volume) group_left ()\n            (\n              max by (datacenter, cluster, svm, volume) (\n                volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n              )\n            )\n        >\n          50\n      )\n  )",
               "interval": "",
               "legendFormat": "{{svm}} - {{volume}}",
               "refId": "A"
@@ -6085,7 +6220,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -6128,7 +6263,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -6174,7 +6311,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -6217,7 +6354,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -6263,7 +6402,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -6306,7 +6445,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -6352,7 +6493,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -6395,7 +6536,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -6441,7 +6584,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -6488,7 +6631,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -6534,7 +6679,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -6581,7 +6726,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -6627,7 +6774,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -6674,7 +6821,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -6720,7 +6869,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -6767,7 +6916,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -6813,7 +6964,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -6860,7 +7011,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -6921,7 +7074,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -6970,7 +7123,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -7016,7 +7171,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -7065,7 +7220,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -7111,7 +7268,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -7160,7 +7317,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -7206,7 +7365,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -7255,7 +7414,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -7301,7 +7462,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -7349,7 +7510,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -7395,7 +7558,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -7444,7 +7607,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -7489,7 +7654,7 @@
           },
           "id": 155,
           "options": {
-            "content": "\u003cbr\u003e\n\nTop clients panels are disabled by default and are supported by the Volume Template in KeyPerf Collector starting from ONTAP version 9.13.1. For more details on how to enable them, please refer to the discussion at https://github.com/NetApp/harvest/discussions/3904.",
+            "content": "<br>\n\nTop clients panels are disabled by default and are supported by the Volume Template in KeyPerf Collector starting from ONTAP version 9.13.1. For more details on how to enable them, please refer to the discussion at https://github.com/NetApp/harvest/discussions/3904.",
             "mode": "markdown"
           },
           "pluginVersion": "8.1.8",
@@ -7521,7 +7686,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -7568,7 +7733,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -7613,7 +7780,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -7660,7 +7827,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -7705,7 +7874,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -7751,7 +7920,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -7797,7 +7968,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -7843,7 +8014,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -7888,7 +8061,7 @@
           },
           "id": 167,
           "options": {
-            "content": "\u003cbr\u003e\n\nTop files panels are disabled by default and are supported by the Volume Template in RestPerf Collector starting from ONTAP version 9.13.1. For more details on how to enable them, please refer to the discussion at https://github.com/NetApp/harvest/discussions/3130.",
+            "content": "<br>\n\nTop files panels are disabled by default and are supported by the Volume Template in KeyPerf Collector starting from ONTAP version 9.13.1. For more details on how to enable them, please refer to the discussion at https://github.com/NetApp/harvest/discussions/3904.",
             "mode": "markdown"
           },
           "pluginVersion": "8.1.8",
@@ -7920,7 +8093,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -7967,7 +8140,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -8012,7 +8187,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -8059,7 +8234,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -8104,7 +8281,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -8150,7 +8327,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -8196,7 +8375,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -8242,7 +8421,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -8268,12 +8449,419 @@
     },
     {
       "collapsed": true,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
         "y": 27
+      },
+      "id": 193,
+      "panels": [
+        {
+          "datasource": "${DS_PROMETHEUS}",
+          "gridPos": {
+            "h": 3,
+            "w": 24,
+            "x": 0,
+            "y": 25
+          },
+          "id": 195,
+          "options": {
+            "content": "<br>\n\nTop users panels are disabled by default and are supported by the Volume Template in KeyPerf Collector starting from ONTAP version 9.13.1. For more details on how to enable them, please refer to the discussion at https://github.com/NetApp/harvest/discussions/3904.",
+            "mode": "markdown"
+          },
+          "pluginVersion": "8.1.8",
+          "type": "text"
+        },
+        {
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "This panel displays the top $TopResources volume users based on their Read IOPs.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 0,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "iops"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 12,
+            "x": 0,
+            "y": 28
+          },
+          "id": 197,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "8.1.8",
+          "targets": [
+            {
+              "exemplar": false,
+              "expr": "volume_top_users_read_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\nand on (datacenter, cluster, svm, volume)\n  topk(\n    $TopResources,\n    max by (datacenter, cluster, svm, volume) (\n        avg_over_time(\n          volume_top_users_read_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n        )\n      * on (datacenter, cluster, svm, volume) group_left ()\n        (\n          max by (datacenter, cluster, svm, volume) (\n            volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n          )\n        )\n    )\n  )",
+              "interval": "",
+              "legendFormat": "{{svm}} - {{volume}} - {{user_name}}",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Top $TopResources Volumes Users by Read IOPs",
+          "transformations": [],
+          "type": "timeseries"
+        },
+        {
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "This panel displays the top $TopResources volume users based on their Write IOPs.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 0,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "iops"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 12,
+            "x": 12,
+            "y": 28
+          },
+          "id": 199,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "8.1.8",
+          "targets": [
+            {
+              "exemplar": false,
+              "expr": "volume_top_users_write_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\nand on (datacenter, cluster, svm, volume)\n  topk(\n    $TopResources,\n    max by (datacenter, cluster, svm, volume) (\n        avg_over_time(\n          volume_top_users_write_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n        )\n      * on (datacenter, cluster, svm, volume) group_left ()\n        (\n          max by (datacenter, cluster, svm, volume) (\n            volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n          )\n        )\n    )\n  )",
+              "interval": "",
+              "legendFormat": "{{svm}} - {{volume}} - {{user_name}}",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Top $TopResources Volumes Users by Write IOPs",
+          "transformations": [],
+          "type": "timeseries"
+        },
+        {
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "This panel displays the top $TopResources volume users based on their read throughput.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "Bps"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 12,
+            "x": 0,
+            "y": 38
+          },
+          "id": 201,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "8.1.8",
+          "targets": [
+            {
+              "exemplar": false,
+              "expr": "volume_top_users_read_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\nand on (datacenter, cluster, svm, volume)\n  topk(\n    $TopResources,\n    max by (datacenter, cluster, svm, volume) (\n        avg_over_time(\n          volume_top_users_read_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n        )\n      * on (datacenter, cluster, svm, volume) group_left ()\n        (\n          max by (datacenter, cluster, svm, volume) (\n            volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n          )\n        )\n    )\n  )",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{svm}} - {{volume}} - {{user_name}}",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Top $TopResources Volumes Users by Read Throughput",
+          "transformations": [],
+          "type": "timeseries"
+        },
+        {
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "This panel displays the top $TopResources volume users based on their write throughput.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "Bps"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 12,
+            "x": 12,
+            "y": 38
+          },
+          "id": 203,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "8.1.8",
+          "targets": [
+            {
+              "exemplar": false,
+              "expr": "volume_top_users_write_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\nand on (datacenter, cluster, svm, volume)\n  topk(\n    $TopResources,\n    max by (datacenter, cluster, svm, volume) (\n        avg_over_time(\n          volume_top_users_write_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",svm=~\"$SVM\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n        )\n      * on (datacenter, cluster, svm, volume) group_left ()\n        (\n          max by (datacenter, cluster, svm, volume) (\n            volume_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",junction_path=~\"$Junction\",svm=~\"$SVM\",tags=~\".*$Tag.*\",volume=~\"$Volume\",netapp_cluster=~\"$NetappCluster\"}\n          )\n        )\n    )\n  )",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{svm}} - {{volume}} - {{user_name}}",
+              "refId": "A"
+            }
+          ],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Top $TopResources Volumes Users by Write Throughput",
+          "transformations": [],
+          "type": "timeseries"
+        }
+      ],
+      "title": "Users",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": "${DS_PROMETHEUS}",
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 28
       },
       "id": 92,
       "panels": [
@@ -8303,7 +8891,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -8351,8 +8939,9 @@
               "sortDesc": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -8396,7 +8985,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -8444,8 +9033,9 @@
               "sortDesc": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -8489,7 +9079,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -8537,8 +9127,9 @@
               "sortDesc": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -8582,7 +9173,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -8630,8 +9221,9 @@
               "sortDesc": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -8691,7 +9283,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-volume/ontap-volume?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${SVM:queryparam}\u0026${__url_time_range}\u0026var-Volume=${__value.raw}"
+                        "url": "/d/cdot-volume/ontap-volume?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${SVM:queryparam}&${__url_time_range}&var-Volume=${__value.raw}"
                       }
                     ]
                   }
@@ -8767,7 +9359,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 28
+        "y": 29
       },
       "id": 99,
       "panels": [
@@ -8896,7 +9488,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                       }
                     ]
                   }
@@ -8914,7 +9506,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                       }
                     ]
                   }
@@ -8932,7 +9524,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-volume/ontap-volume?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${SVM:queryparam}\u0026${__url_time_range}\u0026var-Volume=${__value.raw}"
+                        "url": "/d/cdot-volume/ontap-volume?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${SVM:queryparam}&${__url_time_range}&var-Volume=${__value.raw}"
                       }
                     ]
                   }
@@ -8950,7 +9542,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-svm/ontap-svm?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-SVM=${__value.raw}"
+                        "url": "/d/cdot-svm/ontap-svm?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-SVM=${__value.raw}"
                       }
                     ]
                   }
@@ -8968,7 +9560,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-aggregate/ontap-aggregate?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Aggregate=${__value.raw}"
+                        "url": "/d/cdot-aggregate/ontap-aggregate?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Aggregate=${__value.raw}"
                       }
                     ]
                   }
@@ -9160,7 +9752,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -9209,8 +9801,9 @@
               "sortDesc": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -9254,7 +9847,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -9305,8 +9898,9 @@
               "sortDesc": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -9350,7 +9944,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -9399,8 +9993,9 @@
               "sortDesc": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -9444,7 +10039,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -9495,8 +10090,9 @@
               "sortDesc": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -9540,7 +10136,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -9589,8 +10185,9 @@
               "sortDesc": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -9634,7 +10231,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -9683,8 +10280,9 @@
               "sortDesc": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -9728,7 +10326,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -9777,8 +10375,9 @@
               "sortDesc": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -9822,7 +10421,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -9871,8 +10470,9 @@
               "sortDesc": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -9916,7 +10516,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -9965,8 +10565,9 @@
               "sortDesc": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -9995,7 +10596,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 29
+        "y": 30
       },
       "id": 98,
       "panels": [
@@ -10025,7 +10626,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -10071,7 +10672,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "targets": [
@@ -10113,7 +10716,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -10159,7 +10762,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "targets": [
@@ -10200,7 +10805,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -10249,7 +10854,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "targets": [
@@ -10275,7 +10882,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 30
+        "y": 31
       },
       "id": 105,
       "panels": [
@@ -10289,7 +10896,7 @@
           },
           "id": 110,
           "options": {
-            "content": "This panel requires ONTAP 9.12+ and the APIs are only available via REST. Enable the REST collector in your `harvest.yml` config.\u003cbr\u003e\nSee https://github.com/NetApp/harvest/wiki/Troubleshooting-Harvest#why-do-i-have-volume-sis-stat-panel-empty-in-volume-dashboard for more details.",
+            "content": "This panel requires ONTAP 9.12+ and the APIs are only available via REST. Enable the REST collector in your `harvest.yml` config.<br>\nSee https://github.com/NetApp/harvest/wiki/Troubleshooting-Harvest#why-do-i-have-volume-sis-stat-panel-empty-in-volume-dashboard for more details.",
             "mode": "markdown"
           },
           "pluginVersion": "8.1.8",
@@ -10321,7 +10928,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -10370,7 +10977,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -10415,7 +11024,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -10462,7 +11071,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -10507,7 +11118,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -10554,7 +11165,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -10584,7 +11197,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 31
+        "y": 32
       },
       "id": 135,
       "panels": [
@@ -10617,7 +11230,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -10666,8 +11279,9 @@
               "showLegend": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -10717,7 +11331,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -10766,8 +11380,9 @@
               "showLegend": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -10833,7 +11448,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                       }
                     ]
                   }
@@ -10855,7 +11470,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                       }
                     ]
                   }
@@ -10877,7 +11492,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-svm/ontap-svm?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-SVM=${__value.raw}"
+                        "url": "/d/cdot-svm/ontap-svm?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-SVM=${__value.raw}"
                       }
                     ]
                   }
@@ -10899,7 +11514,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-volume/ontap-volume?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${SVM:queryparam}\u0026${__url_time_range}\u0026var-Volume=${__value.raw}"
+                        "url": "/d/cdot-volume/ontap-volume?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${SVM:queryparam}&${__url_time_range}&var-Volume=${__value.raw}"
                       }
                     ]
                   }
@@ -11124,7 +11739,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                       }
                     ]
                   }
@@ -11146,7 +11761,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                       }
                     ]
                   }
@@ -11168,7 +11783,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-svm/ontap-svm?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-SVM=${__value.raw}"
+                        "url": "/d/cdot-svm/ontap-svm?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-SVM=${__value.raw}"
                       }
                     ]
                   }
@@ -11190,7 +11805,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-volume/ontap-volume?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${SVM:queryparam}\u0026${__url_time_range}\u0026var-Volume=${__value.raw}"
+                        "url": "/d/cdot-volume/ontap-volume?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${SVM:queryparam}&${__url_time_range}&var-Volume=${__value.raw}"
                       }
                     ]
                   }
@@ -11387,7 +12002,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 32
+        "y": 33
       },
       "id": 136,
       "panels": [
@@ -11482,7 +12097,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                       }
                     ]
                   }
@@ -11532,7 +12147,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                       }
                     ]
                   }
@@ -11558,7 +12173,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-node/ontap-node?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Node=${__value.raw}"
+                        "url": "/d/cdot-node/ontap-node?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Node=${__value.raw}"
                       }
                     ]
                   }
@@ -11584,7 +12199,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-aggregate/ontap-aggregate?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Aggregate=${__value.raw}"
+                        "url": "/d/cdot-aggregate/ontap-aggregate?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Aggregate=${__value.raw}"
                       }
                     ]
                   }
@@ -11610,7 +12225,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-svm/ontap-svm?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-SVM=${__value.raw}"
+                        "url": "/d/cdot-svm/ontap-svm?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-SVM=${__value.raw}"
                       }
                     ]
                   }
@@ -11636,7 +12251,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-volume/ontap-volume?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${SVM:queryparam}\u0026${__url_time_range}\u0026var-Volume=${__value.raw}"
+                        "url": "/d/cdot-volume/ontap-volume?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${SVM:queryparam}&${__url_time_range}&var-Volume=${__value.raw}"
                       }
                     ]
                   }
@@ -11770,6 +12385,7 @@
       "type": "row"
     }
   ],
+  "preload": false,
   "refresh": "",
   "schemaVersion": 30,
   "style": "dark",
@@ -11777,7 +12393,8 @@
     "harvest",
     "ontap",
     "cdot",
-    "fsx"
+    "fsx",
+    "gcnv-ontap-mode"
   ],
   "templating": {
     "list": [
@@ -11821,7 +12438,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -11847,7 +12464,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -11899,7 +12516,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -11925,7 +12542,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -11952,7 +12569,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -11978,7 +12595,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -12097,5 +12714,6 @@
   "timezone": "",
   "title": "ONTAP: Volume",
   "uid": "cdot-volume",
-  "version": 37
+  "version": 38,
+  "weekStart": ""
 }

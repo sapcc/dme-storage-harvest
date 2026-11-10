@@ -1,4 +1,5 @@
 {
+  "__elements": {},
   "__inputs": [
     {
       "description": "",
@@ -49,7 +50,7 @@
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations \u0026 Alerts",
+        "name": "Annotations & Alerts",
         "target": {
           "limit": 100,
           "matchAny": false,
@@ -62,6 +63,7 @@
   },
   "description": "",
   "editable": true,
+  "fiscalYearStartMonth": 0,
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
@@ -92,7 +94,7 @@
       },
       "id": 21,
       "options": {
-        "content": "This dashboard requires the NFSv4Pool templates. Two actions are required to use this dashboard: \u003cbr\u003e1. If you are using the ZapiPerf collector, then you must enable the NFSv4Pool counters in `$HARVEST/conf/zapiperf/default.yaml`. \u003cbr\u003e2. If you are using the RestPerf collector, then you must enable the NFSv4Pool counters in `$HARVEST/conf/restperf/default.yaml`. Please see https://github.com/NetApp/harvest/discussions/1796 for more details.",
+        "content": "This dashboard requires the NFSv4Pool templates. Two actions are required to use this dashboard: <br>1. If you are using the ZapiPerf collector, then you must enable the NFSv4Pool counters in `$HARVEST/conf/zapiperf/default.yaml`. <br>2. If you are using the RestPerf collector, then you must enable the NFSv4Pool counters in `$HARVEST/conf/restperf/default.yaml`. Please see https://github.com/NetApp/harvest/discussions/1796 for more details.",
         "mode": "markdown"
       },
       "pluginVersion": "8.1.8",
@@ -125,7 +127,7 @@
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -182,20 +184,22 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "multi"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "targets": [
         {
           "exemplar": false,
-          "expr": "100\n  *\n    (\n        nfs_diag_storePool_DelegStateAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_DelegStateMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n\u003e\n  1",
+          "expr": "100\n  *\n    (\n        nfs_diag_storePool_DelegStateAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_DelegStateMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n>\n  1",
           "interval": "",
           "legendFormat": "{{node}} - DelegStateAlloc",
           "refId": "A"
         },
         {
           "exemplar": false,
-          "expr": "100\n  *\n    (\n        nfs_diag_storePool_ByteLockAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_ByteLockMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n\u003e\n  1",
+          "expr": "100\n  *\n    (\n        nfs_diag_storePool_ByteLockAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_ByteLockMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n>\n  1",
           "hide": false,
           "interval": "",
           "legendFormat": "{{node}} - ByteLockAlloc",
@@ -203,7 +207,7 @@
         },
         {
           "exemplar": false,
-          "expr": "100\n  *\n    (\n        nfs_diag_storePool_ClientAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_ClientMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n\u003e\n  1",
+          "expr": "100\n  *\n    (\n        nfs_diag_storePool_ClientAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_ClientMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n>\n  1",
           "hide": false,
           "interval": "",
           "legendFormat": "{{node}} - ClientAlloc",
@@ -211,7 +215,7 @@
         },
         {
           "exemplar": false,
-          "expr": "100\n  *\n    (\n        nfs_diag_storePool_CopyStateAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_CopyStateMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n\u003e\n  1",
+          "expr": "100\n  *\n    (\n        nfs_diag_storePool_CopyStateAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_CopyStateMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n>\n  1",
           "hide": false,
           "interval": "",
           "legendFormat": "{{node}} - ConnectionParentSessionReferenceAlloc",
@@ -219,7 +223,7 @@
         },
         {
           "exemplar": false,
-          "expr": "100\n  *\n    (\n        nfs_diag_storePool_ConnectionParentSessionReferenceAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_ConnectionParentSessionReferenceMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n\u003e\n  1",
+          "expr": "100\n  *\n    (\n        nfs_diag_storePool_ConnectionParentSessionReferenceAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_ConnectionParentSessionReferenceMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n>\n  1",
           "hide": false,
           "interval": "",
           "legendFormat": "{{node}} - ConnectionParentSessionReferenceAlloc",
@@ -227,7 +231,7 @@
         },
         {
           "exemplar": false,
-          "expr": "100\n  *\n    (\n        nfs_diag_storePool_DelegAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_DelegMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n\u003e\n  1",
+          "expr": "100\n  *\n    (\n        nfs_diag_storePool_DelegAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_DelegMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n>\n  1",
           "hide": false,
           "interval": "",
           "legendFormat": "{{node}} - DelegAlloc",
@@ -235,7 +239,7 @@
         },
         {
           "exemplar": false,
-          "expr": "100\n  *\n    (\n        nfs_diag_storePool_LockAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_LockMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n\u003e\n  1",
+          "expr": "100\n  *\n    (\n        nfs_diag_storePool_LockAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_LockMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n>\n  1",
           "hide": false,
           "interval": "",
           "legendFormat": "{{node}} - LockAlloc",
@@ -243,7 +247,7 @@
         },
         {
           "exemplar": false,
-          "expr": "100\n  *\n    (\n        nfs_diag_storePool_LayoutStateAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_LayoutStateMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n\u003e\n  1",
+          "expr": "100\n  *\n    (\n        nfs_diag_storePool_LayoutStateAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_LayoutStateMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n>\n  1",
           "hide": false,
           "interval": "",
           "legendFormat": "{{node}} - LayoutStateAlloc",
@@ -251,7 +255,7 @@
         },
         {
           "exemplar": false,
-          "expr": "100\n  *\n    (\n        nfs_diag_storePool_LockStateAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_LockStateMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n\u003e\n  1",
+          "expr": "100\n  *\n    (\n        nfs_diag_storePool_LockStateAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_LockStateMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n>\n  1",
           "hide": false,
           "interval": "",
           "legendFormat": "{{node}} - LockStateAlloc",
@@ -259,7 +263,7 @@
         },
         {
           "exemplar": false,
-          "expr": "100\n  *\n    (\n        nfs_diag_storePool_OpenStateAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_OpenStateMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n\u003e\n  1",
+          "expr": "100\n  *\n    (\n        nfs_diag_storePool_OpenStateAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_OpenStateMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n>\n  1",
           "hide": false,
           "interval": "",
           "legendFormat": "{{node}} - OpenStateAlloc",
@@ -267,7 +271,7 @@
         },
         {
           "exemplar": false,
-          "expr": "100\n  *\n    (\n        nfs_diag_storePool_OpenAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_OpenMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n\u003e\n  1",
+          "expr": "100\n  *\n    (\n        nfs_diag_storePool_OpenAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_OpenMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n>\n  1",
           "hide": false,
           "interval": "",
           "legendFormat": "{{node}} - OpenAlloc",
@@ -275,7 +279,7 @@
         },
         {
           "exemplar": false,
-          "expr": "100\n  *\n    (\n        nfs_diag_storePool_OwnerAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_OwnerMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n\u003e\n  1",
+          "expr": "100\n  *\n    (\n        nfs_diag_storePool_OwnerAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_OwnerMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n>\n  1",
           "hide": false,
           "interval": "",
           "legendFormat": "{{node}} - OwnerAlloc",
@@ -283,7 +287,7 @@
         },
         {
           "exemplar": false,
-          "expr": "100\n  *\n    (\n        nfs_diag_storePool_SessionConnectionHolderAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_SessionConnectionHolderMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n\u003e\n  1",
+          "expr": "100\n  *\n    (\n        nfs_diag_storePool_SessionConnectionHolderAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_SessionConnectionHolderMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n>\n  1",
           "hide": false,
           "interval": "",
           "legendFormat": "{{node}} - SessionConnectionHolderAlloc",
@@ -291,7 +295,7 @@
         },
         {
           "exemplar": false,
-          "expr": "100\n  *\n    (\n        nfs_diag_storePool_SessionHolderAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_SessionHolderMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n\u003e\n  1",
+          "expr": "100\n  *\n    (\n        nfs_diag_storePool_SessionHolderAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_SessionHolderMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n>\n  1",
           "hide": false,
           "interval": "",
           "legendFormat": "{{node}} - SessionHolderAlloc",
@@ -299,7 +303,7 @@
         },
         {
           "exemplar": false,
-          "expr": "100\n  *\n    (\n        nfs_diag_storePool_SessionAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_SessionMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n\u003e\n  1",
+          "expr": "100\n  *\n    (\n        nfs_diag_storePool_SessionAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_SessionMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n>\n  1",
           "hide": false,
           "interval": "",
           "legendFormat": "{{node}} - SessionAlloc",
@@ -307,7 +311,7 @@
         },
         {
           "exemplar": false,
-          "expr": "100\n  *\n    (\n        nfs_diag_storePool_StateRefHistoryAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_StateRefHistoryMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n\u003e\n  1",
+          "expr": "100\n  *\n    (\n        nfs_diag_storePool_StateRefHistoryAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_StateRefHistoryMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n>\n  1",
           "hide": false,
           "interval": "",
           "legendFormat": "{{node}} - StateRefHistoryAlloc",
@@ -315,7 +319,7 @@
         },
         {
           "exemplar": false,
-          "expr": "100\n  *\n    (\n        nfs_diag_storePool_StringAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_StringMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n\u003e\n  1",
+          "expr": "100\n  *\n    (\n        nfs_diag_storePool_StringAlloc{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      /\n        nfs_diag_storePool_StringMax{datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n    )\n>\n  1",
           "hide": false,
           "interval": "",
           "legendFormat": "{{node}} - StringAlloc",
@@ -441,7 +445,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                    "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                   }
                 ]
               }
@@ -463,7 +467,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                    "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                   }
                 ]
               }
@@ -485,7 +489,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-node/ontap-node?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Node=${__value.raw}"
+                    "url": "/d/cdot-node/ontap-node?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Node=${__value.raw}"
                   }
                 ]
               }
@@ -665,7 +669,7 @@
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -710,7 +714,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "targets": [
@@ -751,7 +757,7 @@
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -796,7 +802,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "targets": [
@@ -918,7 +926,7 @@
                   {
                     "targetBlank": true,
                     "title": "Click for volume view",
-                    "url": "/d/cdot-volume-by-svm/ontap-vol-by-svm?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-SVM=${__value.raw}"
+                    "url": "/d/cdot-volume-by-svm/ontap-vol-by-svm?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-SVM=${__value.raw}"
                   }
                 ]
               }
@@ -1457,7 +1465,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                       }
                     ]
                   }
@@ -1479,7 +1487,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                       }
                     ]
                   }
@@ -1501,7 +1509,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-node/ontap-node?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Node=${__value.raw}"
+                        "url": "/d/cdot-node/ontap-node?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Node=${__value.raw}"
                       }
                     ]
                   }
@@ -1667,6 +1675,7 @@
       "type": "row"
     }
   ],
+  "preload": false,
   "refresh": "",
   "schemaVersion": 30,
   "style": "dark",
@@ -1718,7 +1727,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "type": "query"
       },
       {
@@ -1741,7 +1750,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "type": "query"
       },
       {
@@ -1790,7 +1799,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "type": "query"
       },
       {
@@ -1813,7 +1822,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "type": "query"
       },
       {
@@ -1836,7 +1845,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "type": "query"
       }
     ]
@@ -1849,5 +1858,6 @@
   "timezone": "",
   "title": "ONTAP: NFS Troubleshooting",
   "uid": "cdot-nfs-troubleshooting",
-  "version": 1
+  "version": 1,
+  "weekStart": ""
 }

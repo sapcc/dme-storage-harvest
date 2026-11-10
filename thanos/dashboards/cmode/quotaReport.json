@@ -1,4 +1,5 @@
 {
+  "__elements": {},
   "__inputs": [
     {
       "description": "",
@@ -50,7 +51,7 @@
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations \u0026 Alerts",
+        "name": "Annotations & Alerts",
         "target": {
           "limit": 100,
           "matchAny": false,
@@ -63,6 +64,7 @@
   },
   "description": "",
   "editable": true,
+  "fiscalYearStartMonth": 0,
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
@@ -108,7 +110,7 @@
       },
       "id": 132,
       "options": {
-        "content": "\u003cbr\u003eBy default, only `tree` type quotas are collected via Harvest. If you wish to collect user and group quotas as well, please follow the steps outlined at [GitHub discussion #2911](https://github.com/NetApp/harvest/discussions/2911).",
+        "content": "<br>By default, only `tree` type quotas are collected via Harvest. If you wish to collect user and group quotas as well, please follow the steps outlined at [GitHub discussion #2911](https://github.com/NetApp/harvest/discussions/2911).",
         "mode": "markdown"
       },
       "pluginVersion": "8.1.8",
@@ -506,7 +508,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                    "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                   }
                 ]
               }
@@ -528,7 +530,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                    "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                   }
                 ]
               }
@@ -550,7 +552,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-svm/ontap-svm?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-SVM=${__value.raw}"
+                    "url": "/d/cdot-svm/ontap-svm?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-SVM=${__value.raw}"
                   }
                 ]
               }
@@ -572,7 +574,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-qtree/ontap-qtree?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${SVM:queryparam}\u0026${__url_time_range}\u0026var-Qtree=${__value.raw}"
+                    "url": "/d/cdot-qtree/ontap-qtree?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${SVM:queryparam}&${__url_time_range}&var-Qtree=${__value.raw}"
                   }
                 ]
               }
@@ -594,7 +596,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-volume/ontap-volume?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${SVM:queryparam}\u0026${__url_time_range}\u0026var-Volume=${__value.raw}"
+                    "url": "/d/cdot-volume/ontap-volume?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${SVM:queryparam}&${__url_time_range}&var-Volume=${__value.raw}"
                   }
                 ]
               }
@@ -1022,7 +1024,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1138,7 +1142,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1229,7 +1235,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1345,7 +1353,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1368,6 +1378,7 @@
       "type": "row"
     }
   ],
+  "preload": false,
   "refresh": "",
   "schemaVersion": 30,
   "style": "dark",
@@ -1419,7 +1430,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tags": [],
         "tagsQuery": "",
@@ -1448,7 +1459,7 @@
         "refresh_on_load": false,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "type": "query"
       },
       {
@@ -1499,7 +1510,7 @@
         "refresh_on_load": false,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "type": "query"
       },
       {
@@ -1522,7 +1533,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "type": "query"
       },
       {
@@ -1545,7 +1556,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "type": "query"
       },
       {
@@ -1570,7 +1581,7 @@
         "refresh_on_load": false,
         "regex": ".*qtree=\\\"(.*?)\\\".*",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "type": "query"
       },
       {
@@ -1686,5 +1697,6 @@
   "timezone": "",
   "title": "ONTAP: Quota",
   "uid": "cdot-quota",
-  "version": 1
+  "version": 1,
+  "weekStart": ""
 }

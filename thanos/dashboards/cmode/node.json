@@ -1,8 +1,9 @@
 {
+  "__elements": {},
   "__inputs": [
     {
       "description": "",
-      "label": "Prometheus",
+      "label": "prometheus",
       "name": "DS_PROMETHEUS",
       "pluginId": "prometheus",
       "pluginName": "Prometheus",
@@ -20,7 +21,7 @@
       "id": "grafana",
       "name": "Grafana",
       "type": "grafana",
-      "version": "8.1.8"
+      "version": "12.3.2"
     },
     {
       "id": "prometheus",
@@ -57,11 +58,13 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "uid": "-- Grafana --"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations \u0026 Alerts",
+        "name": "Annotations & Alerts",
         "target": {
           "limit": 100,
           "matchAny": false,
@@ -74,10 +77,11 @@
   },
   "description": "",
   "editable": true,
+  "fiscalYearStartMonth": 0,
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1753980389710,
+  "iteration": 1680864207753,
   "links": [
     {
       "asDropdown": true,
@@ -97,7 +101,6 @@
   "panels": [
     {
       "collapsed": false,
-      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -110,8 +113,10 @@
       "type": "row"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "Number of nodes.",
       "fieldConfig": {
         "defaults": {
@@ -132,7 +137,7 @@
             "steps": [
               {
                 "color": "rgb(110, 171, 31)",
-                "value": null
+                "value": 0
               }
             ]
           },
@@ -147,12 +152,12 @@
         "y": 1
       },
       "id": 15,
-      "links": [],
       "options": {
         "colorMode": "value",
         "graphMode": "none",
         "justifyMode": "center",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -160,12 +165,18 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {},
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "8.1.8",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": false,
           "expr": "count(\n  count by (node) (node_new_status{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})\n)",
           "format": "time_series",
@@ -177,14 +188,14 @@
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Nodes",
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "Number of aggregates.",
       "fieldConfig": {
         "defaults": {
@@ -205,7 +216,7 @@
             "steps": [
               {
                 "color": "rgb(138, 204, 51)",
-                "value": null
+                "value": 0
               }
             ]
           },
@@ -220,12 +231,12 @@
         "y": 1
       },
       "id": 16,
-      "links": [],
       "options": {
         "colorMode": "value",
         "graphMode": "none",
         "justifyMode": "center",
         "orientation": "horizontal",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -233,12 +244,18 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {},
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "8.1.8",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": false,
           "expr": "count(\n  count by (aggr) (aggr_new_status{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})\n)",
           "format": "time_series",
@@ -250,13 +267,14 @@
           "refId": "B"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Aggregates",
       "type": "stat"
     },
     {
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "Average Latency for all operations in the system.",
       "fieldConfig": {
         "defaults": {
@@ -295,6 +313,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "mean"
@@ -302,12 +321,18 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {},
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "8.1.8",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": false,
           "expr": "avg(node_volume_avg_latency{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
           "interval": "",
@@ -315,13 +340,14 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Average Latency",
       "type": "stat"
     },
     {
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "Total throughput.",
       "fieldConfig": {
         "defaults": {
@@ -331,7 +357,7 @@
             "steps": [
               {
                 "color": "rgb(138, 204, 51)",
-                "value": null
+                "value": 0
               }
             ]
           },
@@ -351,6 +377,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "mean"
@@ -358,12 +385,18 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {},
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "8.1.8",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": false,
           "expr": "sum(node_volume_total_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
           "interval": "",
@@ -371,13 +404,14 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Throughput",
       "type": "stat"
     },
     {
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "Number of operations per second.",
       "fieldConfig": {
         "defaults": {
@@ -387,7 +421,7 @@
             "steps": [
               {
                 "color": "rgb(138, 204, 51)",
-                "value": null
+                "value": 0
               }
             ]
           },
@@ -407,6 +441,7 @@
         "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "mean"
@@ -414,12 +449,18 @@
           "fields": "",
           "values": false
         },
+        "showPercentChange": false,
         "text": {},
-        "textMode": "auto"
+        "textMode": "auto",
+        "wideLayout": true
       },
-      "pluginVersion": "8.1.8",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": false,
           "expr": "sum(node_volume_total_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
           "interval": "",
@@ -427,13 +468,14 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "IOPs",
       "type": "stat"
     },
     {
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "System CPU resource utilization is a computed percentage that indicates how busy the system is based on a combination of the most heavily utilized domain and idle CPU cycles. This metric determines the amount of available CPU and will vary based on domains reaching their limits OR exhausting all idle CPU cycles, whichever comes first.",
       "fieldConfig": {
         "defaults": {
@@ -445,7 +487,7 @@
             "steps": [
               {
                 "color": "rgb(106, 212, 22)",
-                "value": null
+                "value": 0
               }
             ]
           },
@@ -462,6 +504,20 @@
       "id": 24,
       "options": {
         "displayMode": "lcd",
+        "legend": {
+          "calcs": [
+            "mean",
+            "lastNotNull",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -471,11 +527,17 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "sizing": "auto",
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "8.1.8",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": false,
           "expr": "avg(node_cpu_busy{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
           "interval": "",
@@ -483,13 +545,14 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "CPU Busy",
       "type": "bargauge"
     },
     {
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "Latency for all operations in the system.",
       "fieldConfig": {
         "defaults": {
@@ -497,9 +560,13 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -508,6 +575,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -515,6 +583,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -530,7 +599,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -557,15 +626,22 @@
             "max"
           ],
           "displayMode": "table",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
-      "pluginVersion": "8.1.8",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": false,
           "expr": "avg by (node) (node_volume_avg_latency{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
           "interval": "",
@@ -573,14 +649,14 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Latency",
-      "transformations": [],
       "type": "timeseries"
     },
     {
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "Total throughput.",
       "fieldConfig": {
         "defaults": {
@@ -588,9 +664,13 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -599,6 +679,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -606,6 +687,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -621,7 +703,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -648,15 +730,22 @@
             "max"
           ],
           "displayMode": "table",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
-      "pluginVersion": "8.1.8",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": false,
           "expr": "sum by (node) (node_volume_read_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})\n+\n  sum by (node) (node_volume_write_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
           "interval": "",
@@ -664,14 +753,14 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Throughput",
-      "transformations": [],
       "type": "timeseries"
     },
     {
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "Number of operations per second.",
       "fieldConfig": {
         "defaults": {
@@ -679,9 +768,13 @@
             "mode": "palette-classic"
           },
           "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
+            "barWidthFactor": 0.6,
             "drawStyle": "line",
             "fillOpacity": 10,
             "gradientMode": "none",
@@ -690,6 +783,7 @@
               "tooltip": false,
               "viz": false
             },
+            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -697,6 +791,7 @@
               "type": "linear"
             },
             "showPoints": "never",
+            "showValues": false,
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -713,7 +808,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               },
               {
                 "color": "red",
@@ -740,15 +835,22 @@
             "max"
           ],
           "displayMode": "table",
-          "placement": "bottom"
+          "placement": "bottom",
+          "showLegend": true
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
-      "pluginVersion": "8.1.8",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": false,
           "expr": "sum by (node) (node_volume_total_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
           "interval": "",
@@ -756,14 +858,14 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Top Average IOPs",
-      "transformations": [],
       "type": "timeseries"
     },
     {
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "Average processor utilization across all processors in the system.",
       "fieldConfig": {
         "defaults": {
@@ -776,7 +878,7 @@
             "steps": [
               {
                 "color": "rgb(106, 212, 22)",
-                "value": null
+                "value": 0
               }
             ]
           },
@@ -793,6 +895,20 @@
       "id": 129,
       "options": {
         "displayMode": "lcd",
+        "legend": {
+          "calcs": [
+            "mean",
+            "lastNotNull",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -802,11 +918,17 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "sizing": "auto",
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "8.1.8",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": false,
           "expr": "avg(node_avg_processor_busy{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
           "interval": "",
@@ -814,13 +936,14 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Average CPU Utilization",
       "type": "bargauge"
     },
     {
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "The utilization percent of the disk. node_disk_max_busy is the maximum of [disk_busy](#disk_busy) for label `node`.",
       "fieldConfig": {
         "defaults": {
@@ -832,7 +955,7 @@
             "steps": [
               {
                 "color": "rgb(106, 212, 22)",
-                "value": null
+                "value": 0
               }
             ]
           },
@@ -849,6 +972,20 @@
       "id": 40,
       "options": {
         "displayMode": "lcd",
+        "legend": {
+          "calcs": [
+            "mean",
+            "lastNotNull",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -858,11 +995,17 @@
           "values": false
         },
         "showUnfilled": true,
-        "text": {}
+        "sizing": "auto",
+        "text": {},
+        "valueMode": "color"
       },
-      "pluginVersion": "8.1.8",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": false,
           "expr": "max(node_disk_max_busy{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
           "interval": "",
@@ -870,13 +1013,14 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Max Disk Utilization",
       "type": "bargauge"
     },
     {
-      "datasource": "${DS_PROMETHEUS}",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
       "description": "`Uptime:` This represents the total uptime of the node, formatted as duration (d hh:mm:ss)\n\n`Fan Status:` If there are chasis fans failure then it shows `Check Fans` else `OK`\n\n`Power Status:` If there are Power supply unit failures then it shows `Check Power` else `OK`\n\n`Healthy:` If Node is not healthy then it shows `No` else `Yes`.",
       "fieldConfig": {
         "defaults": {
@@ -885,8 +1029,14 @@
           },
           "custom": {
             "align": "auto",
-            "displayMode": "auto",
-            "filterable": true
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "footer": {
+              "reducers": []
+            },
+            "inspect": false
           },
           "mappings": [],
           "thresholds": {
@@ -894,7 +1044,7 @@
             "steps": [
               {
                 "color": "green",
-                "value": null
+                "value": 0
               }
             ]
           },
@@ -951,8 +1101,10 @@
                 ]
               },
               {
-                "id": "custom.displayMode",
-                "value": "color-text"
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
               }
             ]
           },
@@ -993,8 +1145,10 @@
                 ]
               },
               {
-                "id": "custom.displayMode",
-                "value": "color-text"
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
               }
             ]
           },
@@ -1025,8 +1179,10 @@
                 ]
               },
               {
-                "id": "custom.displayMode",
-                "value": "color-text"
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
               }
             ]
           },
@@ -1070,7 +1226,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                    "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                   }
                 ]
               }
@@ -1092,7 +1248,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                    "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                   }
                 ]
               }
@@ -1108,6 +1264,7 @@
       },
       "id": 138,
       "options": {
+        "cellHeight": "sm",
         "showHeader": true,
         "sortBy": [
           {
@@ -1116,9 +1273,13 @@
           }
         ]
       },
-      "pluginVersion": "8.1.8",
+      "pluginVersion": "12.3.2",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": false,
           "expr": "label_join(\n  node_uptime{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"},\n  \"unique_id\",\n  \"-\",\n  \"datacenter\",\n  \"cluster\",\n  \"node\"\n)",
           "format": "table",
@@ -1128,6 +1289,10 @@
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": false,
           "expr": "label_join(\n  node_failed_fan{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"},\n  \"unique_id\",\n  \"-\",\n  \"datacenter\",\n  \"cluster\",\n  \"node\"\n)",
           "format": "table",
@@ -1138,6 +1303,10 @@
           "refId": "B"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": false,
           "expr": "label_join(\n  node_failed_power{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"},\n  \"unique_id\",\n  \"-\",\n  \"datacenter\",\n  \"cluster\",\n  \"node\"\n)",
           "format": "table",
@@ -1148,6 +1317,10 @@
           "refId": "C"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "exemplar": false,
           "expr": "label_join(\n  node_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"},\n  \"unique_id\",\n  \"-\",\n  \"datacenter\",\n  \"cluster\",\n  \"node\"\n)",
           "format": "table",
@@ -1253,7 +1426,6 @@
     },
     {
       "collapsed": true,
-      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1263,297 +1435,11 @@
       "id": 131,
       "panels": [
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Average latency in microseconds for the WAFL filesystem to process all the operations on the volume; not including request processing or network communication time.",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 10,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": true,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "µs"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 8,
-            "x": 0,
-            "y": 30
-          },
-          "id": 133,
-          "options": {
-            "legend": {
-              "calcs": [
-                "mean",
-                "lastNotNull",
-                "max"
-              ],
-              "displayMode": "table",
-              "placement": "bottom"
-            },
-            "tooltip": {
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "pluginVersion": "8.1.8",
-          "targets": [
-            {
-              "datasource": "${DS_PROMETHEUS}",
-              "exemplar": false,
-              "expr": "volume_avg_latency{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\nand\n  topk(\n    $TopResources,\n    avg_over_time(\n      volume_avg_latency{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n    )\n  )",
-              "interval": "",
-              "legendFormat": "{{netapp_cluster}} - {{svm}} - {{volume}}",
-              "refId": "A"
-            }
-          ],
-          "title": "Top $TopResources Volumes by Average Latency",
-          "transformations": [],
-          "type": "timeseries"
-        },
-        {
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "Volume total throughput.",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 10,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": true,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "Bps"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 8,
-            "x": 8,
-            "y": 30
-          },
-          "id": 135,
-          "options": {
-            "legend": {
-              "calcs": [
-                "mean",
-                "lastNotNull",
-                "max"
-              ],
-              "displayMode": "table",
-              "placement": "bottom"
-            },
-            "tooltip": {
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "pluginVersion": "8.1.8",
-          "targets": [
-            {
-              "datasource": "${DS_PROMETHEUS}",
-              "exemplar": false,
-              "expr": "(\n      volume_read_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n    +\n      volume_write_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n  )\nand\n  topk(\n    $TopResources,\n    (\n        avg_over_time(\n          volume_read_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n        )\n      +\n        avg_over_time(\n          volume_write_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n        )\n    )\n  )",
-              "interval": "",
-              "legendFormat": "{{netapp_cluster}} - {{svm}} - {{volume}}",
-              "refId": "A"
-            }
-          ],
-          "title": "Top $TopResources Volumes by Average Throughput",
-          "transformations": [],
-          "type": "timeseries"
-        },
-        {
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "Number of operations per second serviced by the volume.",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "palette-classic"
-              },
-              "custom": {
-                "axisLabel": "",
-                "axisPlacement": "auto",
-                "barAlignment": 0,
-                "drawStyle": "line",
-                "fillOpacity": 10,
-                "gradientMode": "none",
-                "hideFrom": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": false
-                },
-                "lineInterpolation": "linear",
-                "lineWidth": 1,
-                "pointSize": 5,
-                "scaleDistribution": {
-                  "type": "linear"
-                },
-                "showPoints": "auto",
-                "spanNulls": true,
-                "stacking": {
-                  "group": "A",
-                  "mode": "none"
-                },
-                "thresholdsStyle": {
-                  "mode": "off"
-                }
-              },
-              "decimals": 0,
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              },
-              "unit": "iops"
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 8,
-            "x": 16,
-            "y": 30
-          },
-          "id": 137,
-          "options": {
-            "legend": {
-              "calcs": [
-                "mean",
-                "lastNotNull",
-                "max"
-              ],
-              "displayMode": "table",
-              "placement": "bottom"
-            },
-            "tooltip": {
-              "mode": "single",
-              "sort": "none"
-            }
-          },
-          "pluginVersion": "8.1.8",
-          "targets": [
-            {
-              "datasource": "${DS_PROMETHEUS}",
-              "exemplar": false,
-              "expr": "volume_total_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\nand\n  topk(\n    $TopResources,\n    avg_over_time(\n      volume_total_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n    )\n  )",
-              "interval": "",
-              "legendFormat": "{{netapp_cluster}} - {{svm}} - {{volume}}",
-              "refId": "A"
-            }
-          ],
-          "title": "Top $TopResources Volumes by IOPs",
-          "transformations": [],
-          "type": "timeseries"
-        }
-      ],
-      "title": "Volume Performance",
-      "type": "row"
-    },
-    {
-      "collapsed": true,
-      "datasource": "${DS_PROMETHEUS}",
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 30
-      },
-      "id": 57,
-      "panels": [
-        {
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "Average processor utilization across all processors in the system.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -1584,6 +1470,318 @@
                   "mode": "none"
                 },
                 "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "µs"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 0,
+            "y": 30
+          },
+          "id": 133,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "8.1.8",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "exemplar": false,
+              "expr": "volume_avg_latency{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\nand\n  topk(\n    $TopResources,\n    avg_over_time(\n      volume_avg_latency{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n    )\n  )",
+              "interval": "",
+              "legendFormat": "{{netapp_cluster}} - {{svm}} - {{volume}}",
+              "refId": "A"
+            }
+          ],
+          "title": "Top $TopResources Volumes by Average Latency",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "description": "Volume total throughput.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "Bps"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 8,
+            "y": 30
+          },
+          "id": 135,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "8.1.8",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "exemplar": false,
+              "expr": "(\n      volume_read_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n    +\n      volume_write_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n  )\nand\n  topk(\n    $TopResources,\n    (\n        avg_over_time(\n          volume_read_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n        )\n      +\n        avg_over_time(\n          volume_write_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n        )\n    )\n  )",
+              "interval": "",
+              "legendFormat": "{{netapp_cluster}} - {{svm}} - {{volume}}",
+              "refId": "A"
+            }
+          ],
+          "title": "Top $TopResources Volumes by Average Throughput",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "description": "Number of operations per second serviced by the volume.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "decimals": 0,
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "iops"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 8,
+            "x": 16,
+            "y": 30
+          },
+          "id": 137,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "8.1.8",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "exemplar": false,
+              "expr": "volume_total_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\nand\n  topk(\n    $TopResources,\n    avg_over_time(\n      volume_total_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n    )\n  )",
+              "interval": "",
+              "legendFormat": "{{netapp_cluster}} - {{svm}} - {{volume}}",
+              "refId": "A"
+            }
+          ],
+          "title": "Top $TopResources Volumes by IOPs",
+          "type": "timeseries"
+        }
+      ],
+      "title": "Volume Performance",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 30
+      },
+      "id": 57,
+      "panels": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "description": "Average processor utilization across all processors in the system.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "showValues": false,
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
                   "mode": "area"
                 }
               },
@@ -1596,7 +1794,7 @@
                 "steps": [
                   {
                     "color": "transparent",
-                    "value": null
+                    "value": 0
                   },
                   {
                     "color": "orange",
@@ -1627,15 +1825,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
-          "pluginVersion": "8.1.8",
+          "pluginVersion": "12.3.2",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "node_avg_processor_busy{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}",
               "hide": false,
@@ -1644,14 +1849,14 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Average CPU Utilization",
-          "transformations": [],
           "type": "timeseries"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Array of processor time in percentage spent in various domains.",
           "fieldConfig": {
             "defaults": {
@@ -1659,9 +1864,13 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -1670,6 +1879,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -1677,6 +1887,7 @@
                   "type": "linear"
                 },
                 "showPoints": "never",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -1694,7 +1905,7 @@
                 "steps": [
                   {
                     "color": "green",
-                    "value": null
+                    "value": 0
                   },
                   {
                     "color": "red",
@@ -1723,7 +1934,7 @@
                     "id": "custom.hideFrom",
                     "value": {
                       "legend": false,
-                      "tooltip": false,
+                      "tooltip": true,
                       "viz": true
                     }
                   }
@@ -1746,15 +1957,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
-          "pluginVersion": "8.1.8",
+          "pluginVersion": "12.3.2",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg by (metric) (node_cpu_domain_busy{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "hide": false,
@@ -1763,10 +1981,7 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "CPU Busy Domains",
-          "transformations": [],
           "type": "timeseries"
         }
       ],
@@ -1775,7 +1990,6 @@
     },
     {
       "collapsed": true,
-      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1785,7 +1999,10 @@
       "id": 107,
       "panels": [
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Percentage of bytes transferred.",
           "fieldConfig": {
             "defaults": {
@@ -1828,8 +2045,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1845,7 +2061,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 32
+            "y": 59
           },
           "id": 109,
           "options": {
@@ -1856,15 +2072,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "nic_util_percent{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\nand\n  topk(\n    $TopResources,\n    avg_over_time(\n      nic_util_percent{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n    )\n  )",
               "interval": "",
@@ -1872,13 +2095,14 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Top $TopResources Ethernet Ports by Utilization %",
           "type": "timeseries"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Percent of data access from the storage system.",
           "fieldConfig": {
             "defaults": {
@@ -1921,8 +2145,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1938,7 +2161,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 32
+            "y": 59
           },
           "id": 110,
           "options": {
@@ -1949,15 +2172,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "fcp_util_percent{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\nand\n  topk(\n    $TopResources,\n    avg_over_time(\n      fcp_util_percent{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n    )\n  )",
               "interval": "",
@@ -1965,14 +2195,15 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Top $TopResources FC Ports by Utilization %",
           "type": "timeseries"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "This panel displays total bytes received \u0026 sent in ethernet ports.",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "description": "This panel displays total bytes received & sent in ethernet ports.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -2011,8 +2242,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2028,7 +2258,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 40
+            "y": 67
           },
           "id": 111,
           "options": {
@@ -2039,15 +2269,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "(\n      nic_rx_bytes{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n    +\n      nic_tx_bytes{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n  )\nand on (datacenter, cluster, nic, node)\n  topk(\n    $TopResources,\n    (\n        avg_over_time(nic_rx_bytes{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}[3h])\n      +\n        avg_over_time(nic_tx_bytes{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}[3h])\n    )\n  )",
               "interval": "",
@@ -2055,13 +2292,14 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Top $TopResources Ethernet Ports by Throughput",
           "type": "timeseries"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "This panel displays detail of amount of data read from the storage system/written to the storage system in FC ports.",
           "fieldConfig": {
             "defaults": {
@@ -2101,8 +2339,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2118,7 +2355,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 40
+            "y": 67
           },
           "id": 112,
           "options": {
@@ -2129,15 +2366,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "(\n          fcp_read_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n        +\n          fcp_write_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n      +\n        fcp_nvmf_read_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n    +\n      fcp_nvmf_write_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n  )\nand on (datacenter, cluster, port, node)\n  topk(\n    $TopResources,\n    (\n            avg_over_time(fcp_read_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}[3h])\n          +\n            avg_over_time(fcp_write_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}[3h])\n        +\n          avg_over_time(fcp_nvmf_read_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}[3h])\n      +\n        avg_over_time(fcp_nvmf_write_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}[3h])\n    )\n  )",
               "interval": "",
@@ -2145,8 +2389,6 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Top $TopResources FC Ports by Throughput",
           "type": "timeseries"
         }
@@ -2156,7 +2398,6 @@
     },
     {
       "collapsed": true,
-      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2166,7 +2407,10 @@
       "id": 28,
       "panels": [
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "This panel displays detail of Average latency for the WAFL filesystem to process read/write/other request to the volume and aggregated to node level.",
           "fieldConfig": {
             "defaults": {
@@ -2174,9 +2418,13 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -2185,6 +2433,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -2192,6 +2441,7 @@
                   "type": "linear"
                 },
                 "showPoints": "never",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -2207,7 +2457,7 @@
                 "steps": [
                   {
                     "color": "green",
-                    "value": null
+                    "value": 0
                   }
                 ]
               },
@@ -2230,15 +2480,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
-          "pluginVersion": "8.1.8",
+          "pluginVersion": "12.3.2",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg(node_volume_read_latency{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "interval": "",
@@ -2246,6 +2503,10 @@
               "refId": "A"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg(node_volume_write_latency{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "interval": "",
@@ -2253,6 +2514,10 @@
               "refId": "B"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg(node_volume_other_latency{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "interval": "",
@@ -2260,14 +2525,14 @@
               "refId": "C"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Average Latency",
-          "transformations": [],
           "type": "timeseries"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "This panel displays detail of bytes read/written per second and aggregated at node level.",
           "fieldConfig": {
             "defaults": {
@@ -2275,9 +2540,13 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -2286,6 +2555,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -2293,6 +2563,7 @@
                   "type": "linear"
                 },
                 "showPoints": "never",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -2308,7 +2579,7 @@
                 "steps": [
                   {
                     "color": "green",
-                    "value": null
+                    "value": 0
                   },
                   {
                     "color": "red",
@@ -2335,15 +2606,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
-          "pluginVersion": "8.1.8",
+          "pluginVersion": "12.3.2",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "sum(node_volume_read_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "interval": "",
@@ -2352,6 +2630,10 @@
               "refId": "A"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "sum(node_volume_write_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "interval": "",
@@ -2360,14 +2642,14 @@
               "refId": "B"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Throughput",
-          "transformations": [],
           "type": "timeseries"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "This panel displays detail of Number of read/write/other operations per second from the volume and aggregated at node level.",
           "fieldConfig": {
             "defaults": {
@@ -2375,9 +2657,13 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -2386,6 +2672,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -2393,6 +2680,7 @@
                   "type": "linear"
                 },
                 "showPoints": "never",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -2409,7 +2697,7 @@
                 "steps": [
                   {
                     "color": "green",
-                    "value": null
+                    "value": 0
                   },
                   {
                     "color": "red",
@@ -2436,15 +2724,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
-          "pluginVersion": "8.1.8",
+          "pluginVersion": "12.3.2",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "sum(node_volume_read_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "interval": "",
@@ -2452,6 +2747,10 @@
               "refId": "A"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "sum(node_volume_write_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "interval": "",
@@ -2459,6 +2758,10 @@
               "refId": "B"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "sum(node_volume_other_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "interval": "",
@@ -2466,24 +2769,28 @@
               "refId": "C"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "IOPs",
-          "transformations": [],
           "type": "timeseries"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
-          "description": "This panel displays detail of system utilization based on cpu busy, cpu domain busy, disk busy and array of percentage time spent in different phases of Consistency Point (CP).",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "description": "System utilization as a percentage of total time. CPU Busy is overall processor utilization, Kahuna is the storage OS domain, Max Node Disk Utilization is the busiest disk, and WAFL Write Cleaning is CP write-allocation overhead scaled to total time so it is directly comparable with the other metrics on this panel. For unscaled CP-level detail, see the CP Write Health panel.",
           "fieldConfig": {
             "defaults": {
               "color": {
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -2492,6 +2799,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -2499,6 +2807,7 @@
                   "type": "linear"
                 },
                 "showPoints": "never",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -2517,7 +2826,7 @@
                 "steps": [
                   {
                     "color": "transparent",
-                    "value": null
+                    "value": 0
                   },
                   {
                     "color": "orange",
@@ -2548,15 +2857,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
-          "pluginVersion": "8.1.8",
+          "pluginVersion": "12.3.2",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg(node_cpu_busy{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "hide": false,
@@ -2565,6 +2881,10 @@
               "refId": "A"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg(\n  node_cpu_domain_busy{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",metric=\"kahuna\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n)",
               "hide": false,
@@ -2573,6 +2893,10 @@
               "refId": "C"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "max(node_disk_busy{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "hide": false,
@@ -2581,22 +2905,28 @@
               "refId": "B"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
               "exemplar": false,
-              "expr": "abs(\n    avg(\n      wafl_cp_phase_times{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",metric=\"P2_FLUSH\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n    )\n  -\n    100\n)",
+              "expr": "avg(\n  clamp_max(\n        abs(\n            wafl_cp_phase_times{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",metric=~\"P2_FLUSH|cp_p2_flush\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n          -\n            100\n        )\n      * ignoring (metric)\n        wafl_total_cp_util{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n    /\n      100,\n    100\n  )\n)",
               "hide": false,
               "interval": "",
-              "legendFormat": "WAFL Write Cleaning",
+              "legendFormat": "WAFL Write Cleaning (% of Total Time)",
+              "range": true,
               "refId": "D"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "System Utilization",
-          "transformations": [],
           "type": "timeseries"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Percent of reads on node that are supplied from, and had to wait on, various media types.",
           "fieldConfig": {
             "defaults": {
@@ -2604,9 +2934,13 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 50,
                 "gradientMode": "none",
@@ -2615,13 +2949,15 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
-                "lineWidth": 0,
+                "lineWidth": 1,
                 "pointSize": 5,
                 "scaleDistribution": {
                   "type": "linear"
                 },
                 "showPoints": "never",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -2640,7 +2976,7 @@
                 "steps": [
                   {
                     "color": "green",
-                    "value": null
+                    "value": 0
                   },
                   {
                     "color": "red",
@@ -2667,15 +3003,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
-          "pluginVersion": "8.1.8",
+          "pluginVersion": "12.3.2",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg by (metric) (wafl_read_io_type{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "hide": false,
@@ -2684,8 +3027,6 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Reads From",
           "transformations": [
             {
@@ -2716,7 +3057,10 @@
           "type": "timeseries"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "This panel displays detail of CIFS/NFS/FCP/ISCSI/NVMF operation per second.",
           "fieldConfig": {
             "defaults": {
@@ -2724,9 +3068,13 @@
                 "mode": "palette-classic"
               },
               "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
                 "axisLabel": "",
                 "axisPlacement": "auto",
                 "barAlignment": 0,
+                "barWidthFactor": 0.6,
                 "drawStyle": "line",
                 "fillOpacity": 10,
                 "gradientMode": "none",
@@ -2735,6 +3083,7 @@
                   "tooltip": false,
                   "viz": false
                 },
+                "insertNulls": false,
                 "lineInterpolation": "linear",
                 "lineWidth": 1,
                 "pointSize": 5,
@@ -2742,6 +3091,7 @@
                   "type": "linear"
                 },
                 "showPoints": "never",
+                "showValues": false,
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -2759,7 +3109,7 @@
                 "steps": [
                   {
                     "color": "green",
-                    "value": null
+                    "value": 0
                   },
                   {
                     "color": "red",
@@ -2786,15 +3136,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
-          "pluginVersion": "8.1.8",
+          "pluginVersion": "12.3.2",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "sum(node_cifs_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "hide": false,
@@ -2803,6 +3160,10 @@
               "refId": "A"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "sum(node_nfs_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "hide": false,
@@ -2811,6 +3172,10 @@
               "refId": "B"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "sum(node_fcp_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "hide": false,
@@ -2819,6 +3184,10 @@
               "refId": "C"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "expr": "sum(node_iscsi_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "hide": false,
               "interval": "",
@@ -2826,6 +3195,10 @@
               "refId": "D"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "sum(node_nvmf_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "hide": false,
@@ -2834,8 +3207,6 @@
               "refId": "E"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Protocol Backend IOPs",
           "transformations": [
             {
@@ -2846,6 +3217,120 @@
             }
           ],
           "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "description": "Percentage of Consistency Point (CP) time spent on write-cleaning overhead (write allocation, metadata reads, freespace management) versus flushing data to disk.",
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "showValues": false,
+                "spanNulls": true,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "area"
+                }
+              },
+              "decimals": 2,
+              "mappings": [],
+              "max": 100,
+              "min": 0,
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "transparent",
+                    "value": 0
+                  },
+                  {
+                    "color": "orange",
+                    "value": 60
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "percent"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 9,
+            "w": 8,
+            "x": 0,
+            "y": 51
+          },
+          "id": 139,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull",
+                "max"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
+            }
+          },
+          "pluginVersion": "12.3.2",
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
+              "editorMode": "code",
+              "exemplar": false,
+              "expr": "abs(\n    avg(\n      wafl_cp_phase_times{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",metric=~\"P2_FLUSH|cp_p2_flush\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n    )\n  -\n    100\n)",
+              "hide": false,
+              "interval": "",
+              "legendFormat": "WAFL Write Cleaning (% of CP Time)",
+              "range": true,
+              "refId": "D"
+            }
+          ],
+          "title": "WAFL Write Cleaning (% of CP Time)",
+          "type": "timeseries"
         }
       ],
       "title": "Backend",
@@ -2853,7 +3338,6 @@
     },
     {
       "collapsed": true,
-      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2863,7 +3347,10 @@
       "id": 88,
       "panels": [
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Average latency of Read procedure requests. The counter keeps track of the average response time of Read requests.",
           "fieldConfig": {
             "defaults": {
@@ -2917,6 +3404,10 @@
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg(\n  node_nfs_read_avg_latency{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",nfsv=\"v3\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n)",
               "interval": "",
@@ -2928,7 +3419,10 @@
           "type": "stat"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Average latency of requests. This counter keeps track of the average response time of requests.",
           "fieldConfig": {
             "defaults": {
@@ -2982,6 +3476,10 @@
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg(node_nfs_latency{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",nfsv=\"v3\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "interval": "",
@@ -2993,7 +3491,10 @@
           "type": "stat"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Average latency of Write procedure requests. The counter keeps track of the average response time of Write requests.",
           "fieldConfig": {
             "defaults": {
@@ -3047,6 +3548,10 @@
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg(\n  node_nfs_write_avg_latency{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",nfsv=\"v3\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n)",
               "interval": "",
@@ -3058,7 +3563,10 @@
           "type": "stat"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "This panel displays detail of rate of NFSv3 total/write/read data transfers per second.",
           "fieldConfig": {
             "defaults": {
@@ -3067,7 +3575,9 @@
               },
               "custom": {
                 "align": "auto",
-                "displayMode": "auto",
+                "cellOptions": {
+                  "type": "auto"
+                },
                 "filterable": true
               },
               "mappings": [
@@ -3093,8 +3603,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3120,6 +3629,10 @@
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "sum(node_nfs_throughput{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",nfsv=\"v3\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "format": "table",
@@ -3129,6 +3642,10 @@
               "refId": "Total Ops"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "sum(\n  node_nfs_write_throughput{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",nfsv=\"v3\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n)",
               "format": "table",
@@ -3139,6 +3656,10 @@
               "refId": "Write Ops"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "sum(node_nfs_read_throughput{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",nfsv=\"v3\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "format": "table",
@@ -3174,7 +3695,10 @@
           "type": "table"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "This panel displays number of NFS total/other/write/read operations per second.",
           "fieldConfig": {
             "defaults": {
@@ -3183,7 +3707,9 @@
               },
               "custom": {
                 "align": "auto",
-                "displayMode": "auto",
+                "cellOptions": {
+                  "type": "auto"
+                },
                 "filterable": true
               },
               "mappings": [
@@ -3213,8 +3739,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3239,6 +3764,10 @@
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg(node_nfs_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "format": "table",
@@ -3248,6 +3777,10 @@
               "refId": "Total Ops"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg(node_nfs_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})\n  -\n    avg(node_nfs_read_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})\n-\n  avg(node_nfs_write_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "format": "table",
@@ -3258,6 +3791,10 @@
               "refId": "Other Ops"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg(node_nfs_write_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "format": "table",
@@ -3268,6 +3805,10 @@
               "refId": "Write Ops"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg(node_nfs_read_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "format": "table",
@@ -3303,7 +3844,10 @@
           "type": "table"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "This panel displays detail of average latency of read/write procedure requests.",
           "fieldConfig": {
             "defaults": {
@@ -3328,7 +3872,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -3343,8 +3887,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3360,7 +3903,7 @@
             "h": 8,
             "w": 8,
             "x": 0,
-            "y": 31
+            "y": 58
           },
           "id": 99,
           "options": {
@@ -3371,14 +3914,21 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg(\n  node_nfs_read_avg_latency{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",nfsv=\"v3\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n)",
               "hide": false,
@@ -3387,6 +3937,10 @@
               "refId": "A"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg(\n  node_nfs_write_avg_latency{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",nfsv=\"v3\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n)",
               "hide": false,
@@ -3399,7 +3953,10 @@
           "type": "timeseries"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "This panel displays detail of rate of NFSv3 read/write data transfers per second.",
           "fieldConfig": {
             "defaults": {
@@ -3424,7 +3981,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -3439,8 +3996,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3456,7 +4012,7 @@
             "h": 8,
             "w": 8,
             "x": 8,
-            "y": 31
+            "y": 58
           },
           "id": 100,
           "options": {
@@ -3467,14 +4023,21 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "sum(node_nfs_read_throughput{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",nfsv=\"v3\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "hide": false,
@@ -3483,6 +4046,10 @@
               "refId": "A"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "sum(\n  node_nfs_write_throughput{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",nfsv=\"v3\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n)",
               "hide": false,
@@ -3495,7 +4062,10 @@
           "type": "timeseries"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "This panel displays detail of total observed NFSv3 total/read/write operations per second.",
           "fieldConfig": {
             "defaults": {
@@ -3520,7 +4090,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -3536,8 +4106,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3553,7 +4122,7 @@
             "h": 8,
             "w": 8,
             "x": 16,
-            "y": 31
+            "y": 58
           },
           "id": 101,
           "options": {
@@ -3564,14 +4133,21 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg(node_nfs_read_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",nfsv=\"v3\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "hide": false,
@@ -3580,6 +4156,10 @@
               "refId": "A"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg(node_nfs_write_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",nfsv=\"v3\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "hide": false,
@@ -3588,6 +4168,10 @@
               "refId": "B"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg(node_nfs_total_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",nfsv=\"v3\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "hide": false,
@@ -3605,7 +4189,6 @@
     },
     {
       "collapsed": true,
-      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -3615,7 +4198,10 @@
       "id": 59,
       "panels": [
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Average latency for CIFS operations.",
           "fieldConfig": {
             "defaults": {
@@ -3668,6 +4254,10 @@
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg(node_cifs_latency{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "interval": "",
@@ -3675,14 +4265,14 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "CIFS Latency",
-          "transformations": [],
           "type": "stat"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Number of CIFS operations per second.",
           "fieldConfig": {
             "defaults": {
@@ -3693,8 +4283,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "rgb(31, 176, 196)",
-                    "value": null
+                    "color": "rgb(31, 176, 196)"
                   }
                 ]
               },
@@ -3727,6 +4316,10 @@
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "sum(node_cifs_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "interval": "",
@@ -3734,14 +4327,14 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "CIFS IOPs",
-          "transformations": [],
           "type": "stat"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Array of select CIFS operation counts.",
           "fieldConfig": {
             "defaults": {
@@ -3782,8 +4375,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3810,15 +4402,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "sum by (metric) (node_cifs_op_count{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "interval": "",
@@ -3826,14 +4425,14 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "CIFS IOPs by Type",
-          "transformations": [],
           "type": "timeseries"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "This panel displays CIFS connection detail.",
           "fieldConfig": {
             "defaults": {
@@ -3873,8 +4472,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3901,15 +4499,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "sum(node_cifs_connections{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "interval": "",
@@ -3917,6 +4522,10 @@
               "refId": "A"
             },
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "sum(node_cifs_established_sessions{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "interval": "",
@@ -3924,13 +4533,10 @@
               "refId": "B"
             },
             {
-              "exemplar": false,
-              "expr": "sum(node_cifs_signed_sessions{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
-              "interval": "",
-              "legendFormat": "Signed Sessions",
-              "refId": "C"
-            },
-            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "sum(node_cifs_open_files{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "interval": "",
@@ -3938,10 +4544,7 @@
               "refId": "D"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "CIFS Connections",
-          "transformations": [],
           "type": "timeseries"
         }
       ],
@@ -3950,7 +4553,6 @@
     },
     {
       "collapsed": true,
-      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -3960,7 +4562,10 @@
       "id": 67,
       "panels": [
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Average latency for FCP operations.",
           "fieldConfig": {
             "defaults": {
@@ -3992,7 +4597,7 @@
             "h": 5,
             "w": 3,
             "x": 0,
-            "y": 36
+            "y": 63
           },
           "id": 84,
           "options": {
@@ -4013,20 +4618,24 @@
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "expr": "avg(fcp_lif_avg_latency{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "interval": "",
               "legendFormat": "",
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "FCP Latency",
-          "transformations": [],
           "type": "stat"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Total number of operations.",
           "fieldConfig": {
             "defaults": {
@@ -4036,8 +4645,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "rgb(31, 176, 196)",
-                    "value": null
+                    "color": "rgb(31, 176, 196)"
                   }
                 ]
               },
@@ -4049,7 +4657,7 @@
             "h": 5,
             "w": 3,
             "x": 3,
-            "y": 36
+            "y": 63
           },
           "id": 69,
           "options": {
@@ -4070,20 +4678,24 @@
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "expr": "sum(fcp_lif_total_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "interval": "",
               "legendFormat": "",
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "FCP IOPs",
-          "transformations": [],
           "type": "stat"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Average latency for FCP operations.",
           "fieldConfig": {
             "defaults": {
@@ -4123,8 +4735,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4140,7 +4751,7 @@
             "h": 9,
             "w": 6,
             "x": 6,
-            "y": 36
+            "y": 63
           },
           "id": 72,
           "options": {
@@ -4151,15 +4762,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg by (lif, port, node) (\n  fcp_lif_avg_latency{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n)",
               "hide": false,
@@ -4168,14 +4786,14 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "FCP Average Latency by Port / LIF",
-          "transformations": [],
           "type": "timeseries"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "This panel displays detail of amount of data read from the storage system/written to the storage system.",
           "fieldConfig": {
             "defaults": {
@@ -4215,8 +4833,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4232,7 +4849,7 @@
             "h": 9,
             "w": 6,
             "x": 12,
-            "y": 36
+            "y": 63
           },
           "id": 73,
           "options": {
@@ -4243,15 +4860,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg by (node, port, lif) (\n  fcp_lif_read_data + fcp_lif_write_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n)",
               "hide": false,
@@ -4260,14 +4884,14 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "FCP Throughput by Port / LIF",
-          "transformations": [],
           "type": "timeseries"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Total number of operations.",
           "fieldConfig": {
             "defaults": {
@@ -4308,8 +4932,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4325,7 +4948,7 @@
             "h": 9,
             "w": 6,
             "x": 18,
-            "y": 36
+            "y": 63
           },
           "id": 74,
           "options": {
@@ -4336,15 +4959,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg by (node, port, lif) (\n  fcp_lif_total_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n)",
               "hide": false,
@@ -4353,10 +4983,7 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "FCP IOPs by Port / LIF",
-          "transformations": [],
           "type": "timeseries"
         }
       ],
@@ -4365,7 +4992,6 @@
     },
     {
       "collapsed": true,
-      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -4375,7 +5001,10 @@
       "id": 118,
       "panels": [
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Average latency for NVMF operations.",
           "fieldConfig": {
             "defaults": {
@@ -4428,6 +5057,10 @@
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg(nvme_lif_avg_latency{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "interval": "",
@@ -4435,14 +5068,14 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "NVMe/FC Latency",
-          "transformations": [],
           "type": "stat"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Total number of operations.",
           "fieldConfig": {
             "defaults": {
@@ -4452,8 +5085,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "rgb(31, 176, 196)",
-                    "value": null
+                    "color": "rgb(31, 176, 196)"
                   }
                 ]
               },
@@ -4486,6 +5118,10 @@
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "sum(nvme_lif_total_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "interval": "",
@@ -4493,14 +5129,14 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "NVMe/FC IOPs",
-          "transformations": [],
           "type": "stat"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Average latency for NVMF operations.",
           "fieldConfig": {
             "defaults": {
@@ -4540,8 +5176,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4568,15 +5203,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg by (lif, port, node) (\n  nvme_lif_avg_latency{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n)",
               "hide": false,
@@ -4585,14 +5227,14 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "NVMe/FC Average Latency by Port / LIF",
-          "transformations": [],
           "type": "timeseries"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "This panel displays detail of amount of data read from the storage system/written to the storage system in NVMe/FC.",
           "fieldConfig": {
             "defaults": {
@@ -4632,8 +5274,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4660,15 +5301,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg by (node, port, lif) (\n    nvme_lif_read_data\n  +\n    nvme_lif_write_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n)",
               "hide": false,
@@ -4677,14 +5325,14 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "NVMe/FC Throughput by Port / LIF",
-          "transformations": [],
           "type": "timeseries"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Total number of operations.",
           "fieldConfig": {
             "defaults": {
@@ -4725,8 +5373,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4753,15 +5400,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg by (node, port, lif) (\n  nvme_lif_total_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n)",
               "hide": false,
@@ -4770,10 +5424,7 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "NVMe/FC IOPs by Port / LIF",
-          "transformations": [],
           "type": "timeseries"
         }
       ],
@@ -4782,7 +5433,6 @@
     },
     {
       "collapsed": true,
-      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -4792,7 +5442,10 @@
       "id": 76,
       "panels": [
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Average latency for iSCSI operations.",
           "fieldConfig": {
             "defaults": {
@@ -4845,20 +5498,24 @@
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "expr": "avg(iscsi_lif_avg_latency{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"})",
               "interval": "",
               "legendFormat": "",
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "iSCSI Latency",
-          "transformations": [],
           "type": "stat"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "This panel displays detail of iSCSI read/write/other operations per second on this logical interface (LIF).",
           "fieldConfig": {
             "defaults": {
@@ -4868,8 +5525,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "rgb(31, 176, 196)",
-                    "value": null
+                    "color": "rgb(31, 176, 196)"
                   }
                 ]
               },
@@ -4902,20 +5558,24 @@
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "expr": "sum(\n    iscsi_lif_iscsi_read_ops + iscsi_lif_iscsi_write_ops\n  +\n    iscsi_lif_iscsi_other_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n)",
               "interval": "",
               "legendFormat": "",
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "iSCSI IOPs",
-          "transformations": [],
           "type": "stat"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Average latency for iSCSI operations.",
           "fieldConfig": {
             "defaults": {
@@ -4955,8 +5615,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4983,15 +5642,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg by (node, lif) (\n  iscsi_lif_avg_latency{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n)",
               "hide": false,
@@ -5000,14 +5666,14 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Average Latency by LIF",
-          "transformations": [],
           "type": "timeseries"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "This panel displays detail of amount of data read from the storage system/written to the storage system in bytes.",
           "fieldConfig": {
             "defaults": {
@@ -5047,8 +5713,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -5075,15 +5740,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg by (node, lif) (\n    iscsi_lif_read_data\n  +\n    iscsi_lif_write_data{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n)",
               "hide": false,
@@ -5092,14 +5764,14 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Throughput by LIF",
-          "transformations": [],
           "type": "timeseries"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "This panel displays detail of iSCSI read/write/other operations per second on this logical interface (LIF).",
           "fieldConfig": {
             "defaults": {
@@ -5140,8 +5812,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -5168,15 +5839,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "avg by (node, lif) (\n    iscsi_lif_iscsi_read_ops + iscsi_lif_iscsi_write_ops\n  +\n    iscsi_lif_iscsi_other_ops{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n)",
               "hide": false,
@@ -5185,10 +5863,7 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "IOPs by LIF",
-          "transformations": [],
           "type": "timeseries"
         }
       ],
@@ -5197,7 +5872,6 @@
     },
     {
       "collapsed": true,
-      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -5207,7 +5881,14 @@
       "id": 38,
       "panels": [
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "fieldConfig": {
+            "defaults": {},
+            "overrides": []
+          },
           "gridPos": {
             "h": 2,
             "w": 24,
@@ -5216,14 +5897,18 @@
           },
           "id": 91,
           "options": {
-            "content": "The APIs for this panel are only available via ZapiPerf. Enable the ZapiPerf collector in your `harvest.yml` config.\u003cbr\u003e\nSee https://github.com/NetApp/harvest/wiki/Troubleshooting-Harvest#why-do-i-have-rewind-view-panels-empty-in-node-dashboard for more details.",
+            "content": "The APIs for this panel are only available via ZapiPerf. Enable the ZapiPerf collector in your `harvest.yml` config.<br>\nSee https://github.com/NetApp/harvest/wiki/Troubleshooting-Harvest#why-do-i-have-rewind-view-panels-empty-in-node-dashboard for more details.",
             "mode": "markdown"
           },
           "pluginVersion": "8.1.8",
+          "title": "",
           "type": "text"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Array of number of rewinds for nfs ops based on their reasons.",
           "fieldConfig": {
             "defaults": {
@@ -5263,8 +5948,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -5280,7 +5964,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 32
+            "y": 59
           },
           "id": 82,
           "options": {
@@ -5291,15 +5975,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "rw_ctx_nfs_rewinds{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\nand\n  topk(\n    $TopResources,\n    avg_over_time(\n      rw_ctx_nfs_rewinds{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n    )\n  )",
               "interval": "",
@@ -5307,14 +5998,14 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Top $TopResources Metric by NFS Rewinds",
-          "transformations": [],
           "type": "timeseries"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Array of number of given-ups of nfs ops because they rewind more than a certain threshold, categorized by their rewind reasons.",
           "fieldConfig": {
             "defaults": {
@@ -5354,8 +6045,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -5371,7 +6061,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 32
+            "y": 59
           },
           "id": 83,
           "options": {
@@ -5382,15 +6072,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "rw_ctx_nfs_giveups{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\nand\n  topk(\n    $TopResources,\n    avg_over_time(\n      rw_ctx_nfs_giveups{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n    )\n  )",
               "interval": "",
@@ -5399,14 +6096,14 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Top $TopResources Metric by NFS Giveups",
-          "transformations": [],
           "type": "timeseries"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Array of number of rewinds for cifs ops based on their reasons.",
           "fieldConfig": {
             "defaults": {
@@ -5446,8 +6143,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -5463,7 +6159,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 41
+            "y": 68
           },
           "id": 85,
           "options": {
@@ -5474,15 +6170,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "rw_ctx_cifs_rewinds{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\nand\n  topk(\n    $TopResources,\n    avg_over_time(\n      rw_ctx_cifs_rewinds{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n    )\n  )",
               "interval": "",
@@ -5490,14 +6193,14 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Top $TopResources Metric by CIFS Rewinds",
-          "transformations": [],
           "type": "timeseries"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "Array of number of given-ups of cifs ops because they rewind more than a certain threshold, categorized by their rewind reasons.",
           "fieldConfig": {
             "defaults": {
@@ -5537,8 +6240,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -5554,7 +6256,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 41
+            "y": 68
           },
           "id": 86,
           "options": {
@@ -5565,15 +6267,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "rw_ctx_cifs_giveups{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\nand\n  topk(\n    $TopResources,\n    avg_over_time(\n      rw_ctx_cifs_giveups{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n    )\n  )",
               "hide": false,
@@ -5582,14 +6291,14 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Top $TopResources Metric by CIFS Giveups",
-          "transformations": [],
           "type": "timeseries"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "The number of restarts after a rewind because of QoS limiting.",
           "fieldConfig": {
             "defaults": {
@@ -5609,7 +6318,7 @@
                   "viz": false
                 },
                 "lineInterpolation": "linear",
-                "lineWidth": 0,
+                "lineWidth": 1,
                 "pointSize": 5,
                 "scaleDistribution": {
                   "type": "linear"
@@ -5629,8 +6338,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -5646,7 +6354,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 50
+            "y": 77
           },
           "id": 87,
           "options": {
@@ -5657,15 +6365,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "rw_ctx_qos_rewinds{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\nand\n  topk(\n    $TopResources,\n    avg_over_time(\n      rw_ctx_qos_rewinds{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n    )\n  )",
               "hide": false,
@@ -5674,14 +6389,14 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Top $TopResources Node by QoS Rewinds",
-          "transformations": [],
           "type": "timeseries"
         },
         {
-          "datasource": "${DS_PROMETHEUS}",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
           "description": "The number of times QoS limiting has enabled stream flowcontrol.",
           "fieldConfig": {
             "defaults": {
@@ -5721,8 +6436,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -5738,7 +6452,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 50
+            "y": 77
           },
           "id": 89,
           "options": {
@@ -5749,15 +6463,22 @@
                 "max"
               ],
               "displayMode": "table",
-              "placement": "bottom"
+              "placement": "bottom",
+              "showLegend": true
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${DS_PROMETHEUS}"
+              },
               "exemplar": false,
               "expr": "rw_ctx_qos_flowcontrol{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\nand\n  topk(\n    $TopResources,\n    avg_over_time(\n      rw_ctx_qos_flowcontrol{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n    )\n  )",
               "hide": false,
@@ -5766,10 +6487,7 @@
               "refId": "A"
             }
           ],
-          "timeFrom": null,
-          "timeShift": null,
           "title": "Top $TopResources Node by QoS Flowcontrol",
-          "transformations": [],
           "type": "timeseries"
         }
       ],
@@ -5777,8 +6495,9 @@
       "type": "row"
     }
   ],
+  "preload": false,
   "refresh": "",
-  "schemaVersion": 30,
+  "schemaVersion": 42,
   "style": "dark",
   "tags": [
     "harvest",
@@ -5788,35 +6507,26 @@
   "templating": {
     "list": [
       {
-        "current": {
-          "selected": false,
-          "text": "Prometheus",
-          "value": "Prometheus"
-        },
-        "description": null,
-        "error": null,
+        "current": {},
         "hide": 0,
         "includeAll": false,
         "label": "Data Source",
-        "multi": false,
         "name": "DS_PROMETHEUS",
         "options": [],
         "query": "prometheus",
-        "refresh": 2,
+        "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
         "type": "datasource"
       },
       {
         "allValue": ".*",
         "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
         "definition": "label_values(cluster_new_status{system_type!=\"7mode\"}, datacenter)",
-        "description": null,
-        "error": null,
-        "hide": 0,
         "includeAll": true,
-        "label": null,
         "multi": true,
         "name": "Datacenter",
         "options": [],
@@ -5826,23 +6536,18 @@
         },
         "refresh": 2,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 1,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "sort": 7,
+        "type": "query"
       },
       {
         "allValue": ".*",
         "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
         "definition": "label_values(cluster_new_status{system_type!=\"7mode\",datacenter=~\"$Datacenter\"}, cluster)",
-        "description": null,
-        "error": null,
-        "hide": 0,
         "includeAll": true,
-        "label": null,
         "multi": true,
         "name": "Cluster",
         "options": [],
@@ -5852,12 +6557,8 @@
         },
         "refresh": 2,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 1,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "sort": 7,
+        "type": "query"
       },
       {
         "allValue": ".*",
@@ -5888,13 +6589,12 @@
       {
         "allValue": ".*",
         "current": {},
-        "datasource": "${DS_PROMETHEUS}",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "${DS_PROMETHEUS}"
+        },
         "definition": "label_values(node_labels{system_type!=\"7mode\",datacenter=~\"$Datacenter\", cluster=~\"$Cluster\",netapp_cluster=~\"$NetappCluster\"}, node)",
-        "description": null,
-        "error": null,
-        "hide": 0,
         "includeAll": true,
-        "label": null,
         "multi": true,
         "name": "Node",
         "options": [],
@@ -5904,26 +6604,15 @@
         },
         "refresh": 2,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 1,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "sort": 7,
+        "type": "query"
       },
       {
-        "allValue": null,
         "current": {
-          "selected": true,
           "text": "5",
           "value": "5"
         },
-        "description": null,
-        "error": null,
-        "hide": 0,
         "includeAll": false,
-        "label": null,
-        "multi": false,
         "name": "TopResources",
         "options": [
           {
@@ -5998,8 +6687,6 @@
           }
         ],
         "query": "1,2,3,4,5,6,8,10,15,25,50,100,250,500",
-        "queryValue": "",
-        "skipUrlSync": false,
         "type": "custom"
       }
     ]
@@ -6024,5 +6711,6 @@
   "timezone": "",
   "title": "ONTAP: Node",
   "uid": "cdot-node",
-  "version": 15
+  "version": 15,
+  "weekStart": ""
 }

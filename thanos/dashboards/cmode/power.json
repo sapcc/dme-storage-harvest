@@ -1,4 +1,5 @@
 {
+  "__elements": {},
   "__inputs": [
     {
       "description": "",
@@ -55,7 +56,7 @@
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations \u0026 Alerts",
+        "name": "Annotations & Alerts",
         "target": {
           "limit": 100,
           "matchAny": false,
@@ -68,6 +69,7 @@
   },
   "description": "",
   "editable": true,
+  "fiscalYearStartMonth": 0,
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
@@ -113,7 +115,7 @@
       },
       "id": 101,
       "options": {
-        "content": "This dashboard requires ONTAP 9.6+ and REST private CLI.\n\nSee \u003ca target='blank' href='https://netapp.github.io/harvest/latest/power-algorithm'\u003epower algorithm\u003c/a\u003e for more details.\n\nPower and temperature metrics may not be visible for clusters with **embedded** disk shelves. Those metrics are computed at the cluster level, not at the level of individual shelves. Embedded shelf power is shared among the common nodes.",
+        "content": "This dashboard requires ONTAP 9.6+ and REST private CLI.\n\nSee <a target='blank' href='https://netapp.github.io/harvest/latest/resources/power-algorithm/'>power algorithm</a> for more details.\n\nPower and temperature metrics may not be visible for clusters with **embedded** disk shelves. Those metrics are computed at the cluster level, not at the level of individual shelves. Embedded shelf power is shared among the common nodes.",
         "mode": "markdown"
       },
       "pluginVersion": "8.1.8",
@@ -248,7 +250,7 @@
       "targets": [
         {
           "exemplar": false,
-          "expr": "(\n      (avg(environment_sensor_power{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}) or vector(0))\n    +\n      avg(\n          (\n              shelf_power{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n            * on (datacenter, cluster, shelf)\n              shelf_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",isEmbedded=\"No\",netapp_cluster=~\"$NetappCluster\"}\n          )\n        or\n          vector(0)\n      )\n  )\n/\n  (\n          (sum(aggr_space_used{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}) / 1024 / 1024 / 1024 / 1024)\n        /\n          count(sum(node_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}))\n      \u003e\n        1\n    or\n      max(\n          aggr_space_used{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n        /\n          aggr_space_used{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      )\n  )",
+          "expr": "(\n      (avg(environment_sensor_power{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}) or vector(0))\n    +\n      avg(\n          (\n              shelf_power{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n            * on (datacenter, cluster, shelf)\n              shelf_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",isEmbedded=\"No\",netapp_cluster=~\"$NetappCluster\"}\n          )\n        or\n          vector(0)\n      )\n  )\n/\n  (\n          (sum(aggr_space_used{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}) / 1024 / 1024 / 1024 / 1024)\n        /\n          count(sum(node_labels{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}))\n      >\n        1\n    or\n      max(\n          aggr_space_used{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n        /\n          aggr_space_used{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}\n      )\n  )",
           "hide": false,
           "interval": "",
           "legendFormat": "",
@@ -694,7 +696,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.2",
@@ -838,7 +842,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.2",
@@ -945,7 +951,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.2",
@@ -1036,7 +1044,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.2",
@@ -1126,7 +1136,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.2",
@@ -1217,7 +1229,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.2",
@@ -1308,7 +1322,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.2",
@@ -1399,7 +1415,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.2",
@@ -1491,7 +1509,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.2",
@@ -1782,7 +1802,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                       }
                     ]
                   }
@@ -1804,7 +1824,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                       }
                     ]
                   }
@@ -1826,7 +1846,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-node/ontap-node?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Node=${__value.raw}"
+                        "url": "/d/cdot-node/ontap-node?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Node=${__value.raw}"
                       }
                     ]
                   }
@@ -1848,7 +1868,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-aggregate/ontap-aggregate?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Aggregate=${__value.raw}"
+                        "url": "/d/cdot-aggregate/ontap-aggregate?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Aggregate=${__value.raw}"
                       }
                     ]
                   }
@@ -1999,7 +2019,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                       }
                     ]
                   }
@@ -2021,7 +2041,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                       }
                     ]
                   }
@@ -2043,7 +2063,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-node/ontap-node?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Node=${__value.raw}"
+                        "url": "/d/cdot-node/ontap-node?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Node=${__value.raw}"
                       }
                     ]
                   }
@@ -2658,7 +2678,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                       }
                     ]
                   }
@@ -2680,7 +2700,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                       }
                     ]
                   }
@@ -2702,7 +2722,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-node/ontap-node?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Node=${__value.raw}"
+                        "url": "/d/cdot-node/ontap-node?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Node=${__value.raw}"
                       }
                     ]
                   }
@@ -2969,7 +2989,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                       }
                     ]
                   }
@@ -2991,7 +3011,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                       }
                     ]
                   }
@@ -3021,7 +3041,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-shelf/ontap-shelf?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Shelf=${__value.raw}"
+                        "url": "/d/cdot-shelf/ontap-shelf?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Shelf=${__value.raw}"
                       }
                     ]
                   }
@@ -3618,6 +3638,7 @@
       "type": "row"
     }
   ],
+  "preload": false,
   "refresh": "",
   "schemaVersion": 30,
   "style": "dark",
@@ -3668,7 +3689,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -3694,7 +3715,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -3850,5 +3871,6 @@
   "timezone": "",
   "title": "ONTAP: Power",
   "uid": "cdot-power",
-  "version": 17
+  "version": 17,
+  "weekStart": ""
 }

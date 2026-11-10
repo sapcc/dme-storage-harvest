@@ -55,7 +55,7 @@
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations \u0026 Alerts",
+        "name": "Annotations & Alerts",
         "target": {
           "limit": 100,
           "matchAny": false,
@@ -759,7 +759,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                    "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                   }
                 ]
               }
@@ -785,7 +785,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-node/ontap-node?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Node=${__value.raw}"
+                    "url": "/d/cdot-node/ontap-node?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Node=${__value.raw}"
                   }
                 ]
               }
@@ -811,7 +811,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                    "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                   }
                 ]
               }
@@ -837,7 +837,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-aggregate/ontap-aggregate?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Aggregate=${__value.raw}"
+                    "url": "/d/cdot-aggregate/ontap-aggregate?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Aggregate=${__value.raw}"
                   }
                 ]
               }
@@ -1185,7 +1185,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -1276,7 +1278,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -1369,7 +1373,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -1460,7 +1466,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -1551,7 +1559,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -1644,7 +1654,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -1736,7 +1748,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -1828,7 +1842,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -1920,7 +1936,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -2012,7 +2030,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -2112,7 +2132,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -2204,7 +2226,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -2297,7 +2321,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -2387,7 +2413,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -2485,7 +2513,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -2586,7 +2616,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -2679,7 +2711,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -2772,7 +2806,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -2863,7 +2899,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -2962,7 +3000,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -3071,7 +3111,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -3087,6 +3129,114 @@
       "timeFrom": null,
       "timeShift": null,
       "title": "Top $TopResources Aggregates by Space Reserved for Snapshots %",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS_PROMETHEUS}"
+      },
+      "description": "Percent of space used.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "showValues": false,
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 2,
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "transparent",
+                "value": 0
+              },
+              {
+                "color": "red"
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 72
+      },
+      "id": 835,
+      "options": {
+        "legend": {
+          "calcs": [
+            "mean",
+            "lastNotNull",
+            "max"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "12.4.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS_PROMETHEUS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "100\n    *\n      sum by (aggr, cluster, datacenter, node) (\n        aggr_space_used{aggr=~\"$Aggregate\",cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n      )\n  /\n    sum by (aggr, cluster, datacenter, node) (\n      aggr_space_total{aggr=~\"$Aggregate\",cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n    )\nand\n  topk(\n    $TopResources,\n    avg_over_time(\n      (\n            100\n          *\n            sum by (aggr, cluster, datacenter, node) (\n              aggr_space_used{aggr=~\"$Aggregate\",cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n            )\n        /\n          sum by (aggr, cluster, datacenter, node) (\n            aggr_space_total{aggr=~\"$Aggregate\",cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",node=~\"$Node\",netapp_cluster=~\"$NetappCluster\"}\n          )\n      )[3h:]\n    )\n  )",
+          "interval": "",
+          "legendFormat": "{{node}} - {{aggr}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Top $TopResources Aggregates by Space Used %",
       "type": "timeseries"
     },
     {
@@ -3266,7 +3416,7 @@
               "refId": "A"
             }
           ],
-          "title": "Data Reduction with Snapshots \u0026 FlexClones",
+          "title": "Data Reduction with Snapshots & FlexClones",
           "type": "stat"
         },
         {
@@ -3295,7 +3445,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -3338,8 +3488,9 @@
               "placement": "bottom"
             },
             "tooltip": {
+              "hideZeros": false,
               "mode": "multi",
-              "sort": "none"
+              "sort": "desc"
             }
           },
           "targets": [
@@ -3380,7 +3531,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -3423,8 +3574,9 @@
               "placement": "bottom"
             },
             "tooltip": {
+              "hideZeros": false,
               "mode": "multi",
-              "sort": "none"
+              "sort": "desc"
             }
           },
           "targets": [
@@ -3465,7 +3617,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -3508,8 +3660,9 @@
               "placement": "bottom"
             },
             "tooltip": {
+              "hideZeros": false,
               "mode": "multi",
-              "sort": "none"
+              "sort": "desc"
             }
           },
           "targets": [
@@ -3550,7 +3703,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -3593,8 +3746,9 @@
               "placement": "bottom"
             },
             "tooltip": {
+              "hideZeros": false,
               "mode": "multi",
-              "sort": "none"
+              "sort": "desc"
             }
           },
           "targets": [
@@ -3611,7 +3765,7 @@
         },
         {
           "datasource": "${DS_PROMETHEUS}",
-          "description": "Logical Used with Snapshots \u0026 flexClones.",
+          "description": "Logical Used with Snapshots & flexClones.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -3635,7 +3789,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -3678,8 +3832,9 @@
               "placement": "bottom"
             },
             "tooltip": {
+              "hideZeros": false,
               "mode": "multi",
-              "sort": "none"
+              "sort": "desc"
             }
           },
           "targets": [
@@ -3691,12 +3846,12 @@
               "refId": "A"
             }
           ],
-          "title": "Top $TopResources Aggregates by Logical Used with Snapshots \u0026 FlexClones",
+          "title": "Top $TopResources Aggregates by Logical Used with Snapshots & FlexClones",
           "type": "timeseries"
         },
         {
           "datasource": "${DS_PROMETHEUS}",
-          "description": "Physical Used with Snapshots \u0026 FlexClones.",
+          "description": "Physical Used with Snapshots & FlexClones.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -3720,7 +3875,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -3763,8 +3918,9 @@
               "placement": "bottom"
             },
             "tooltip": {
+              "hideZeros": false,
               "mode": "multi",
-              "sort": "none"
+              "sort": "desc"
             }
           },
           "targets": [
@@ -3776,7 +3932,7 @@
               "refId": "A"
             }
           ],
-          "title": "Top $TopResources Aggregates by Physical Used with Snapshots \u0026 FlexClones",
+          "title": "Top $TopResources Aggregates by Physical Used with Snapshots & FlexClones",
           "type": "timeseries"
         }
       ],
@@ -3887,7 +4043,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-node/ontap-node?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Node=${__value.raw}"
+                        "url": "/d/cdot-node/ontap-node?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Node=${__value.raw}"
                       }
                     ]
                   }
@@ -3913,7 +4069,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-aggregate/ontap-aggregate?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Aggregate=${__value.raw}"
+                        "url": "/d/cdot-aggregate/ontap-aggregate?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Aggregate=${__value.raw}"
                       }
                     ]
                   }
@@ -4049,8 +4205,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -4104,12 +4261,12 @@
                   "viz": false
                 },
                 "lineInterpolation": "linear",
-                "lineWidth": 2,
+                "lineWidth": 1,
                 "pointSize": 5,
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -4191,8 +4348,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -4241,12 +4399,12 @@
                   "viz": false
                 },
                 "lineInterpolation": "linear",
-                "lineWidth": 2,
+                "lineWidth": 1,
                 "pointSize": 5,
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -4289,8 +4447,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -4339,12 +4498,12 @@
                   "viz": false
                 },
                 "lineInterpolation": "linear",
-                "lineWidth": 2,
+                "lineWidth": 1,
                 "pointSize": 5,
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -4388,8 +4547,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -4446,12 +4606,12 @@
                   "viz": false
                 },
                 "lineInterpolation": "linear",
-                "lineWidth": 2,
+                "lineWidth": 1,
                 "pointSize": 5,
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -4507,8 +4667,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -4557,12 +4718,12 @@
                   "viz": false
                 },
                 "lineInterpolation": "linear",
-                "lineWidth": 2,
+                "lineWidth": 1,
                 "pointSize": 5,
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -4618,8 +4779,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -4664,7 +4826,7 @@
       "panels": [
         {
           "datasource": "${DS_PROMETHEUS}",
-          "description": "A summation of volume footprints (including volume guarantees), in bytes. This includes all of the volume footprints in the block_storage tier and the cloud_storage tier.This is an advanced property; there is an added computational cost to retrieving its value. The field is not populated for either a collection GET or an instance GET unless it is explicitly requested using the \u003ci\u003efields\u003c/i\u003e query parameter containing either footprint or **.",
+          "description": "A summation of volume footprints (including volume guarantees), in bytes. This includes all of the volume footprints in the block_storage tier and the cloud_storage tier.This is an advanced property; there is an added computational cost to retrieving its value. The field is not populated for either a collection GET or an instance GET unless it is explicitly requested using the <i>fields</i> query parameter containing either footprint or **.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -4688,7 +4850,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -4737,8 +4899,9 @@
               "sortDesc": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -4782,7 +4945,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -4833,8 +4996,9 @@
               "sortDesc": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -4878,7 +5042,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -4927,8 +5091,9 @@
               "sortDesc": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -4987,7 +5152,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5032,8 +5197,9 @@
               "sortDesc": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -5077,7 +5243,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5128,8 +5294,9 @@
               "sortDesc": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -5173,7 +5340,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5222,8 +5389,9 @@
               "sortDesc": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -5267,7 +5435,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5318,8 +5486,9 @@
               "sortDesc": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -5363,7 +5532,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5412,8 +5581,9 @@
               "sortDesc": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -5457,7 +5627,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5508,8 +5678,9 @@
               "sortDesc": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -5553,7 +5724,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5602,8 +5773,9 @@
               "sortDesc": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -5647,7 +5819,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5698,8 +5870,9 @@
               "sortDesc": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -5758,7 +5931,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5804,8 +5977,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -5849,7 +6023,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5895,8 +6069,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -5940,7 +6115,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -5987,8 +6162,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -6032,7 +6208,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -6078,7 +6254,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -6121,7 +6299,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -6167,7 +6345,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -6211,7 +6391,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -6258,7 +6438,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -6301,7 +6483,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -6347,7 +6529,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -6390,7 +6574,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -6436,7 +6620,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -6479,7 +6665,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -6526,7 +6712,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -6587,7 +6775,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -6636,8 +6824,9 @@
               "showLegend": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -6687,7 +6876,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -6736,8 +6925,9 @@
               "showLegend": true
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -6803,7 +6993,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                       }
                     ]
                   }
@@ -6825,7 +7015,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                       }
                     ]
                   }
@@ -6847,7 +7037,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-aggregate/ontap-aggregate?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Aggregate=${__value.raw}"
+                        "url": "/d/cdot-aggregate/ontap-aggregate?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Aggregate=${__value.raw}"
                       }
                     ]
                   }
@@ -7066,7 +7256,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                       }
                     ]
                   }
@@ -7088,7 +7278,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                       }
                     ]
                   }
@@ -7110,7 +7300,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-aggregate/ontap-aggregate?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Aggregate=${__value.raw}"
+                        "url": "/d/cdot-aggregate/ontap-aggregate?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Aggregate=${__value.raw}"
                       }
                     ]
                   }
@@ -7300,6 +7490,11 @@
   "templating": {
     "list": [
       {
+        "current": {
+          "selected": false,
+          "text": "Prometheus",
+          "value": "Prometheus"
+        },
         "description": null,
         "error": null,
         "hide": 0,
@@ -7334,7 +7529,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -7360,7 +7555,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -7412,7 +7607,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -7438,7 +7633,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",

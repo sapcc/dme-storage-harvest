@@ -1,4 +1,5 @@
 {
+  "__elements": {},
   "__inputs": [
     {
       "description": "",
@@ -49,7 +50,7 @@
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations \u0026 Alerts",
+        "name": "Annotations & Alerts",
         "target": {
           "limit": 100,
           "matchAny": false,
@@ -62,6 +63,7 @@
   },
   "description": "",
   "editable": true,
+  "fiscalYearStartMonth": 0,
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
@@ -144,12 +146,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "rgba(217, 91, 91, 0.74)",
+                "color": "semi-dark-red",
                 "value": null
-              },
-              {
-                "color": "rgb(101, 201, 87)",
-                "value": 1
               }
             ]
           },
@@ -172,7 +170,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                    "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                   }
                 ]
               }
@@ -194,7 +192,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                    "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                   }
                 ]
               }
@@ -203,7 +201,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "State"
+              "options": "Op Status"
             },
             "properties": [
               {
@@ -223,7 +221,7 @@
                     "options": {
                       "match": "null+nan",
                       "result": {
-                        "color": "semi-dark-orange",
+                        "color": "semi-dark-red",
                         "index": 1
                       }
                     },
@@ -234,6 +232,74 @@
               {
                 "id": "custom.displayMode",
                 "value": "color-background-solid"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Admin Status"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "up": {
+                        "color": "semi-dark-green",
+                        "index": 0,
+                        "text": "Up"
+                      }
+                    },
+                    "type": "value"
+                  },
+                  {
+                    "options": {
+                      "match": "null+nan",
+                      "result": {
+                        "color": "semi-dark-red",
+                        "index": 1
+                      }
+                    },
+                    "type": "special"
+                  }
+                ]
+              },
+              {
+                "id": "custom.displayMode",
+                "value": "color-background-solid"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "ISL"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "false": {
+                        "index": 0,
+                        "text": "No"
+                      }
+                    },
+                    "type": "value"
+                  },
+                  {
+                    "options": {
+                      "true": {
+                        "index": 1,
+                        "text": "Yes"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
               }
             ]
           },
@@ -283,7 +349,7 @@
         "sortBy": [
           {
             "desc": false,
-            "displayName": "State"
+            "displayName": "Op Status"
           }
         ]
       },
@@ -291,7 +357,7 @@
       "targets": [
         {
           "exemplar": false,
-          "expr": "ethernet_switch_port_new_status{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",switch=~\"$Switch\",netapp_cluster=~\"$NetappCluster\"}",
+          "expr": "ethernet_switch_port_new_status{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\",netapp_cluster=~\"$NetappCluster\"}",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -312,7 +378,10 @@
                 "netapp_cluster",
                 "interface",
                 "speed",
-                "state"
+                "op_state",
+                "admin_state",
+                "is_isl",
+                "type"
               ]
             }
           }
@@ -322,18 +391,24 @@
           "options": {
             "excludeByName": {},
             "indexByName": {
+              "admin_state": 7,
               "datacenter": 0,
               "interface": 3,
+              "is_isl": 5,
               "netapp_cluster": 1,
+              "op_state": 8,
               "speed": 4,
-              "state": 5,
-              "switch": 2
+              "switch": 2,
+              "type": 6
             },
             "renameByName": {
+              "admin_state": "Admin Status",
               "interface": "Interface",
+              "is_isl": "ISL",
+              "op_state": "Op Status",
               "speed": "Speed",
-              "state": "State",
-              "switch": "Switch"
+              "switch": "Switch",
+              "type": "Type"
             }
           }
         }
@@ -425,14 +500,16 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
           "targets": [
             {
               "exemplar": false,
-              "expr": "sum by (switch, interface) (\n    rate(\n      ethernet_switch_port_transmit_packets{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\",netapp_cluster=~\"$NetappCluster\"}[4m]\n    )\n  )\nand on (switch, interface)\n  topk(\n    $TopResources,\n    sum by (switch, interface) (\n      avg_over_time(\n        ethernet_switch_port_transmit_packets{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\",netapp_cluster=~\"$NetappCluster\"}[3h]\n      )\n    )\n  )",
+              "expr": "sum by (switch, interface) (\n    ethernet_switch_port_transmit_packets{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\",netapp_cluster=~\"$NetappCluster\"}\n  )\nand on (switch, interface)\n  topk(\n    $TopResources,\n    sum by (switch, interface) (\n      avg_over_time(\n        ethernet_switch_port_transmit_packets{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\",netapp_cluster=~\"$NetappCluster\"}[3h]\n      )\n    )\n  )",
               "interval": "",
               "legendFormat": "{{switch}} - {{interface}}",
               "refId": "A"
@@ -517,14 +594,16 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
           "targets": [
             {
               "exemplar": false,
-              "expr": "sum by (switch, interface) (\n    rate(\n      ethernet_switch_port_receive_packets{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\",netapp_cluster=~\"$NetappCluster\"}[4m]\n    )\n  )\nand on (switch, interface)\n  topk(\n    $TopResources,\n    sum by (switch, interface) (\n      avg_over_time(\n        ethernet_switch_port_receive_packets{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\",netapp_cluster=~\"$NetappCluster\"}[3h]\n      )\n    )\n  )",
+              "expr": "sum by (switch, interface) (\n    ethernet_switch_port_receive_packets{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\",netapp_cluster=~\"$NetappCluster\"}\n  )\nand on (switch, interface)\n  topk(\n    $TopResources,\n    sum by (switch, interface) (\n      avg_over_time(\n        ethernet_switch_port_receive_packets{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\",netapp_cluster=~\"$NetappCluster\"}[3h]\n      )\n    )\n  )",
               "interval": "",
               "legendFormat": "{{switch}} - {{interface}}",
               "refId": "A"
@@ -609,21 +688,23 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
           "targets": [
             {
               "exemplar": false,
-              "expr": "sum by (switch, interface) (\n    rate(\n      ethernet_switch_port_receive_discards{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\",netapp_cluster=~\"$NetappCluster\"}[4m]\n    )\n  )\nand on (switch, interface)\n  topk(\n    $TopResources,\n    sum by (switch, interface) (\n      avg_over_time(\n        ethernet_switch_port_receive_discards{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\",netapp_cluster=~\"$NetappCluster\"}[3h]\n      )\n    )\n  )",
+              "expr": "sum by (switch, interface) (\n    ethernet_switch_port_receive_discards{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\",netapp_cluster=~\"$NetappCluster\"}\n  )\nand on (switch, interface)\n  topk(\n    $TopResources,\n    sum by (switch, interface) (\n      avg_over_time(\n        ethernet_switch_port_receive_discards{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\",netapp_cluster=~\"$NetappCluster\"}[3h]\n      )\n    )\n  )",
               "interval": "",
               "legendFormat": "Receive - {{switch}} - {{interface}}",
               "refId": "A"
             },
             {
               "exemplar": false,
-              "expr": "sum by (switch, interface) (\n    rate(\n      ethernet_switch_port_transmit_discards{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\",netapp_cluster=~\"$NetappCluster\"}[4m]\n    )\n  )\nand on (switch, interface)\n  topk(\n    $TopResources,\n    sum by (switch, interface) (\n      avg_over_time(\n        ethernet_switch_port_transmit_discards{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\",netapp_cluster=~\"$NetappCluster\"}[3h]\n      )\n    )\n  )",
+              "expr": "sum by (switch, interface) (\n    ethernet_switch_port_transmit_discards{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\",netapp_cluster=~\"$NetappCluster\"}\n  )\nand on (switch, interface)\n  topk(\n    $TopResources,\n    sum by (switch, interface) (\n      avg_over_time(\n        ethernet_switch_port_transmit_discards{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\",netapp_cluster=~\"$NetappCluster\"}[3h]\n      )\n    )\n  )",
               "interval": "",
               "legendFormat": "Transmit - {{switch}} - {{interface}}",
               "refId": "B"
@@ -708,21 +789,23 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
           "targets": [
             {
               "exemplar": false,
-              "expr": "sum by (switch, interface) (\n    rate(\n      ethernet_switch_port_transmit_errors{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\",netapp_cluster=~\"$NetappCluster\"}[4m]\n    )\n  )\nand on (switch, interface)\n  topk(\n    $TopResources,\n    sum by (switch, interface) (\n      avg_over_time(\n        ethernet_switch_port_transmit_errors{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\",netapp_cluster=~\"$NetappCluster\"}[3h]\n      )\n    )\n  )",
+              "expr": "sum by (switch, interface) (\n    ethernet_switch_port_transmit_errors{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\",netapp_cluster=~\"$NetappCluster\"}\n  )\nand on (switch, interface)\n  topk(\n    $TopResources,\n    sum by (switch, interface) (\n      avg_over_time(\n        ethernet_switch_port_transmit_errors{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\",netapp_cluster=~\"$NetappCluster\"}[3h]\n      )\n    )\n  )",
               "interval": "",
               "legendFormat": "Transmit - {{switch}} - {{interface}}",
               "refId": "A"
             },
             {
               "exemplar": false,
-              "expr": "sum by (switch, interface) (\n    rate(\n      ethernet_switch_port_receive_errors{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\",netapp_cluster=~\"$NetappCluster\"}[4m]\n    )\n  )\nand on (switch, interface)\n  topk(\n    $TopResources,\n    sum by (switch, interface) (\n      avg_over_time(\n        ethernet_switch_port_receive_errors{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\",netapp_cluster=~\"$NetappCluster\"}[3h]\n      )\n    )\n  )",
+              "expr": "sum by (switch, interface) (\n    ethernet_switch_port_receive_errors{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\",netapp_cluster=~\"$NetappCluster\"}\n  )\nand on (switch, interface)\n  topk(\n    $TopResources,\n    sum by (switch, interface) (\n      avg_over_time(\n        ethernet_switch_port_receive_errors{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",interface=~\"$Interface\",switch=~\"$Switch\",netapp_cluster=~\"$NetappCluster\"}[3h]\n      )\n    )\n  )",
               "interval": "",
               "legendFormat": "Receive - {{switch}} - {{interface}}",
               "refId": "B"
@@ -872,7 +955,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                       }
                     ]
                   }
@@ -894,7 +977,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                       }
                     ]
                   }
@@ -945,12 +1028,13 @@
                 "excludeByName": {
                   "Time": true,
                   "Value": true,
+                  "admin_state": true,
                   "description": true,
                   "instance": true,
                   "interface": false,
                   "is_isl": true,
                   "job": true,
-                  "state": true,
+                  "op_state": true,
                   "type": true
                 },
                 "indexByName": {
@@ -962,8 +1046,8 @@
                   "is_isl": 9,
                   "job": 6,
                   "netapp_cluster": 2,
+                  "op_state": 10,
                   "speed": 7,
-                  "state": 10,
                   "switch": 3,
                   "type": 11
                 },
@@ -972,7 +1056,6 @@
                   "interface": "Interface",
                   "message": "EMS",
                   "speed": "Speed",
-                  "state": "State",
                   "switch": "Switch",
                   "type": ""
                 }
@@ -1007,7 +1090,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -1055,7 +1138,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1111,6 +1196,7 @@
       "type": "row"
     }
   ],
+  "preload": false,
   "refresh": "",
   "schemaVersion": 30,
   "style": "dark",
@@ -1161,7 +1247,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -1187,7 +1273,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -1239,7 +1325,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -1265,7 +1351,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -1384,5 +1470,6 @@
   "timezone": "",
   "title": "ONTAP: Switch",
   "uid": "cdot-switch",
-  "version": 3
+  "version": 3,
+  "weekStart": ""
 }

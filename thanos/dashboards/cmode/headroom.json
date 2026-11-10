@@ -37,7 +37,7 @@
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations \u0026 Alerts",
+        "name": "Annotations & Alerts",
         "target": {
           "limit": 100,
           "matchAny": false,
@@ -87,7 +87,7 @@
     },
     {
       "datasource": "${DS_PROMETHEUS}",
-      "description": "A projection of the amount of available IOP/s each aggregate has with the current workloads before increased hockey stick style latencies are encountered.\u003cbr/\u003e\u003cbr/\u003eThis graph displays the difference between Aggregate Utilization and Peak Performance (Optimal Point) as Available Ops (aka Headroom). If the current Available utilization is very low or negative for an extended time, a performance remediation plan might be appropriate. A performance remediation plan might include setting QoS workload limits, moving volumes or LUNs to another storage controller, or expanding the storage cluster.\u003cbr/\u003e\u003cbr/\u003eThis graph displays aggregate with confidence factor greater than 1. The confidence factor is used to gauge the accuracy of the optimal point for the given resource. Denoted by the following values:\u003cbr/\u003e\n1 - Low - Seed value is used for optimal point. There's not enough data to predict optimal point.\u003cbr/\u003e\n2 - Medium - Some data to extrapolate optimal point.\u003cbr/\u003e\n3 - High - Substantial data which reaches or exceeds optimal point, thereby the \"optimal point\" is known. \u003cbr/\u003e\n0 - Unknown - The resource is not available or is not in use, or there's an internal error such that the data cannot be retrieved. \u003cbr/\u003e\nFor more details see \nhttps://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/Is_my_controller_overloaded%3F",
+      "description": "A projection of the amount of available IOP/s each aggregate has with the current workloads before increased hockey stick style latencies are encountered.<br/><br/>This graph displays the difference between Aggregate Utilization and Peak Performance (Optimal Point) as Available Ops (aka Headroom). If the current Available utilization is very low or negative for an extended time, a performance remediation plan might be appropriate. A performance remediation plan might include setting QoS workload limits, moving volumes or LUNs to another storage controller, or expanding the storage cluster.<br/><br/>This graph displays aggregate with confidence factor greater than 1. The confidence factor is used to gauge the accuracy of the optimal point for the given resource. Denoted by the following values:<br/>\n1 - Low - Seed value is used for optimal point. There's not enough data to predict optimal point.<br/>\n2 - Medium - Some data to extrapolate optimal point.<br/>\n3 - High - Substantial data which reaches or exceeds optimal point, thereby the \"optimal point\" is known. <br/>\n0 - Unknown - The resource is not available or is not in use, or there's an internal error such that the data cannot be retrieved. <br/>\nFor more details see \nhttps://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/Is_my_controller_overloaded%3F",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -111,7 +111,7 @@
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -154,7 +154,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "targets": [
@@ -171,7 +173,7 @@
     },
     {
       "datasource": "${DS_PROMETHEUS}",
-      "description": "A projection of the amount of available IOP/s each node has with the current workloads before increased hockey stick style latencies are encountered.\u003cbr/\u003e\u003cbr/\u003eThis graph displays the difference between CPU Utilization and Peak Performance (Optimal Point) as Available Ops (aka Headroom). If the current Available utilization is very low or negative for an extended time, a performance remediation plan might be appropriate. A performance remediation plan might include setting QoS workload limits, moving volumes or LUNs to another storage controller, or expanding the storage cluster.\u003cbr/\u003e\u003cbr/\u003eThis graph displays node with confidence factor greater than 1. The confidence factor is used to guage the accuracy of the optimal point for the given resource.Denoted by the following values:\u003cbr/\u003e\n1 - Low - Seed value is used for optimal point. There's not enough data to predict optimal point.\u003cbr/\u003e\n2 - Medium - Some data to extrapolate optimal point.\u003cbr/\u003e\n3 - High - Substantial data which reaches or exceeds optimal point, thereby the \"optimal point\" is known. \u003cbr/\u003e\n0 - Unknown - The resource is not available or is not in use, or there's an internal error such that the data cannot be retrieved. \u003cbr/\u003e\nFor more details see\nhttps://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/Is_my_controller_overloaded%3F",
+      "description": "A projection of the amount of available IOP/s each node has with the current workloads before increased hockey stick style latencies are encountered.<br/><br/>This graph displays the difference between CPU Utilization and Peak Performance (Optimal Point) as Available Ops (aka Headroom). If the current Available utilization is very low or negative for an extended time, a performance remediation plan might be appropriate. A performance remediation plan might include setting QoS workload limits, moving volumes or LUNs to another storage controller, or expanding the storage cluster.<br/><br/>This graph displays node with confidence factor greater than 1. The confidence factor is used to guage the accuracy of the optimal point for the given resource.Denoted by the following values:<br/>\n1 - Low - Seed value is used for optimal point. There's not enough data to predict optimal point.<br/>\n2 - Medium - Some data to extrapolate optimal point.<br/>\n3 - High - Substantial data which reaches or exceeds optimal point, thereby the \"optimal point\" is known. <br/>\n0 - Unknown - The resource is not available or is not in use, or there's an internal error such that the data cannot be retrieved. <br/>\nFor more details see\nhttps://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/ONTAP_OS/Is_my_controller_overloaded%3F",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -195,7 +197,7 @@
             "scaleDistribution": {
               "type": "linear"
             },
-            "showPoints": "auto",
+            "showPoints": "never",
             "spanNulls": true,
             "stacking": {
               "group": "A",
@@ -238,7 +240,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "targets": [
@@ -290,7 +294,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -332,7 +336,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -378,7 +384,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -420,7 +426,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -466,7 +474,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -511,7 +519,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -557,7 +567,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -599,7 +609,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -645,7 +657,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -688,7 +700,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -734,7 +748,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -779,7 +793,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -825,7 +841,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -867,7 +883,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -913,7 +931,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -956,7 +974,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1002,7 +1022,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -1047,7 +1067,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1093,7 +1115,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -1135,7 +1157,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1181,7 +1205,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -1224,7 +1248,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1270,7 +1296,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -1315,7 +1341,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1376,7 +1404,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -1418,7 +1446,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1464,7 +1494,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -1506,7 +1536,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1552,7 +1584,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -1597,7 +1629,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1643,7 +1677,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -1685,7 +1719,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1731,7 +1767,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -1774,7 +1810,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1820,7 +1858,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -1865,7 +1903,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1911,7 +1951,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -1953,7 +1993,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1999,7 +2041,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -2042,7 +2084,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -2088,7 +2132,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -2133,7 +2177,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -2179,7 +2225,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -2221,7 +2267,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -2267,7 +2315,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -2310,7 +2358,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -2356,7 +2406,7 @@
                 "scaleDistribution": {
                   "type": "linear"
                 },
-                "showPoints": "auto",
+                "showPoints": "never",
                 "spanNulls": true,
                 "stacking": {
                   "group": "A",
@@ -2401,7 +2451,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -2476,7 +2528,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "type": "query"
       },
       {
@@ -2499,7 +2551,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "type": "query"
       },
       {
@@ -2573,7 +2625,7 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
-        "definition": "query_result(headroom_aggr_optimal_point_confidence_factor{datacenter=~\"$Datacenter\",cluster=~\"$Cluster\"} \u003e 1)",
+        "definition": "query_result(headroom_aggr_optimal_point_confidence_factor{datacenter=~\"$Datacenter\",cluster=~\"$Cluster\"} > 1)",
         "description": null,
         "error": null,
         "hide": 2,
@@ -2583,7 +2635,7 @@
         "name": "OptimalPointAggr",
         "options": [],
         "query": {
-          "query": "query_result(headroom_aggr_optimal_point_confidence_factor{datacenter=~\"$Datacenter\",cluster=~\"$Cluster\"} \u003e 1)",
+          "query": "query_result(headroom_aggr_optimal_point_confidence_factor{datacenter=~\"$Datacenter\",cluster=~\"$Cluster\"} > 1)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 2,
@@ -2596,7 +2648,7 @@
         "allValue": null,
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
-        "definition": "query_result(headroom_cpu_optimal_point_confidence_factor{datacenter=~\"$Datacenter\",cluster=~\"$Cluster\"} \u003e 1)",
+        "definition": "query_result(headroom_cpu_optimal_point_confidence_factor{datacenter=~\"$Datacenter\",cluster=~\"$Cluster\"} > 1)",
         "description": null,
         "error": null,
         "hide": 2,
@@ -2606,7 +2658,7 @@
         "name": "OptimalPointCPU",
         "options": [],
         "query": {
-          "query": "query_result(headroom_cpu_optimal_point_confidence_factor{datacenter=~\"$Datacenter\",cluster=~\"$Cluster\"} \u003e 1)",
+          "query": "query_result(headroom_cpu_optimal_point_confidence_factor{datacenter=~\"$Datacenter\",cluster=~\"$Cluster\"} > 1)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 2,

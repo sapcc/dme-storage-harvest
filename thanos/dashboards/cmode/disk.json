@@ -49,7 +49,7 @@
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations \u0026 Alerts",
+        "name": "Annotations & Alerts",
         "target": {
           "limit": 100,
           "matchAny": false,
@@ -577,7 +577,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-aggregate/ontap-aggregate?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Aggregate=${__value.raw}"
+                    "url": "/d/cdot-aggregate/ontap-aggregate?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Aggregate=${__value.raw}"
                   }
                 ]
               }
@@ -603,7 +603,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-node/ontap-node?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Node=${__value.raw}"
+                    "url": "/d/cdot-node/ontap-node?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Node=${__value.raw}"
                   }
                 ]
               }
@@ -935,7 +935,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-node/ontap-node?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Node=${__value.raw}"
+                    "url": "/d/cdot-node/ontap-node?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Node=${__value.raw}"
                   }
                 ]
               }
@@ -961,7 +961,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-aggregate/ontap-aggregate?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Aggregate=${__value.raw}"
+                    "url": "/d/cdot-aggregate/ontap-aggregate?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Aggregate=${__value.raw}"
                   }
                 ]
               }
@@ -1107,7 +1107,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -1197,7 +1199,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -1288,8 +1292,9 @@
           "placement": "bottom"
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -1384,8 +1389,9 @@
           "placement": "bottom"
         },
         "tooltip": {
+          "hideZeros": false,
           "mode": "multi",
-          "sort": "none"
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.4.11",
@@ -1487,8 +1493,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1579,8 +1586,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1671,8 +1679,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -1765,8 +1774,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -2059,7 +2069,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                        "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                       }
                     ]
                   }
@@ -2081,7 +2091,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1\u0026${__url_time_range}\u0026var-Datacenter=${__value.raw}"
+                        "url": "/d/cdot-datacenter/ontap-datacenter?orgId=1&${__url_time_range}&var-Datacenter=${__value.raw}"
                       }
                     ]
                   }
@@ -2103,9 +2113,41 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-node/ontap-node?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${__url_time_range}\u0026var-Node=${__value.raw}"
+                        "url": "/d/cdot-node/ontap-node?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${__url_time_range}&var-Node=${__value.raw}"
                       }
                     ]
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Value #F"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "Path Count"
+                  },
+                  {
+                    "id": "unit",
+                    "value": "short"
+                  },
+                  {
+                    "id": "decimals",
+                    "value": 0
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "pool"
+                },
+                "properties": [
+                  {
+                    "id": "displayName",
+                    "value": "Pool"
                   }
                 ]
               }
@@ -2190,6 +2232,17 @@
               "intervalFactor": 1,
               "legendFormat": "",
               "refId": "E"
+            },
+            {
+              "exemplar": false,
+              "expr": "disk_path_count{cluster=~\"$Cluster\",datacenter=~\"$Datacenter\",netapp_cluster=~\"$NetappCluster\"}",
+              "format": "table",
+              "hide": false,
+              "instant": true,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "",
+              "refId": "F"
             }
           ],
           "title": "Disks in Cluster",
@@ -2220,6 +2273,7 @@
                   "Time 2": true,
                   "Time 4": true,
                   "Time 5": true,
+                  "Time 6": true,
                   "Value #B": false,
                   "Value #C": false,
                   "Value #E": true,
@@ -2227,21 +2281,25 @@
                   "__name__ 1": true,
                   "__name__ 3": true,
                   "__name__ 4": true,
+                  "__name__ 5": true,
                   "aggr": true,
                   "cluster": false,
                   "cluster 2": true,
                   "cluster 3": true,
                   "cluster 4": true,
                   "cluster 5": true,
+                  "cluster 6": true,
                   "datacenter": false,
                   "datacenter 2": true,
                   "datacenter 3": true,
                   "datacenter 4": true,
                   "datacenter 5": true,
+                  "datacenter 6": true,
                   "disk 2": true,
                   "disk 3": true,
                   "disk 4": true,
                   "disk 5": true,
+                  "disk 6": true,
                   "failed": true,
                   "index": true,
                   "index 1": true,
@@ -2250,23 +2308,27 @@
                   "instance 2": true,
                   "instance 4": true,
                   "instance 5": true,
+                  "instance 6": true,
                   "job": true,
                   "job 1": true,
                   "job 2": true,
                   "job 3": true,
                   "job 4": true,
                   "job 5": true,
+                  "job 6": true,
                   "model": true,
                   "netapp_cluster": false,
                   "netapp_cluster 2": true,
                   "netapp_cluster 3": true,
                   "netapp_cluster 4": true,
                   "netapp_cluster 5": true,
+                  "netapp_cluster 6": true,
                   "node": false,
                   "node 2": true,
                   "node 3": true,
                   "node 4": true,
                   "node 5": true,
+                  "node 6": true,
                   "outage": true,
                   "owner_node": true,
                   "serial_number": true,
@@ -2280,26 +2342,31 @@
                   "Time 3": 14,
                   "Time 4": 23,
                   "Time 5": 32,
+                  "Time 6": 56,
                   "Value #A": 13,
                   "Value #B": 5,
                   "Value #C": 31,
                   "Value #D": 22,
                   "Value #E": 50,
+                  "Value #F": 55,
                   "__name__": 54,
                   "__name__ 2": 15,
                   "__name__ 3": 24,
                   "__name__ 4": 33,
+                  "__name__ 5": 57,
                   "container_type": 36,
                   "datacenter": 0,
                   "datacenter 2": 8,
                   "datacenter 3": 17,
                   "datacenter 4": 26,
                   "datacenter 5": 37,
+                  "datacenter 6": 59,
                   "disk": 3,
                   "disk 2": 9,
                   "disk 3": 18,
                   "disk 4": 27,
                   "disk 5": 38,
+                  "disk 6": 60,
                   "diskStatus": 39,
                   "failed": 40,
                   "index": 4,
@@ -2308,23 +2375,28 @@
                   "instance 3": 19,
                   "instance 4": 28,
                   "instance 5": 41,
+                  "instance 6": 61,
                   "job": 53,
                   "job 2": 11,
                   "job 3": 20,
                   "job 4": 29,
                   "job 5": 42,
+                  "job 6": 62,
                   "model": 43,
                   "netapp_cluster": 1,
                   "netapp_cluster 2": 7,
                   "netapp_cluster 3": 16,
                   "netapp_cluster 4": 25,
                   "netapp_cluster 5": 34,
+                  "netapp_cluster 6": 58,
                   "node": 2,
                   "node 2": 12,
                   "node 3": 21,
                   "node 4": 30,
                   "node 5": 44,
+                  "node 6": 63,
                   "owner_node": 45,
+                  "pool": 64,
                   "serial_number": 46,
                   "shared": 47,
                   "shelf": 48,
@@ -2430,7 +2502,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -2528,7 +2602,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -2626,7 +2702,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -2712,22 +2790,10 @@
             "overrides": [
               {
                 "matcher": {
-                  "id": "byName",
-                  "options": "HDD Reads Replaced"
+                  "id": "byFrameRefID",
+                  "options": "B"
                 },
                 "properties": [
-                  {
-                    "id": "custom.drawStyle",
-                    "value": "bars"
-                  },
-                  {
-                    "id": "custom.fillOpacity",
-                    "value": 100
-                  },
-                  {
-                    "id": "custom.lineWidth",
-                    "value": 0
-                  },
                   {
                     "id": "unit",
                     "value": "short"
@@ -2758,7 +2824,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -2847,18 +2915,6 @@
                 },
                 "properties": [
                   {
-                    "id": "custom.drawStyle",
-                    "value": "bars"
-                  },
-                  {
-                    "id": "custom.fillOpacity",
-                    "value": 100
-                  },
-                  {
-                    "id": "custom.lineWidth",
-                    "value": 0
-                  },
-                  {
                     "id": "unit",
                     "value": "short"
                   },
@@ -2888,7 +2944,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -3003,7 +3061,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -3112,7 +3172,9 @@
               "placement": "bottom"
             },
             "tooltip": {
-              "mode": "single"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.8",
@@ -3187,7 +3249,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -3213,7 +3275,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -3265,7 +3327,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -3291,7 +3353,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -3317,7 +3379,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -3343,7 +3405,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -3369,7 +3431,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "type": "query"
       },
       {

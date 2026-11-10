@@ -1,4 +1,5 @@
 {
+  "__elements": {},
   "__inputs": [
     {
       "description": "",
@@ -61,7 +62,7 @@
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
-        "name": "Annotations \u0026 Alerts",
+        "name": "Annotations & Alerts",
         "target": {
           "limit": 100,
           "matchAny": false,
@@ -74,6 +75,7 @@
   },
   "description": "",
   "editable": true,
+  "fiscalYearStartMonth": 0,
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
@@ -559,7 +561,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                    "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                   }
                 ]
               }
@@ -581,7 +583,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "/d/cdot-cluster/ontap-cluster?orgId=1\u0026${Datacenter:queryparam}\u0026${__url_time_range}\u0026var-Cluster=${__value.raw}"
+                    "url": "/d/cdot-cluster/ontap-cluster?orgId=1&${Datacenter:queryparam}&${__url_time_range}&var-Cluster=${__value.raw}"
                   }
                 ]
               }
@@ -1048,8 +1050,9 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -1062,7 +1065,7 @@
           "expr": "snapmirror_last_transfer_duration{source_cluster=~\"$Cluster\",source_volume=~\".*$Volume.*\",source_vserver=~\"$SVM\",netapp_cluster=~\"$NetappCluster\"}\nand\n  topk(\n    $TopResources,\n    avg_over_time(\n      snapmirror_last_transfer_duration{source_cluster=~\"$Cluster\",source_volume=~\".*$Volume.*\",source_vserver=~\"$SVM\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n    )\n  )",
           "hide": false,
           "interval": "",
-          "legendFormat": "{{source_location}} -\u003e {{destination_location}}",
+          "legendFormat": "{{source_location}} -> {{destination_location}}",
           "range": true,
           "refCount": 0,
           "refId": "B",
@@ -1149,8 +1152,9 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -1163,7 +1167,7 @@
           "expr": "snapmirror_lag_time{source_cluster=~\"$Cluster\",source_volume=~\".*$Volume.*\",source_vserver=~\"$SVM\",netapp_cluster=~\"$NetappCluster\"}\nand\n  topk(\n    $TopResources,\n    avg_over_time(\n      snapmirror_lag_time{source_cluster=~\"$Cluster\",source_volume=~\".*$Volume.*\",source_vserver=~\"$SVM\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n    )\n  )",
           "hide": false,
           "interval": "",
-          "legendFormat": "{{source_location}} -\u003e {{destination_location}}",
+          "legendFormat": "{{source_location}} -> {{destination_location}}",
           "range": true,
           "refCount": 0,
           "refId": "B",
@@ -1249,8 +1253,9 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "hideZeros": false,
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "pluginVersion": "8.1.8",
@@ -1263,7 +1268,7 @@
           "expr": "snapmirror_last_transfer_size{source_cluster=~\"$Cluster\",source_volume=~\".*$Volume.*\",source_vserver=~\"$SVM\",netapp_cluster=~\"$NetappCluster\"}\nand\n  topk(\n    $TopResources,\n    avg_over_time(\n      snapmirror_last_transfer_size{source_cluster=~\"$Cluster\",source_volume=~\".*$Volume.*\",source_vserver=~\"$SVM\",netapp_cluster=~\"$NetappCluster\"}[3h] @ end()\n    )\n  )",
           "hide": false,
           "interval": "",
-          "legendFormat": "{{source_location}} -\u003e {{destination_location}}",
+          "legendFormat": "{{source_location}} -> {{destination_location}}",
           "range": true,
           "refCount": 0,
           "refId": "B",
@@ -1331,8 +1336,9 @@
               "values": false
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.2",
@@ -1441,7 +1447,7 @@
               {
                 "matcher": {
                   "id": "byName",
-                  "options": "\u003c=15 minutes"
+                  "options": "<=15 minutes"
                 },
                 "properties": [
                   {
@@ -1486,7 +1492,7 @@
               {
                 "matcher": {
                   "id": "byName",
-                  "options": "\u003e= 60 minutes"
+                  "options": ">= 60 minutes"
                 },
                 "properties": [
                   {
@@ -1526,8 +1532,9 @@
               "values": false
             },
             "tooltip": {
-              "mode": "single",
-              "sort": "none"
+              "hideZeros": false,
+              "mode": "multi",
+              "sort": "desc"
             }
           },
           "pluginVersion": "8.1.2",
@@ -1536,17 +1543,17 @@
               "datasource": "${DS_PROMETHEUS}",
               "editorMode": "code",
               "exemplar": false,
-              "expr": "count(\n    (\n          1\n        \u003c\n          snapmirror_lag_time{relationship_id!=\"\",source_cluster=~\"$Cluster\",source_volume!=\"\",source_volume=~\".*$Volume.*\",source_vserver=~\"$SVM\",netapp_cluster=~\"$NetappCluster\"}\n      \u003c=\n        900\n    )\n  )\nor\n  vector(0)",
+              "expr": "count(\n    (\n          1\n        <\n          snapmirror_lag_time{relationship_id!=\"\",source_cluster=~\"$Cluster\",source_volume!=\"\",source_volume=~\".*$Volume.*\",source_vserver=~\"$SVM\",netapp_cluster=~\"$NetappCluster\"}\n      <=\n        900\n    )\n  )\nor\n  vector(0)",
               "instant": true,
               "interval": "",
-              "legendFormat": "\u003c=15 minutes",
+              "legendFormat": "<=15 minutes",
               "refId": "A"
             },
             {
               "datasource": "${DS_PROMETHEUS}",
               "editorMode": "code",
               "exemplar": false,
-              "expr": "count(\n    (\n          900\n        \u003c\n          snapmirror_lag_time{relationship_id!=\"\",source_cluster=~\"$Cluster\",source_volume!=\"\",source_volume=~\".*$Volume.*\",source_vserver=~\"$SVM\",netapp_cluster=~\"$NetappCluster\"}\n      \u003c=\n        1800\n    )\n  )\nor\n  vector(0)",
+              "expr": "count(\n    (\n          900\n        <\n          snapmirror_lag_time{relationship_id!=\"\",source_cluster=~\"$Cluster\",source_volume!=\"\",source_volume=~\".*$Volume.*\",source_vserver=~\"$SVM\",netapp_cluster=~\"$NetappCluster\"}\n      <=\n        1800\n    )\n  )\nor\n  vector(0)",
               "hide": false,
               "instant": true,
               "interval": "",
@@ -1557,7 +1564,7 @@
               "datasource": "${DS_PROMETHEUS}",
               "editorMode": "code",
               "exemplar": false,
-              "expr": "count(\n    (\n          1800\n        \u003c\n          snapmirror_lag_time{relationship_id!=\"\",source_cluster=~\"$Cluster\",source_volume!=\"\",source_volume=~\".*$Volume.*\",source_vserver=~\"$SVM\",netapp_cluster=~\"$NetappCluster\"}\n      \u003c=\n        3600\n    )\n  )\nor\n  vector(0)",
+              "expr": "count(\n    (\n          1800\n        <\n          snapmirror_lag_time{relationship_id!=\"\",source_cluster=~\"$Cluster\",source_volume!=\"\",source_volume=~\".*$Volume.*\",source_vserver=~\"$SVM\",netapp_cluster=~\"$NetappCluster\"}\n      <=\n        3600\n    )\n  )\nor\n  vector(0)",
               "hide": false,
               "instant": true,
               "interval": "",
@@ -1568,11 +1575,11 @@
               "datasource": "${DS_PROMETHEUS}",
               "editorMode": "code",
               "exemplar": false,
-              "expr": "count(\n    (\n        snapmirror_lag_time{relationship_id!=\"\",source_cluster=~\"$Cluster\",source_volume!=\"\",source_volume=~\".*$Volume.*\",source_vserver=~\"$SVM\",netapp_cluster=~\"$NetappCluster\"}\n      \u003e\n        3600\n    )\n  )\nor\n  vector(0)",
+              "expr": "count(\n    (\n        snapmirror_lag_time{relationship_id!=\"\",source_cluster=~\"$Cluster\",source_volume!=\"\",source_volume=~\".*$Volume.*\",source_vserver=~\"$SVM\",netapp_cluster=~\"$NetappCluster\"}\n      >\n        3600\n    )\n  )\nor\n  vector(0)",
               "hide": false,
               "instant": true,
               "interval": "",
-              "legendFormat": "\u003e= 60 minutes",
+              "legendFormat": ">= 60 minutes",
               "refId": "D"
             }
           ],
@@ -1629,7 +1636,7 @@
                           "result": {
                             "color": "dark-yellow",
                             "index": 0,
-                            "text": "\u003c= 15 Minutes"
+                            "text": "<= 15 Minutes"
                           },
                           "to": 900
                         },
@@ -1665,7 +1672,7 @@
                           "result": {
                             "color": "red",
                             "index": 3,
-                            "text": "\u003e60 Minutes"
+                            "text": ">60 Minutes"
                           },
                           "to": 1e+24
                         },
@@ -1699,7 +1706,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-volume/ontap-volume?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${SVM:queryparam}\u0026${__url_time_range}\u0026var-Volume=${__value.raw}"
+                        "url": "/d/cdot-volume/ontap-volume?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${SVM:queryparam}&${__url_time_range}&var-Volume=${__value.raw}"
                       }
                     ]
                   }
@@ -1721,7 +1728,7 @@
                       {
                         "targetBlank": true,
                         "title": "",
-                        "url": "/d/cdot-volume/ontap-volume?orgId=1\u0026${Datacenter:queryparam}\u0026${Cluster:queryparam}\u0026${SVM:queryparam}\u0026${__url_time_range}\u0026var-Volume=${__value.raw}"
+                        "url": "/d/cdot-volume/ontap-volume?orgId=1&${Datacenter:queryparam}&${Cluster:queryparam}&${SVM:queryparam}&${__url_time_range}&var-Volume=${__value.raw}"
                       }
                     ]
                   }
@@ -1841,7 +1848,7 @@
               "datasource": "${DS_PROMETHEUS}",
               "editorMode": "code",
               "exemplar": false,
-              "expr": "snapmirror_lag_time{source_cluster=~\"$Cluster\",source_volume!=\"\",source_volume=~\".*$Volume.*\",source_vserver=~\"$SVM\",netapp_cluster=~\"$NetappCluster\"}\n  * on (source_cluster, source_vserver, source_volume) group_left (derived_relationship_type)\n    snapmirror_labels{source_cluster=~\"$Cluster\",source_volume!=\"\",source_volume=~\".*$Volume.*\",source_vserver=~\"$SVM\",netapp_cluster=~\"$NetappCluster\"}\n\u003e\n  0",
+              "expr": "snapmirror_lag_time{source_cluster=~\"$Cluster\",source_volume!=\"\",source_volume=~\".*$Volume.*\",source_vserver=~\"$SVM\",netapp_cluster=~\"$NetappCluster\"}\n  * on (source_cluster, source_vserver, source_volume) group_left (derived_relationship_type)\n    snapmirror_labels{source_cluster=~\"$Cluster\",source_volume!=\"\",source_volume=~\".*$Volume.*\",source_vserver=~\"$SVM\",netapp_cluster=~\"$NetappCluster\"}\n>\n  0",
               "format": "table",
               "instant": true,
               "interval": "",
@@ -1908,6 +1915,7 @@
       "type": "row"
     }
   ],
+  "preload": false,
   "refresh": "",
   "schemaVersion": 30,
   "style": "dark",
@@ -1958,7 +1966,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -1984,7 +1992,7 @@
         "refresh": 2,
         "regex": ".*source_cluster=\\\"(.*?)\\\".*",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -2037,7 +2045,7 @@
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -2064,7 +2072,7 @@
         "refresh": 2,
         "regex": "^[a-zA-Z0-9~@#$^*()_+=[\\]{}|\\\\.?: -]*$",
         "skipUrlSync": false,
-        "sort": 1,
+        "sort": 7,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -2199,5 +2207,6 @@
   "timezone": "",
   "title": "ONTAP: SnapMirror Sources",
   "uid": "cdot-snapmirror",
-  "version": 7
+  "version": 7,
+  "weekStart": ""
 }
