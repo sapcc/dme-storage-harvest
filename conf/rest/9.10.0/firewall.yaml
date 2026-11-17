@@ -3,6 +3,8 @@ name:                     Firewall
 query:                    api/private/cli/system/services/firewall
 object:                   firewall
 
+# firewall_enabled indicates whether the firewall service is running on the node.
+# Since ONTAP 9.10.1, LIF service policies govern allowed ports; this metric does not reflect those.
 counters:
   - ^^node                                  => node
   - ^enabled                                => enabled
