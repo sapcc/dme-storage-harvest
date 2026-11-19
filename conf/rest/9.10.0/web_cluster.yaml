@@ -4,6 +4,8 @@ query:                    api/cluster/web
 object:                   web_cluster
 
 counters:
+  # ^^state used as instance key until upstream REST collector handles single-object endpoints natively
+  - ^^state                                 => state
   - ^certificate.name                       => certificate
   - ^client_enabled                         => client_enabled
   - ^csrf.protection_enabled                => csrf_protection_enabled
@@ -12,7 +14,6 @@ counters:
   - ^hsts.enabled                           => hsts_enabled
   - ^http_enabled                           => http_enabled
   - ^ocsp_enabled                           => ocsp_enabled
-  - ^state                                  => state
   - csrf.token.concurrent_limit             => csrf_token_concurrent_limit
   - csrf.token.idle_timeout                 => csrf_token_idle_timeout
   - csrf.token.max_timeout                  => csrf_token_max_timeout
@@ -21,6 +22,8 @@ counters:
   - https_port                              => https_port
 
 export_options:
+  instance_keys:
+    - state
   instance_labels:
     - certificate
     - client_enabled
@@ -29,4 +32,3 @@ export_options:
     - hsts_enabled
     - http_enabled
     - ocsp_enabled
-    - state
